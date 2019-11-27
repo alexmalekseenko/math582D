@@ -1,0 +1,136 @@
+! This file contains parameter setting for DGV library 
+!
+! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits! 
+!
+!
+! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4"
+! "." is the decimal point
+!  
+! parameter description (name) must not change including no adding extra spaces between words! 
+! 
+! the parameter description ends with  "=" whish is followed by the parameter value
+! 
+! the program will ignore all lines that start with "!" in the first column
+!
+! 
+!!!!!!!!!!!!!!!!!!!!!!!!
+left endpoint in u = -3.0         !! u_L
+right endpoint in u = 3.0         !! u_R
+left endpoint in v = -3.0         !! v_L
+right endpoint in v = 3.0         !! v_R
+left endpoint in w = -3.0         !! w_L
+right endpoint in w = 3.0         !! w_R
+uniform mesh in u = yes               !! mesh_u_uniform
+uniform mesh in v = yes              !! mesh_v_uniform
+uniform mesh in w = yes              !! mesh_w_uniform
+
+use secondary velocity grid = yes  !! if this parameter is selected use at least two numbers for each list below: 
+                                   !! the first number will determine the primary grid and the second number. 
+                                   !! determines the secondary grid. The third (also fourth and fifth) numbers are optional 
+                                   !! and is not used at the moment
+!set the parameters of the primary and secondary grid
+number of cells in u = 10,21,4            !! Mu_list
+degree of local Lagrange basis in u = 5,1,1       !! su_list
+number of cells in v = 10,21,4            !! Mv_list
+degree of local Lagrange basis in v = 5,1,1       !! sv_list
+number of cells in w = 10,21,4            !! Mw_list
+degree of local Lagrange basis in w = 5,1,1       !! sw_list
+
+
+! directory and the base name for the solution
+!
+
+current solution save directory = sol080909/  !! needs a comment, otherwise includes CR in the name
+current solution base name = M380_ES_
+current A operator base name = OpA/1xN/exp0912_       !! chunk reader will add ch000_ to the name (max 20 symbols)
+secondary operator A base name = OpA/1xN/exp0912_     !!
+num of chunks for Aarray = 1            !! numchnks --- the total number of files in which the Aarray is stored,
+num of chunks for sec Aarray = 1         !! numchnks II -- the total number of files that contain the Aarray for the secondary mesh 
+
+
+! Parameters related to non-unifom mesh generation
+type of nonuniform mesh in u = 3 ! u_nonuniform_mesh_type
+type of nonuniform mesh in v = 3 ! v_nonuniform_mesh_type
+type of nonuniform mesh in w = 3 ! w_nonuniform_mesh_type
+
+! supported types of nonuminform mesh:
+! For variable u:
+! 1 --- the mesh is build based on the gauss nodes used for the integration of moments, moments_x_gauss_nodes and 
+!       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is divided in subintervals 
+!       as to have gauss nodes at centerpoints. Some extra points need to be introduced to make this possible.
+! 2 --- this mesh is to be used with the diffusive boundary conditions. The velocity of the wall (currently only u_{w}=0)
+!       will be included in the mesh. Also, the cell near the walls will be 1/8 - 1/4 - 1/2        
+! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as prescribed by parameters
+!       sml -- small cell levels amd smr -- small cell refinement factor 
+! 3 --- This is a non-niform mesh in "x" with cells near wall be 1/4-1/2. Currenlty is not supported for meshes in "u"
+!
+!
+
+! Parameters related to the integration of moments
+
+gauss order for moments in u  = 9    ! moments_u_gauss_order
+mesh refinement in u for moments = 1 ! moments_refine_u
+
+! Parameters of Calculating the A-array:
+cutoff radius of A-array = 3.00 ! Trad -- velocities xi1 and xi that farther apart than Arad are neglected 
+error in integral in Chi = 1.0E-4  !  ErrChi -- error in the outside double integral
+error in integral in Epsilon = 1.0E-5 ! ErrEps -- error in the inside double integral
+cutoff values for A-array = 1.0E-11 ! min_sens  -- the values of A-array below thi slevel are not accepted 
+list of basis functions for A-array = 365,14896 ! I1_list -- list of basis functions numbers for which A-array will be calculated!
+
+! OpenMP parameters: 
+number of OMP threads = 1  ! Num_OMP_threads
+!MPI parameters
+number of procs for linear problem = 4 ! num_lin_proc  -- this is the number of processors dedicated to the evaluation of the linearized collision operator
+no update linearization steps wait = 3  ! num_linstep_wait >1  -- this is the number of steps that the program will wait untill envoking the groupd of processors for linearized problem
+                                    ! by default, the linearized solution is computed on slave processors. however
+                                    ! if the linearized operator has not been uptaded #num_linstep_wait# times, then 
+                                    ! we will send chunks of the linearized operator to a selected group of processors and will try to compute it there
+                                    ! presumably, we can save on communication by doing that. 
+number of mpi copies of A = 1       ! num_Acopies -- this is to keep the number of copies of A distributed between the MPI processors.                                   
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Linearization and Decomposition parameters: 
+! these are parameters that tell when the decomposition or linearization 
+! around a local maxwellian needs to be applied. They represent treshholds 
+! for deviations from a maxwellian in L_1 or other norm. 
+! NOTICE: keep linear_lev at least an order of magnitude less than decomp_lev
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+error maxwell ESBGK = 0.1             ! ES_lev
+error maxwell Vel ESBGK = 200.9            ! vel_lev -- velocity dependent regime
+error maxwell linearization = 300.0       ! linear_lev, 
+error maxwell decomposition = 400.0       ! decomp_lev
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Parameters for dimensionless reduction
+!
+! C_inf = thermal velocity in m/s 
+! L_inf = characteristic length in m
+! N_inf = the total number of molecules in the volume
+! T_inf =  the normalization for time is selected from the condition T_inf*C_inf = L_inf calculated automatically
+! Temp_inf = the characteristic temperature
+! mol_diam = molecular diameter in hard shperes model
+!!!!!!!!!!!!!!!
+ref termal velocity = 1580.375122325165 ! C_inf m/s
+ref characteristic length = 1.0 ! L_inf m
+ref number of molecules = 1.0E+21 ! N_inf 
+ref molecular diameter = 3.76E-10  ! mod_diam m
+ref molecular mass = 6.633520884527004d-26 ! mol_mass molecular mass in kg
+!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!
+! Parameters of the gas and ES-BGK
+the ordinary gas constant = 208.1322 ! gasR (=208.1322_DP for Ar;  =296.95 for N_2)
+gas alpha = .5                !! gas_alpha (when compare to Boltzmann hard spheres use .5)
+gas viscosity = 3.811651127166199e-005       !! gas_viscosity (hard spheres)
+Temperature reference = 1020   !! gas_T_reference for viscosity
+ESBGK modifier = -0.5          !! alpha for prandtl number : -.5 for 2/3 and 0 for BGK if ES model is used
+use VSS diam in relax rates = no !! flag_use_VSS_diam ! if the value supplied is "yes", relaxation rates for the moments are computed using the reference diameter of the variable hard shperes model. if no, then the hard shperes ref diameter is used.
+!!!!!!!!!!!!!!!!!!!!!!!
+
+N of enforced moments = 10       !! Order -- the variable determining how many or the built-in moments are enforced in relaxation
+!	                	        !! order=1 invokes the first enforced moment. Current allowed Maximum is 15 moments total
+N of coefficients in VDCF = 6   !! Order_nu -- the number of coefficients/basis functions in the representation of the velocity-dependent collision
+!						        !! frequency ATTENTION: Currently only the same number if allowed for both Order and Order_nu
+mean free time rates update = 20.0  !! mft_coeff -- time period in mean free times between each update 
+! end of file 

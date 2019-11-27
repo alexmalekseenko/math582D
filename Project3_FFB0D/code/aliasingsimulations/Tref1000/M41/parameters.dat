@@ -1,0 +1,101 @@
+i! This file contains parameter setting for 1D UWVFbgk code
+!
+! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits! 
+!
+!
+! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4"
+! "." is the decimal point
+!  
+! parameter description (name) must not change including no adding extra spaces between words! 
+! 
+! the parameter description ends with  "=" whish is followed by the parameter value
+! 
+! the program will ignore all lines that start with "!"
+! 
+!!!!!!!!!!!!!!!!!!!!!!!!
+degree of local Legendre basis in x = 4,5 !! k_c_list mesh1x183_2kc1su1sv1sw3NXU33MuUU33MvVU33MwWU_time0.0015000000_sol
+number of G-L boundary nodes in x = 5,6   !! k_b_list 
+left endpoint in x = 0.0            !! x_left 
+right endpoint in x = 0.1           !! x_right
+uniform mesh in x = yes             !! mesh_x_uniform
+number of cells in x = 4,6,8,11,16  !! N_list
+
+degree of local Legendre basis in t = 4,5       !! d_c_list
+number of G-L boundary nodes in t = 5,6   !! d_b_list 
+
+
+! choose from different kinds of boundary conditions: 
+! 1 - periodic BCs
+! 2 - exact BCs (will need to know the selected exact solution
+! 3 - diffusive reflection BCs. 
+!
+
+! select the type of boundary conditions 
+conditions on the left boundary = 3    !! selected_leftbcond 
+conditions on the right boundary = 3   !! selected_rightbcond 
+
+! choose from different kinds of exact solutions: 
+! 1 - sin(x+u) -- type of source
+! 2 - ext(-1/x^2) -- type of source  
+! 3 - diffusion BCs
+
+! Select the exact solution
+! 1 = "f(ut-nx+cu)", f(x)=a*\exp(-b/((x-r_1)(x-r_2))) zero right side exact solution (or 1a = 1- cos(x) periodic wave) 
+! 1(a) = "f(ut-nx+cu)", f(x)=1-cos(2\alpha\pi x) zero right side exact solution
+! 2 =  maxwelveldist (T1,u1,u)*N1 + maxwelveldist (T2,u2,u)*(1-N1) --- mimic shock wave bimodal distribution (time independent)
+!      function sf_02 only makes sense for initial data. Error is replaced by L_2 norm
+
+type of exact solution = 2        !! selected_exact_sol
+
+! directory and the base name for the solution
+!
+
+current solution save directory = sol080909/ !! needs a comment, otherwise includes CR in the name
+current solution base name = MalsngTref1000_ !!
+
+!
+! Parameters of time evolution 
+!
+
+initial time = 0.0  !! beginning value of time (t_L) 
+final time = 0.1045    !! final value of time (t_R) (USC Mach 10: 0.00025
+time step = 0.00005  !! value of the time step dt
+
+instances to evaluate error = 800 !! num_eval_error = how many (evenly spaced in time) evaluations of error
+instances to save solution =  60  !! num_save_sol = how many times the solution (and error and other quantities) is saved during the evolution
+
+! Parameters related to non-unifom mesh generation
+type of nonuniform mesh in x = 2 ! x_nonuniform_mesh_type
+
+! supported types of nonuminform mesh:
+! For variable u:
+! 1 --- the mesh is build based on the gauss nodes used for the integration of moments, moments_x_gauss_nodes and 
+!       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is divided in subintervals 
+!       as to have gauss nodes at centerpoints. Some extra points need to be introduced to make this possible.
+! 2 --- this mesh is to be used with the diffusive boundary conditions. The velocity of the wall (currently only u_{w}=0)
+!       will be included in the mesh. Also, the cell near the walls will be 1/8 - 1/4 - 1/2        
+! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as prescribed by parameters
+!       sml -- small cell levels amd smr -- small cell refinement factor 
+! 3 --- This is a non-uniform mesh in "x" with cells near wall be 1/4-1/2. Currenlty is not supported for meshes in "u"
+
+
+! Parameters related to the integration of moments
+
+gauss order for moments in x  = 5    ! moments_x_gauss_order
+mesh refinement in x for moments = 1 ! moments_refine_x 
+
+! Parameters of diffusive BCs -- only used with diffusive BCs
+
+temperature of the left wall = 1.0   ! T_w_left -- temperature of the wall on the left
+temperature of the right wall = 3.0  ! T_w_right -- temperature of the wall on the right
+
+! Restart of the solution
+
+solution restart = no      ! need_to_restart yes to restart
+restart time = 0.0120000000  ! restart_time_txt restart/last saved solution time in text format --- use the exact numbers from the filename!
+
+! OpenMP parameters: 
+number of OMP threads = 28 ! Num_OMP_threads -- this variable is duplicated in the DGV-library --- be careful... 
+
+
+! end of file 

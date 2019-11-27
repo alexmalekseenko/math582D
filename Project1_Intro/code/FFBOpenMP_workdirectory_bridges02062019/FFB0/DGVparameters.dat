@@ -1,0 +1,123 @@
+! This file contains parameter setting for DGV library 
+!
+! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits! 
+!
+!
+! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4"
+! "." is the decimal point
+!  
+! parameter description (name) must not change including no adding extra spaces between words! 
+! 
+! the parameter description ends with  "=" whish is followed by the parameter value
+! 
+! the program will ignore all lines that start with "!" in the first column
+!
+! 
+!!!!!!!!!!!!!!!!!!!!!!!!
+left endpoint in u = -3.0         !! u_L
+right endpoint in u = 3.0         !! u_R
+left endpoint in v = -3.0         !! v_L
+right endpoint in v = 3.0         !! v_R
+left endpoint in w = -3.0         !! w_L
+right endpoint in w = 3.0         !! w_R
+uniform mesh in u = yes               !! mesh_u_uniform
+uniform mesh in v = yes              !! mesh_v_uniform
+uniform mesh in w = yes              !! mesh_w_uniform
+
+use secondary velocity grid = no  !! if this parameter is selected provide at least two numbers for each list below: the first number will determine the primary grid and the second number. 
+                                   !! determines the secondary grid. The third (also fourth and fifth) numbers are optional 
+                                   !! and is not used at the moment
+!set the parameters of the primary and secondary grid
+number of cells in u = 41,21,4            !! Mu_list
+degree of local Lagrange basis in u = 1,1,1       !! su_list
+number of cells in v = 41,21,4            !! Mv_list
+degree of local Lagrange basis in v = 1,1,1       !! sv_list
+number of cells in w = 41,21,4            !! Mw_list
+degree of local Lagrange basis in w = 1,1,1       !! sw_list
+
+
+! directory and the base name for the solution
+!
+
+current solution save directory = sol080909/  !! needs a comment, otherwise includes CR in the name
+current solution base name = M300Trf4dt5D5_              !!
+current A operator base name = OpA/1xN/exp0912_       !! chunk reader will add ch000_ to the name (max 20 symbols)
+secondary operator A base name = OpA/1xN/exp0912_     !!
+!current A operator base name = Posops/PosOp_    !!
+!secondary operator A base name = PosOps/PosOp_   !!
+num of chunks for Aarray = 1            !! numchnks --- the total number of files in which the Aarray is stored,
+num of chunks for sec Aarray = 1         !! numchnks II -- the total number of files that contain the Aarray for the secondary mesh 
+
+
+! Parameters related to the integration of moments
+
+gauss order for moments in u  = 9    ! moments_u_gauss_order
+mesh refinement in u for moments = 1 ! moments_refine_u
+
+! Parameters of Calculating the A-array:
+
+cutoff radius of A-array = 3.00 ! Trad -- velocities xi1 and xi that farther apart than Arad are neglected 
+error in integral in Chi = 1.0E-4  !  ErrChi -- error in the outside double integral
+error in integral in Epsilon = 1.0E-5 ! ErrEps -- error in the inside double integral
+cutoff values for A-array = 1.0E-11 ! min_sens  -- the values of A-array below thi slevel are not accepted 
+list of basis functions for A-array = 365,14896 ! I1_list -- list of basis functions numbers for which A-array will be calculated!
+range of node numbers I2 = 1,729 ! I2_from and I2_to  - the range of the indices in I2. Values ignored if I1_list has more then 2 records
+
+! OpenMP parameters: (can ignore if not using OpenMP) 
+
+number of OMP threads = 28  ! Num_OMP_threads
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Model threshholds: The order in which the models are envoked are 
+! 1) the Boltzmann equation, non-split formulation 
+! 2) the Boltzmann equation, split f=f_M + df, formulation
+! 3) the linearized Boltzmann equation (unless solving spatially homogeneous problem, does not give an advantage)
+! 4) the BGK-type Model with velocity dependent collision frequency
+! 5) the ES-BGK/BGK or Shakhov model
+! 
+! the parameters below define the thresholds for switching between models. They represent the maximum allowed values of the L1-norm of the 
+! deviation of the solution from the local maxwellian. When the L1-norm of the deviation drops below the treshhold, the appropriate model is envoked. 
+! NOTICE: keep linear_lev at least an order of magnitude less than decomp_lev
+!
+! VERY IMPORTANT: the tresholds for the models above should be given in decreasing order. 
+! Otherwise the algorithms will make a mistake. 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+error maxwell ESBGK = 0.000000001            ! ES_lev
+error maxwell Vel ESBGK = 0.00001            ! vel_lev -- velocity dependent regime
+error maxwell linearization = .0002       ! linear_lev, 
+error maxwell decomposition = 1.7       ! decomp_lev
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Parameters for dimensionless reduction
+!
+! C_inf = thermal velocity in m/s 
+! L_inf = characteristic length in m
+! N_inf = the total number of molecules in the volume
+! T_inf =  the normalization for time is selected from the condition T_inf*C_inf = L_inf calculated automatically
+! Temp_inf = the characteristic temperature
+! mol_diam = molecular diameter in hard shperes model
+!!!!!!!!!!!!!!!
+ref termal velocity = 1290.370883961734  ! C_inf m/s
+ref characteristic length = 1.0 ! L_inf m
+ref number of molecules = 1.0E+20 ! N_inf 
+ref molecular diameter = 3.76E-10  ! mod_diam m-
+!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!
+! Parameters of the gas and ES-BGK
+the ordinary gas constant = 208.1322 ! gasR (=208.1322_DP for Ar;  =296.95 for N_2)
+gas alpha = .5                !! gas_alpha (when compare to Boltzmann hard spheres use .5)
+gas viscosity = 5.337379160633744E-005       !! gas_viscosity
+Temperature reference = 2000   !! gas_T_reference
+ESBGK modifier = -0.5          !! alpha for prandtl number, -0.5 corresponds to 2/3 , 0 to BGK if ES model is used. 
+!!!!!!!!!!!!!!!!!!!!!!!
+!! Parameters VD-BGK (BGK model with velocity dependent collision frequency
+N of enforced moments = 6       !! Order -- the variable determining how many or the built-in moments are enforced in relaxation
+!	                	        !! order=1 invokes the first enforced moment. Current allowed Maximum is 15 moments total
+N of coefficients in VDCF = 6   !! Order_nu -- the number of coefficients/basis functions in the representation of the velocity-dependent collision
+!						        !! frequency ATTENTION: Currently only the same number if allowed for both Order and Order_nu
+mean free time rates update = 0.5  !! mft_coeff -- time period in mean free times between eadh 
+
+ 
+! end of file 

@@ -1,0 +1,4741 @@
+ i! This file contains parameter setting for 1D UWVFbgk code                    
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!"                        
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ k_c_list=           4           5
+ k_b_list=           5           6
+ x_L=  0.000000000000000E+000
+ x_R=  0.100000000000000     
+ mesh_x_uniform= T
+ N_list=           4           6           8          11          16
+                                                                                
+                                                      
+ d_c_list=           4           5
+ d_b_list=           5           6
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! choose from different kinds of boundary conditions:                          
+                                                      
+ ! 1 - periodic BCs                                                             
+                                                      
+ ! 2 - exact BCs (will need to know the selected exact solution                 
+                                                      
+ ! 3 - diffusive reflection BCs.                                                
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ ! select the type of boundary conditions                                       
+                                                      
+ selected_leftbcond=           3
+ selected_rightbcond=           3
+                                                                                
+                                                      
+ ! choose from different kinds of exact solutions:                              
+                                                      
+ ! 1 - sin(x+u) -- type of source                                               
+                                                      
+ ! 2 - ext(-1/x^2) -- type of source                                            
+                                                      
+ ! 3 - diffusion BCs                                                            
+                                                      
+                                                                                
+                                                      
+ ! Select the exact solution                                                    
+                                                      
+ ! 1 = "f(ut-nx+cu)", f(x)=a*\exp(-b/((x-r_1)(x-r_2))) zero right side exact sol
+ ution (or 1a = 1- cos(x) periodic wave)              
+ ! 1(a) = "f(ut-nx+cu)", f(x)=1-cos(2\alpha\pi x) zero right side exact solution
+                                                      
+ ! 2 =  maxwelveldist (T1,u1,u)*N1 + maxwelveldist (T2,u2,u)*(1-N1) --- mimic sh
+ ock wave bimodal distribution (time independent)     
+ !      function sf_02 only makes sense for initial data. Error is replaced by L
+ _2 norm                                              
+                                                                                
+                                                      
+ selected_exact_sol=           2
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=M300Trf4dt5D5_      
+                                                                                
+                                                      
+ !                                                                              
+                                                      
+ ! Parameters of time evolution                                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ t_L=  0.000000000000000E+000
+ t_R=  0.104500000000000     
+ dt=  5.000000000000000E-005
+                                                                                
+                                                      
+ num_eval_error=         800
+ num_save_solution=          60
+                                                                                
+                                                      
+ ! Parameters related to non-unifom mesh generation                             
+                                                      
+ x_nonuniform_mesh_type=           2
+                                                                                
+                                                      
+ ! supported types of nonuminform mesh:                                         
+                                                      
+ ! For variable u:                                                              
+                                                      
+ ! 1 --- the mesh is build based on the gauss nodes used for the integration of 
+ moments, moments_x_gauss_nodes and                   
+ !       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is 
+ divided in subintervals                              
+ !       as to have gauss nodes at centerpoints. Some extra points need to be in
+ troduced to make this possible.                      
+ ! 2 --- this mesh is to be used with the diffusive boundary conditions. The vel
+ ocity of the wall (currently only u_{w}=0)           
+ !       will be included in the mesh. Also, the cell near the walls will be 1/8
+  - 1/4 - 1/2                                         
+ ! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as pr
+ escribed by parameters                               
+ !       sml -- small cell levels amd smr -- small cell refinement factor       
+                                                      
+ ! 3 --- This is a non-uniform mesh in "x" with cells near wall be 1/4-1/2. Curr
+ enlty is not supported for meshes in "u"             
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_x_gauss_order=           5
+ moments_refine_x=           1
+                                                                                
+                                                      
+ ! Parameters of diffusive BCs -- only used with diffusive BCs                  
+                                                      
+                                                                                
+                                                      
+ T_w_left=   1.00000000000000     
+ T_w_right=   3.00000000000000     
+                                                                                
+                                                      
+ ! Restart of the solution                                                      
+                                                      
+                                                                                
+                                                      
+ need_to_restart= F
+ restart_time_txt=0.0120000000        
+                                                                                
+                                                      
+ ! OpenMP parameters:                                                           
+                                                      
+ Num_OMP_threads(Driver)=     28
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! This file contains parameter setting for DGV library                         
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!" in the first column    
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ u_L=  -3.00000000000000     
+ u_R=   3.00000000000000     
+ v_L=  -3.00000000000000     
+ v_R=   3.00000000000000     
+ w_L=  -3.00000000000000     
+ w_R=   3.00000000000000     
+ mesh_u_uniform= T
+ mesh_v_uniform= T
+ mesh_w_uniform= T
+                                                                                
+                                                      
+ SecondaryVelGridInUse= F
+                                    !! determines the secondary grid. The third 
+ (also fourth and fifth) numbers are optional         
+                                    !! and is not used at the moment            
+                                                      
+ !set the parameters of the primary and secondary grid                          
+                                                      
+ Mu_list=          41          21           4
+ su_list=           1           1           1
+ Mv_list=          41          21           4
+ sv_list=           1           1           1
+ Mw_list=          41          21           4
+ sw_list=           1           1           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=M300Trf4dt5D5_      
+ current_Aoperator_base_name=OpA/1xN/exp0912_    
+ current_Aoperator_base_nameII=OpA/1xN/exp0912_    
+ !current A operator base name = Posops/PosOp_    !!                            
+                                                      
+ !secondary operator A base name = PosOps/PosOp_   !!                           
+                                                      
+ numchnks=           1
+ numchnksII=           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_u_gauss_order=           9
+ moments_refine_u=           1
+                                                                                
+                                                      
+ ! Parameters of Calculating the A-array:                                       
+                                                      
+                                                                                
+                                                      
+ Trad=   3.00000000000000     
+ ErrChi=  1.000000000000000E-004
+ ErrEps=  1.000000000000000E-005
+ min_sens=  9.999999999999999E-012
+ I1_list=         365       14896
+ I2_from=           1 I2_to=         729
+                                                                                
+                                                      
+ ! OpenMP parameters: (can ignore if not using OpenMP)                          
+                                                      
+                                                                                
+                                                      
+ Num_OMP_threads=     28
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+ ! Model threshholds: The order in which the models are envoked are             
+                                                      
+ ! 1) the Boltzmann equation, non-split formulation                             
+                                                      
+ ! 2) the Boltzmann equation, split f=f_M + df, formulation                     
+                                                      
+ ! 3) the linearized Boltzmann equation (unless solving spatially homogeneous pr
+ oblem, does not give an advantage)                   
+ ! 4) the BGK-type Model with velocity dependent collision frequency            
+                                                      
+ ! 5) the ES-BGK/BGK or Shakhov model                                           
+                                                      
+ !                                                                              
+                                                      
+ ! the parameters below define the thresholds for switching between models. They
+  represent the maximum allowed values of the L1-norm 
+ ! deviation of the solution from the local maxwellian. When the L1-norm of the 
+ deviation drops below the treshhold, the appropriate 
+ ! NOTICE: keep linear_lev at least an order of magnitude less than decomp_lev  
+                                                      
+ !                                                                              
+                                                      
+ ! VERY IMPORTANT: the tresholds for the models above should be given in decreas
+ ing order.                                           
+ ! Otherwise the algorithms will make a mistake.                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+                                                                                
+                                                      
+ ES_lev=  1.000000000000000E-009
+ vel_lev=  1.000000000000000E-005
+ linear_lev=  2.000000000000000E-004
+ decomp_lev=   1.70000000000000     
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                         
+                                                      
+ ! Parameters for dimensionless reduction                                       
+                                                      
+ !                                                                              
+                                                      
+ ! C_inf = thermal velocity in m/s                                              
+                                                      
+ ! L_inf = characteristic length in m                                           
+                                                      
+ ! N_inf = the total number of molecules in the volume                          
+                                                      
+ ! T_inf =  the normalization for time is selected from the condition T_inf*C_in
+ f = L_inf calculated automatically                   
+ ! Temp_inf = the characteristic temperature                                    
+                                                      
+ ! mol_diam = molecular diameter in hard shperes model                          
+                                                      
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+ C_inf=   1290.37088396173     
+ L_inf=   1.00000000000000     
+ T_inf=  7.749709889065157E-004
+ N_inf=  1.000000000000000E+020
+ mol_diam=  3.760000000000000E-010
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+ ! Parameters of the gas and ES-BGK                                             
+                                                      
+ gasR=   208.132200000000     
+ gas_alpha=  0.500000000000000     
+ gas_viscosity=  5.337379160633744E-005
+ gas_T_reference=   2000.00000000000     
+ alpha= -0.500000000000000     
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+ !! Parameters VD-BGK (BGK model with velocity dependent collision frequency    
+                                                      
+ Higherst Moment Order Conserved=           6
+ !	                	        !! order=1 invokes the first enforced moment. Curren
+ t allowed Maximum is 15 moments total                
+ Higherst Moment Order Conserved=           6
+ !						        !! frequency ATTENTION: Currently only the same number if allowe
+ d for both Order and Order_nu                        
+ mft_coeff=  0.500000000000000     
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ L1 error =   0.316984814291126     
+ Switching to decomposition regime from strongly non-linear
+ 1
+ L1 error =   0.316278146662813     
+ 2
+ L1 error =   0.316278962500285     
+ 3
+ L1 error =   0.315574734539173     
+ updated the linear operator in mode=1
+ 4
+ L1 error =   0.316044040585787     
+ 5
+ L1 error =   0.316702277210923     
+ 6
+ L1 error =   0.315574737163321     
+ 1
+ L1 error =   0.314871325062371     
+ 2
+ L1 error =   0.314872136998613     
+ 3
+ L1 error =   0.314171152890393     
+ updated the linear operator in mode=1
+ 4
+ L1 error =   0.314638297228087     
+ 5
+ L1 error =   0.315293501671744     
+ 6
+ L1 error =   0.314171155508757     
+ 1
+ L1 error =   0.313470983367654     
+ 2
+ L1 error =   0.313471791420544     
+ 3
+ L1 error =   0.312774035685534     
+ updated the linear operator in mode=1
+ 4
+ L1 error =   0.313239028618900     
+ 5
+ L1 error =   0.313891215377841     
+ 6
+ L1 error =   0.312774038297698     
+ 1
+ L1 error =   0.312077090678864     
+ 2
+ L1 error =   0.312077894867930     
+ 3
+ L1 error =   0.311383352090735     
+ updated the linear operator in mode=1
+ 4
+ L1 error =   0.311846203905295     
+ 5
+ L1 error =   0.312495387363398     
+ 6
+ Processor time lapsed in seconds for Prepare MTS:   6501.768    
+ L1 error =   0.311383354679392     
+ time   2.500000000000000E-004
+ L1 error =   0.309999073856847     
+ updated the linear operator in mode=1
+ time   3.000000000000000E-004
+ L1 error =   0.308621165106313     
+ updated the linear operator in mode=1
+ time   3.500000000000001E-004
+ L1 error =   0.307249641116165     
+ updated the linear operator in mode=1
+ time   4.000000000000001E-004
+ L1 error =   0.305884589019050     
+ updated the linear operator in mode=1
+ time   4.500000000000001E-004
+ L1 error =   0.304525817601712     
+ updated the linear operator in mode=1
+ time   5.000000000000001E-004
+ L1 error =   0.303173296575760     
+ updated the linear operator in mode=1
+ time   5.500000000000001E-004
+ L1 error =   0.301826996223274     
+ updated the linear operator in mode=1
+ time   6.000000000000002E-004
+ L1 error =   0.300486886769906     
+ updated the linear operator in mode=1
+ time   6.500000000000002E-004
+ L1 error =   0.299152938691376     
+ updated the linear operator in mode=1
+ time   7.000000000000002E-004
+ L1 error =   0.297825548628570     
+ updated the linear operator in mode=1
+ time   7.500000000000002E-004
+ L1 error =   0.296505865505390     
+ updated the linear operator in mode=1
+ time   8.000000000000003E-004
+ L1 error =   0.295192747771756     
+ updated the linear operator in mode=1
+ time   8.500000000000003E-004
+ L1 error =   0.293885654226763     
+ updated the linear operator in mode=1
+ time   9.000000000000003E-004
+ L1 error =   0.292584556330529     
+ updated the linear operator in mode=1
+ time   9.500000000000003E-004
+ L1 error =   0.291291278034720     
+ updated the linear operator in mode=1
+ time   1.000000000000000E-003
+ L1 error =   0.290005602107361     
+ updated the linear operator in mode=1
+ time   1.050000000000000E-003
+ L1 error =   0.288725794817940     
+ time   1.100000000000000E-003
+ L1 error =   0.287451836374271     
+ updated the linear operator in mode=1
+ time   1.150000000000000E-003
+ L1 error =   0.286183732264576     
+ time   1.200000000000000E-003
+ L1 error =   0.284921450383280     
+ updated the linear operator in mode=1
+ time   1.250000000000000E-003
+ L1 error =   0.283664926594406     
+ time   1.300000000000000E-003
+ L1 error =   0.282414133672758     
+ updated the linear operator in mode=1
+ time   1.350000000000000E-003
+ L1 error =   0.281169044532271     
+ time   1.400000000000000E-003
+ L1 error =   0.279929632221394     
+ updated the linear operator in mode=1
+ time   1.449999999999999E-003
+ L1 error =   0.278695869981860     
+ time   1.499999999999999E-003
+ L1 error =   0.277467731067000     
+ updated the linear operator in mode=1
+ time   1.549999999999999E-003
+ L1 error =   0.276245188918212     
+ time   1.599999999999999E-003
+ L1 error =   0.275028217089241     
+ updated the linear operator in mode=1
+ time   1.649999999999999E-003
+ L1 error =   0.273816789336642     
+ time   1.699999999999999E-003
+ L1 error =   0.272610879417046     
+ updated the linear operator in mode=1
+ time   1.749999999999999E-003
+ L1 error =   0.271410461359891     
+ time   1.799999999999999E-003
+ L1 error =   0.270215509244103     
+ updated the linear operator in mode=1
+ time   1.849999999999999E-003
+ L1 error =   0.269025997239535     
+ time   1.899999999999999E-003
+ L1 error =   0.267841899761586     
+ updated the linear operator in mode=1
+ time   1.949999999999999E-003
+ L1 error =   0.266663191507593     
+ time   1.999999999999999E-003
+ L1 error =   0.265489847167345     
+ updated the linear operator in mode=1
+ time   2.049999999999999E-003
+ L1 error =   0.264321841036036     
+ time   2.099999999999999E-003
+ L1 error =   0.263159148081118     
+ updated the linear operator in mode=1
+ time   2.149999999999999E-003
+ L1 error =   0.262001743164969     
+ time   2.199999999999999E-003
+ L1 error =   0.260849601425987     
+ updated the linear operator in mode=1
+ time   2.249999999999999E-003
+ L1 error =   0.259702698085324     
+ time   2.300000000000000E-003
+ L1 error =   0.258561008422397     
+ updated the linear operator in mode=1
+ time   2.350000000000000E-003
+ L1 error =   0.257424507963314     
+ time   2.400000000000000E-003
+ L1 error =   0.256293172269731     
+ updated the linear operator in mode=1
+ time   2.450000000000000E-003
+ L1 error =   0.255166976978576     
+ time   2.500000000000000E-003
+ L1 error =   0.254045899123521     
+ updated the linear operator in mode=1
+ time   2.550000000000000E-003
+ L1 error =   0.252929913654707     
+ time   2.600000000000000E-003
+ L1 error =   0.251818996345794     
+ updated the linear operator in mode=1
+ time   2.650000000000000E-003
+ L1 error =   0.250713123435699     
+ time   2.700000000000001E-003
+ L1 error =   0.249612271162153     
+ updated the linear operator in mode=1
+ time   2.750000000000001E-003
+ L1 error =   0.248516426309663     
+ time   2.800000000000001E-003
+ L1 error =   0.247425567455416     
+ updated the linear operator in mode=1
+ time   2.850000000000001E-003
+ L1 error =   0.246339658615204     
+ time   2.900000000000001E-003
+ L1 error =   0.245258676700415     
+ updated the linear operator in mode=1
+ time   2.950000000000001E-003
+ L1 error =   0.244182598531757     
+ time   3.000000000000001E-003
+ L1 error =   0.243111400987164     
+ updated the linear operator in mode=1
+ time   3.050000000000001E-003
+ L1 error =   0.242045061128122     
+ time   3.100000000000002E-003
+ L1 error =   0.240983556154174     
+ updated the linear operator in mode=1
+ time   3.150000000000002E-003
+ L1 error =   0.239926863339511     
+ time   3.200000000000002E-003
+ L1 error =   0.238874960129307     
+ updated the linear operator in mode=1
+ time   3.250000000000002E-003
+ L1 error =   0.237827823983499     
+ time   3.300000000000002E-003
+ L1 error =   0.236785432603555     
+ updated the linear operator in mode=1
+ time   3.350000000000002E-003
+ L1 error =   0.235747763681624     
+ time   3.400000000000002E-003
+ L1 error =   0.234714795078920     
+ updated the linear operator in mode=1
+ time   3.450000000000003E-003
+ L1 error =   0.233686504779206     
+ time   3.500000000000003E-003
+ L1 error =   0.232662870826383     
+ updated the linear operator in mode=1
+ time   3.550000000000003E-003
+ L1 error =   0.231643871402374     
+ time   3.600000000000003E-003
+ L1 error =   0.230629484779038     
+ updated the linear operator in mode=1
+ time   3.650000000000003E-003
+ L1 error =   0.229619689333889     
+ time   3.700000000000003E-003
+ L1 error =   0.228614463578024     
+ updated the linear operator in mode=1
+ time   3.750000000000003E-003
+ L1 error =   0.227613786088024     
+ time   3.800000000000003E-003
+ L1 error =   0.226617635560735     
+ updated the linear operator in mode=1
+ time   3.850000000000004E-003
+ L1 error =   0.225625990814430     
+ time   3.900000000000004E-003
+ L1 error =   0.224638830720771     
+ updated the linear operator in mode=1
+ time   3.950000000000004E-003
+ L1 error =   0.223656134357451     
+ time   4.000000000000004E-003
+ L1 error =   0.222677880770232     
+ updated the linear operator in mode=1
+ time   4.050000000000003E-003
+ L1 error =   0.221704049189827     
+ time   4.100000000000003E-003
+ L1 error =   0.220734618933665     
+ updated the linear operator in mode=1
+ time   4.150000000000003E-003
+ L1 error =   0.219769569400359     
+ time   4.200000000000002E-003
+ L1 error =   0.218808880095465     
+ updated the linear operator in mode=1
+ time   4.250000000000002E-003
+ L1 error =   0.217852530662350     
+ time   4.300000000000002E-003
+ L1 error =   0.216900500778543     
+ updated the linear operator in mode=1
+ time   4.350000000000001E-003
+ L1 error =   0.215952770282469     
+ time   4.400000000000001E-003
+ L1 error =   0.215009319039148     
+ updated the linear operator in mode=1
+ time   4.450000000000001E-003
+ L1 error =   0.214070127124741     
+ time   4.500000000000001E-003
+ L1 error =   0.213135174565988     
+ updated the linear operator in mode=1
+ time   4.550000000000000E-003
+ L1 error =   0.212204441606517     
+ time   4.600000000000000E-003
+ L1 error =   0.211277908531546     
+ updated the linear operator in mode=1
+ time   4.650000000000000E-003
+ L1 error =   0.210355555732001     
+ time   4.699999999999999E-003
+ L1 error =   0.209437363686433     
+ updated the linear operator in mode=1
+ time   4.749999999999999E-003
+ L1 error =   0.208523312979917     
+ time   4.799999999999999E-003
+ L1 error =   0.207613384280032     
+ updated the linear operator in mode=1
+ time   4.849999999999998E-003
+ L1 error =   0.206707558381981     
+ time   4.899999999999998E-003
+ L1 error =   0.205805816110890     
+ updated the linear operator in mode=1
+ time   4.949999999999998E-003
+ L1 error =   0.204908138427222     
+ time   4.999999999999998E-003
+ L1 error =   0.204014506416380     
+ updated the linear operator in mode=1
+ time   5.049999999999997E-003
+ L1 error =   0.203124901162714     
+ time   5.099999999999997E-003
+ L1 error =   0.202239303952204     
+ updated the linear operator in mode=1
+ time   5.149999999999997E-003
+ L1 error =   0.201357696071218     
+ time   5.199999999999996E-003
+ L1 error =   0.200480058910395     
+ updated the linear operator in mode=1
+ time   5.249999999999996E-003
+ L1 error =   0.199606374011559     
+ time   5.299999999999996E-003
+ L1 error =   0.198736622942662     
+ updated the linear operator in mode=1
+ time   5.349999999999995E-003
+ L1 error =   0.197870787674132     
+ time   5.399999999999995E-003
+ L1 error =   0.197008850168977     
+ updated the linear operator in mode=1
+ time   5.449999999999995E-003
+ L1 error =   0.196150791788118     
+ time   5.499999999999994E-003
+ L1 error =   0.195296594463928     
+ updated the linear operator in mode=1
+ time   5.549999999999994E-003
+ L1 error =   0.194446240241900     
+ time   5.599999999999994E-003
+ L1 error =   0.193599711227133     
+ time   5.649999999999994E-003
+ L1 error =   0.192756989622574     
+ updated the linear operator in mode=1
+ time   5.699999999999993E-003
+ L1 error =   0.191918057720802     
+ time   5.749999999999993E-003
+ L1 error =   0.191082897902758     
+ time   5.799999999999993E-003
+ L1 error =   0.190251492673937     
+ updated the linear operator in mode=1
+ time   5.849999999999992E-003
+ L1 error =   0.189423824581834     
+ time   5.899999999999992E-003
+ L1 error =   0.188599876318293     
+ time   5.949999999999992E-003
+ L1 error =   0.187779630472567     
+ updated the linear operator in mode=1
+ time   5.999999999999991E-003
+ L1 error =   0.186963069847237     
+ time   6.049999999999991E-003
+ L1 error =   0.186150177319738     
+ time   6.099999999999991E-003
+ L1 error =   0.185340935845789     
+ updated the linear operator in mode=1
+ time   6.149999999999991E-003
+ L1 error =   0.184535328475317     
+ time   6.199999999999990E-003
+ L1 error =   0.183733338309870     
+ time   6.249999999999990E-003
+ L1 error =   0.182934949024032     
+ updated the linear operator in mode=1
+ time   6.299999999999990E-003
+ L1 error =   0.182140143726651     
+ time   6.349999999999989E-003
+ L1 error =   0.181348905502128     
+ time   6.399999999999989E-003
+ L1 error =   0.180561217809533     
+ updated the linear operator in mode=1
+ time   6.449999999999989E-003
+ L1 error =   0.179777064162616     
+ time   6.499999999999988E-003
+ L1 error =   0.178996428163307     
+ time   6.549999999999988E-003
+ L1 error =   0.178221071495677     
+ updated the linear operator in mode=1
+ time   6.599999999999988E-003
+ L1 error =   0.177450759062067     
+ time   6.649999999999988E-003
+ L1 error =   0.176683885301085     
+ time   6.699999999999987E-003
+ L1 error =   0.175920434285314     
+ updated the linear operator in mode=1
+ time   6.749999999999987E-003
+ L1 error =   0.175160390220290     
+ time   6.799999999999987E-003
+ L1 error =   0.174403737389661     
+ time   6.849999999999986E-003
+ L1 error =   0.173650460092619     
+ updated the linear operator in mode=1
+ time   6.899999999999986E-003
+ L1 error =   0.172900542814023     
+ time   6.949999999999986E-003
+ L1 error =   0.172153969955766     
+ time   6.999999999999985E-003
+ L1 error =   0.171410726218136     
+ updated the linear operator in mode=1
+ time   7.049999999999985E-003
+ L1 error =   0.170670796169672     
+ time   7.099999999999985E-003
+ L1 error =   0.169934164554075     
+ time   7.149999999999984E-003
+ L1 error =   0.169200816083706     
+ updated the linear operator in mode=1
+ time   7.199999999999984E-003
+ L1 error =   0.168470735685135     
+ time   7.249999999999984E-003
+ L1 error =   0.167743908252432     
+ time   7.299999999999984E-003
+ L1 error =   0.167020318803272     
+ updated the linear operator in mode=1
+ time   7.349999999999983E-003
+ L1 error =   0.166299952422378     
+ time   7.399999999999983E-003
+ L1 error =   0.165582794328418     
+ time   7.449999999999983E-003
+ L1 error =   0.164869505439451     
+ updated the linear operator in mode=1
+ time   7.499999999999982E-003
+ L1 error =   0.164159681652884     
+ time   7.549999999999982E-003
+ L1 error =   0.163453047780997     
+ time   7.599999999999982E-003
+ L1 error =   0.162749552514109     
+ updated the linear operator in mode=1
+ time   7.649999999999981E-003
+ L1 error =   0.162049181460181     
+ time   7.699999999999981E-003
+ L1 error =   0.161351920274534     
+ time   7.749999999999981E-003
+ L1 error =   0.160657754677245     
+ updated the linear operator in mode=1
+ time   7.799999999999981E-003
+ L1 error =   0.159966670504961     
+ time   7.849999999999980E-003
+ L1 error =   0.159278653586052     
+ time   7.899999999999980E-003
+ L1 error =   0.158593689882561     
+ updated the linear operator in mode=1
+ time   7.949999999999980E-003
+ L1 error =   0.157911919214931     
+ time   7.999999999999979E-003
+ L1 error =   0.157233189868857     
+ time   8.049999999999979E-003
+ L1 error =   0.156557470761521     
+ updated the linear operator in mode=1
+ time   8.099999999999979E-003
+ L1 error =   0.155884824422792     
+ time   8.149999999999978E-003
+ L1 error =   0.155215406533941     
+ time   8.199999999999978E-003
+ L1 error =   0.154548954968136     
+ updated the linear operator in mode=1
+ time   8.249999999999978E-003
+ L1 error =   0.153885456148033     
+ time   8.299999999999978E-003
+ L1 error =   0.153224896549325     
+ time   8.349999999999977E-003
+ L1 error =   0.152567262749592     
+ updated the linear operator in mode=1
+ time   8.399999999999977E-003
+ L1 error =   0.151912541308733     
+ time   8.449999999999977E-003
+ L1 error =   0.151260718954676     
+ time   8.499999999999976E-003
+ L1 error =   0.150611782381352     
+ time   8.549999999999976E-003
+ L1 error =   0.149965718419209     
+ updated the linear operator in mode=1
+ time   8.599999999999976E-003
+ L1 error =   0.149322513918943     
+ time   8.649999999999975E-003
+ L1 error =   0.148682155817333     
+ time   8.699999999999975E-003
+ L1 error =   0.148044631080863     
+ time   8.749999999999975E-003
+ L1 error =   0.147409926800349     
+ updated the linear operator in mode=1
+ time   8.799999999999975E-003
+ L1 error =   0.146778030040568     
+ time   8.849999999999974E-003
+ L1 error =   0.146148928001750     
+ time   8.899999999999974E-003
+ L1 error =   0.145522607929025     
+ time   8.949999999999974E-003
+ L1 error =   0.144899057132141     
+ updated the linear operator in mode=1
+ time   8.999999999999973E-003
+ L1 error =   0.144278262890939     
+ time   9.049999999999973E-003
+ L1 error =   0.143660212694840     
+ time   9.099999999999973E-003
+ L1 error =   0.143044893934461     
+ time   9.149999999999972E-003
+ L1 error =   0.142432294216170     
+ updated the linear operator in mode=1
+ time   9.199999999999972E-003
+ L1 error =   0.141822401079661     
+ time   9.249999999999972E-003
+ L1 error =   0.141215202194781     
+ time   9.299999999999971E-003
+ L1 error =   0.140610685276109     
+ time   9.349999999999971E-003
+ L1 error =   0.140008838077230     
+ updated the linear operator in mode=1
+ time   9.399999999999971E-003
+ L1 error =   0.139409648422131     
+ time   9.449999999999971E-003
+ L1 error =   0.138813104204333     
+ time   9.499999999999970E-003
+ L1 error =   0.138219193351292     
+ time   9.549999999999970E-003
+ L1 error =   0.137627903871760     
+ updated the linear operator in mode=1
+ time   9.599999999999970E-003
+ L1 error =   0.137039223790821     
+ time   9.649999999999969E-003
+ L1 error =   0.136454305994639     
+ time   9.699999999999969E-003
+ L1 error =   0.135872859160218     
+ time   9.749999999999969E-003
+ L1 error =   0.135293965513088     
+ updated the linear operator in mode=1
+ time   9.799999999999968E-003
+ L1 error =   0.134717613461979     
+ time   9.849999999999968E-003
+ L1 error =   0.134143791501574     
+ time   9.899999999999968E-003
+ L1 error =   0.133572488161339     
+ time   9.949999999999968E-003
+ L1 error =   0.133003692022534     
+ updated the linear operator in mode=1
+ time   9.999999999999967E-003
+ L1 error =   0.132437391761402     
+ time   1.004999999999997E-002
+ L1 error =   0.131873576025491     
+ time   1.009999999999997E-002
+ L1 error =   0.131312233615628     
+ time   1.014999999999997E-002
+ L1 error =   0.130753353292483     
+ updated the linear operator in mode=1
+ time   1.019999999999997E-002
+ L1 error =   0.130196923938386     
+ time   1.024999999999997E-002
+ L1 error =   0.129642934453329     
+ time   1.029999999999997E-002
+ L1 error =   0.129091373799335     
+ time   1.034999999999997E-002
+ L1 error =   0.128542231016776     
+ updated the linear operator in mode=1
+ time   1.039999999999996E-002
+ L1 error =   0.127995523550830     
+ time   1.044999999999996E-002
+ L1 error =   0.127451226875258     
+ time   1.049999999999996E-002
+ L1 error =   0.126909315150648     
+ time   1.054999999999996E-002
+ L1 error =   0.126369777583421     
+ time   1.059999999999996E-002
+ L1 error =   0.125832647970704     
+ updated the linear operator in mode=1
+ time   1.064999999999996E-002
+ L1 error =   0.125297900379974     
+ time   1.069999999999996E-002
+ L1 error =   0.124765494627243     
+ time   1.074999999999996E-002
+ L1 error =   0.124235419890113     
+ time   1.079999999999996E-002
+ L1 error =   0.123707665620434     
+ time   1.084999999999996E-002
+ L1 error =   0.123182221358292     
+ updated the linear operator in mode=1
+ time   1.089999999999996E-002
+ L1 error =   0.122659076657931     
+ time   1.094999999999996E-002
+ L1 error =   0.122138221155107     
+ time   1.099999999999996E-002
+ L1 error =   0.121619644504899     
+ time   1.104999999999996E-002
+ L1 error =   0.121103336433660     
+ time   1.109999999999996E-002
+ L1 error =   0.120589286694642     
+ updated the linear operator in mode=1
+ time   1.114999999999996E-002
+ L1 error =   0.120077485104534     
+ time   1.119999999999996E-002
+ L1 error =   0.119567921536212     
+ time   1.124999999999996E-002
+ L1 error =   0.119060585864884     
+ time   1.129999999999996E-002
+ L1 error =   0.118555468087608     
+ time   1.134999999999996E-002
+ L1 error =   0.118052558155071     
+ updated the linear operator in mode=1
+ time   1.139999999999996E-002
+ L1 error =   0.117551846167059     
+ time   1.144999999999996E-002
+ L1 error =   0.117053322175062     
+ time   1.149999999999996E-002
+ L1 error =   0.116556976375883     
+ time   1.154999999999996E-002
+ L1 error =   0.116062798897686     
+ time   1.159999999999996E-002
+ L1 error =   0.115570780009765     
+ updated the linear operator in mode=1
+ time   1.164999999999996E-002
+ L1 error =   0.115080909960861     
+ time   1.169999999999996E-002
+ L1 error =   0.114593179082900     
+ time   1.174999999999996E-002
+ L1 error =   0.114107577757435     
+ time   1.179999999999996E-002
+ L1 error =   0.113624096367156     
+ time   1.184999999999996E-002
+ L1 error =   0.113142725406025     
+ updated the linear operator in mode=1
+ time   1.189999999999996E-002
+ L1 error =   0.112663455345917     
+ time   1.194999999999996E-002
+ L1 error =   0.112186276749586     
+ time   1.199999999999996E-002
+ L1 error =   0.111711180198271     
+ time   1.204999999999995E-002
+ L1 error =   0.111238156333650     
+ time   1.209999999999995E-002
+ L1 error =   0.110767305476911     
+ updated the linear operator in mode=1
+ time   1.214999999999995E-002
+ L1 error =   0.110298750940720     
+ time   1.219999999999995E-002
+ L1 error =   0.109832245194879     
+ time   1.224999999999995E-002
+ L1 error =   0.109367800207837     
+ time   1.229999999999995E-002
+ L1 error =   0.108905378330552     
+ time   1.234999999999995E-002
+ L1 error =   0.108444970488882     
+ time   1.239999999999995E-002
+ L1 error =   0.107986567620986     
+ updated the linear operator in mode=1
+ time   1.244999999999995E-002
+ L1 error =   0.107530645941475     
+ time   1.249999999999995E-002
+ L1 error =   0.107079753003255     
+ time   1.254999999999995E-002
+ L1 error =   0.106630804964230     
+ time   1.259999999999995E-002
+ L1 error =   0.106183793158871     
+ time   1.264999999999995E-002
+ L1 error =   0.105738708982400     
+ time   1.269999999999995E-002
+ L1 error =   0.105295543876894     
+ updated the linear operator in mode=1
+ time   1.274999999999995E-002
+ L1 error =   0.104854289315127     
+ time   1.279999999999995E-002
+ L1 error =   0.104414936793704     
+ time   1.284999999999995E-002
+ L1 error =   0.103977477895720     
+ time   1.289999999999995E-002
+ L1 error =   0.103541904180957     
+ time   1.294999999999995E-002
+ L1 error =   0.103108207315902     
+ time   1.299999999999995E-002
+ L1 error =   0.102676378929522     
+ updated the linear operator in mode=1
+ time   1.304999999999995E-002
+ L1 error =   0.102248109641438     
+ time   1.309999999999995E-002
+ L1 error =   0.101821887006177     
+ time   1.314999999999995E-002
+ L1 error =   0.101397494868497     
+ time   1.319999999999995E-002
+ L1 error =   0.100974925096056     
+ time   1.324999999999995E-002
+ L1 error =   0.100554169587745     
+ time   1.329999999999995E-002
+ L1 error =   0.100135220324069     
+ updated the linear operator in mode=1
+ time   1.334999999999995E-002
+ L1 error =   9.971806925532725E-002
+ time   1.339999999999995E-002
+ L1 error =   9.930270844130160E-002
+ time   1.344999999999995E-002
+ L1 error =   9.888912990987207E-002
+ time   1.349999999999995E-002
+ L1 error =   9.847732587005047E-002
+ time   1.354999999999995E-002
+ L1 error =   9.806728858482129E-002
+ time   1.359999999999995E-002
+ L1 error =   9.765924999181873E-002
+ updated the linear operator in mode=1
+ time   1.364999999999995E-002
+ L1 error =   9.725314023607004E-002
+ time   1.369999999999994E-002
+ L1 error =   9.684877051452689E-002
+ time   1.374999999999994E-002
+ L1 error =   9.644613312874790E-002
+ time   1.379999999999994E-002
+ L1 error =   9.604522040015390E-002
+ time   1.384999999999994E-002
+ L1 error =   9.564602471171975E-002
+ time   1.389999999999994E-002
+ L1 error =   9.524853844171484E-002
+ time   1.394999999999994E-002
+ L1 error =   9.485275404857624E-002
+ updated the linear operator in mode=1
+ time   1.399999999999994E-002
+ L1 error =   9.445866398308557E-002
+ time   1.404999999999994E-002
+ L1 error =   9.406626076372940E-002
+ time   1.409999999999994E-002
+ L1 error =   9.367553692593032E-002
+ time   1.414999999999994E-002
+ L1 error =   9.328648504359893E-002
+ time   1.419999999999994E-002
+ L1 error =   9.289909772205715E-002
+ time   1.424999999999994E-002
+ L1 error =   9.251336761369697E-002
+ time   1.429999999999994E-002
+ L1 error =   9.212928738464204E-002
+ updated the linear operator in mode=1
+ time   1.434999999999994E-002
+ L1 error =   9.174684974407220E-002
+ time   1.439999999999994E-002
+ L1 error =   9.136604744726824E-002
+ time   1.444999999999994E-002
+ L1 error =   9.098687325222267E-002
+ time   1.449999999999994E-002
+ L1 error =   9.060931998897427E-002
+ time   1.454999999999994E-002
+ L1 error =   9.023338048244187E-002
+ time   1.459999999999994E-002
+ L1 error =   8.985904762238565E-002
+ time   1.464999999999994E-002
+ L1 error =   8.948631430970054E-002
+ updated the linear operator in mode=1
+ time   1.469999999999994E-002
+ L1 error =   8.911517348822483E-002
+ time   1.474999999999994E-002
+ L1 error =   8.874561813491169E-002
+ time   1.479999999999994E-002
+ L1 error =   8.837764124399021E-002
+ time   1.484999999999994E-002
+ L1 error =   8.801123586187209E-002
+ time   1.489999999999994E-002
+ L1 error =   8.764639506075979E-002
+ time   1.494999999999994E-002
+ L1 error =   8.728311194085962E-002
+ time   1.499999999999994E-002
+ L1 error =   8.692137962477162E-002
+ time   1.504999999999994E-002
+ L1 error =   8.656136755227528E-002
+ updated the linear operator in mode=1
+ time   1.509999999999994E-002
+ L1 error =   8.620402396047297E-002
+ time   1.514999999999994E-002
+ L1 error =   8.584820090561582E-002
+ time   1.519999999999994E-002
+ L1 error =   8.549389167918567E-002
+ time   1.524999999999994E-002
+ L1 error =   8.514108965712457E-002
+ time   1.529999999999994E-002
+ L1 error =   8.478978817828146E-002
+ time   1.534999999999993E-002
+ L1 error =   8.443998066081929E-002
+ time   1.539999999999993E-002
+ L1 error =   8.409166053282675E-002
+ time   1.544999999999993E-002
+ L1 error =   8.374482125898861E-002
+ updated the linear operator in mode=1
+ time   1.549999999999993E-002
+ L1 error =   8.339945632767649E-002
+ time   1.554999999999993E-002
+ L1 error =   8.305555926549220E-002
+ time   1.559999999999993E-002
+ L1 error =   8.271312362217929E-002
+ time   1.564999999999993E-002
+ L1 error =   8.237214298354072E-002
+ time   1.569999999999994E-002
+ L1 error =   8.203261094945771E-002
+ time   1.574999999999994E-002
+ L1 error =   8.169452117451668E-002
+ time   1.579999999999994E-002
+ L1 error =   8.135786731477820E-002
+ time   1.584999999999994E-002
+ L1 error =   8.102264307577005E-002
+ updated the linear operator in mode=1
+ time   1.589999999999994E-002
+ L1 error =   8.068884218309408E-002
+ time   1.594999999999994E-002
+ L1 error =   8.035645838869739E-002
+ time   1.599999999999994E-002
+ L1 error =   8.002548547750515E-002
+ time   1.604999999999995E-002
+ L1 error =   7.969591726578022E-002
+ time   1.609999999999995E-002
+ L1 error =   7.936774758932369E-002
+ time   1.614999999999995E-002
+ L1 error =   7.904097038420221E-002
+ time   1.619999999999995E-002
+ L1 error =   7.871557946050152E-002
+ time   1.624999999999995E-002
+ L1 error =   7.839156878648472E-002
+ time   1.629999999999995E-002
+ L1 error =   7.806893226582232E-002
+ updated the linear operator in mode=1
+ time   1.634999999999995E-002
+ L1 error =   7.774766391554913E-002
+ time   1.639999999999996E-002
+ L1 error =   7.742775772036915E-002
+ time   1.644999999999996E-002
+ L1 error =   7.710920772982566E-002
+ time   1.649999999999996E-002
+ L1 error =   7.679200799764374E-002
+ time   1.654999999999996E-002
+ L1 error =   7.647615260232882E-002
+ time   1.659999999999996E-002
+ L1 error =   7.616163567803222E-002
+ time   1.664999999999996E-002
+ L1 error =   7.584845134863243E-002
+ time   1.669999999999996E-002
+ L1 error =   7.553704691748780E-002
+ time   1.674999999999997E-002
+ L1 error =   7.522750822502915E-002
+ updated the linear operator in mode=1
+ time   1.679999999999997E-002
+ L1 error =   7.491927706008758E-002
+ time   1.684999999999997E-002
+ L1 error =   7.461234773645775E-002
+ time   1.689999999999997E-002
+ L1 error =   7.430671454328801E-002
+ time   1.694999999999997E-002
+ L1 error =   7.400237184509306E-002
+ time   1.699999999999997E-002
+ L1 error =   7.369939305890116E-002
+ time   1.704999999999997E-002
+ L1 error =   7.339771179125727E-002
+ time   1.709999999999998E-002
+ L1 error =   7.309730344116638E-002
+ time   1.714999999999998E-002
+ L1 error =   7.279816247850453E-002
+ time   1.719999999999998E-002
+ L1 error =   7.250028334811462E-002
+ time   1.724999999999998E-002
+ L1 error =   7.220366057187769E-002
+ updated the linear operator in mode=1
+ time   1.729999999999998E-002
+ L1 error =   7.190828865638733E-002
+ time   1.734999999999998E-002
+ L1 error =   7.161416216005873E-002
+ time   1.739999999999998E-002
+ L1 error =   7.132127565027827E-002
+ time   1.744999999999999E-002
+ L1 error =   7.102962371945197E-002
+ time   1.749999999999999E-002
+ L1 error =   7.073920099720513E-002
+ time   1.754999999999999E-002
+ L1 error =   7.045000212719382E-002
+ time   1.759999999999999E-002
+ L1 error =   7.016202176939733E-002
+ time   1.764999999999999E-002
+ L1 error =   6.987525463232501E-002
+ time   1.769999999999999E-002
+ L1 error =   6.958969542235123E-002
+ time   1.774999999999999E-002
+ L1 error =   6.930533888963056E-002
+ updated the linear operator in mode=1
+ time   1.780000000000000E-002
+ L1 error =   6.902217979286067E-002
+ time   1.785000000000000E-002
+ L1 error =   6.874021294795911E-002
+ time   1.790000000000000E-002
+ L1 error =   6.845943321654820E-002
+ time   1.795000000000000E-002
+ L1 error =   6.817983535445638E-002
+ time   1.800000000000000E-002
+ L1 error =   6.790141429364084E-002
+ time   1.805000000000000E-002
+ L1 error =   6.762416487789644E-002
+ time   1.810000000000000E-002
+ L1 error =   6.734808199350492E-002
+ time   1.815000000000001E-002
+ L1 error =   6.707316055672312E-002
+ time   1.820000000000001E-002
+ L1 error =   6.679939552433611E-002
+ time   1.825000000000001E-002
+ L1 error =   6.652678187674713E-002
+ time   1.830000000000001E-002
+ L1 error =   6.625531459829061E-002
+ updated the linear operator in mode=1
+ time   1.835000000000001E-002
+ L1 error =   6.598501164492626E-002
+ time   1.840000000000001E-002
+ L1 error =   6.571589137473344E-002
+ time   1.845000000000001E-002
+ L1 error =   6.544790194310084E-002
+ time   1.850000000000002E-002
+ L1 error =   6.518103845907626E-002
+ time   1.855000000000002E-002
+ L1 error =   6.491529601819092E-002
+ time   1.860000000000002E-002
+ L1 error =   6.465066977873660E-002
+ time   1.865000000000002E-002
+ L1 error =   6.438792742222824E-002
+ time   1.870000000000002E-002
+ L1 error =   6.412699018935189E-002
+ time   1.875000000000002E-002
+ L1 error =   6.386714177977024E-002
+ time   1.880000000000003E-002
+ L1 error =   6.360837751664440E-002
+ time   1.885000000000003E-002
+ L1 error =   6.335069271934547E-002
+ updated the linear operator in mode=1
+ time   1.890000000000003E-002
+ L1 error =   6.309408273385499E-002
+ time   1.895000000000003E-002
+ L1 error =   6.283854293991845E-002
+ time   1.900000000000003E-002
+ L1 error =   6.258406871846091E-002
+ time   1.905000000000003E-002
+ L1 error =   6.233065548224609E-002
+ time   1.910000000000003E-002
+ L1 error =   6.207829866101693E-002
+ time   1.915000000000004E-002
+ L1 error =   6.182699371452963E-002
+ time   1.920000000000004E-002
+ L1 error =   6.157673610159974E-002
+ time   1.925000000000004E-002
+ L1 error =   6.132752132311039E-002
+ time   1.930000000000004E-002
+ L1 error =   6.107934489331483E-002
+ time   1.935000000000004E-002
+ L1 error =   6.083220233912573E-002
+ time   1.940000000000004E-002
+ L1 error =   6.058608921235086E-002
+ time   1.945000000000004E-002
+ L1 error =   6.034100109386836E-002
+ updated the linear operator in mode=1
+ time   1.950000000000005E-002
+ L1 error =   6.009693355935275E-002
+ time   1.955000000000005E-002
+ L1 error =   5.985388223915212E-002
+ time   1.960000000000005E-002
+ L1 error =   5.961184274810579E-002
+ time   1.965000000000005E-002
+ L1 error =   5.937081074734463E-002
+ time   1.970000000000005E-002
+ L1 error =   5.913078190768236E-002
+ time   1.975000000000005E-002
+ L1 error =   5.889175190618483E-002
+ time   1.980000000000005E-002
+ L1 error =   5.865371646852467E-002
+ time   1.985000000000006E-002
+ L1 error =   5.841667130864982E-002
+ time   1.990000000000006E-002
+ L1 error =   5.818061217891787E-002
+ time   1.995000000000006E-002
+ L1 error =   5.794553484650011E-002
+ time   2.000000000000006E-002
+ L1 error =   5.771143509060079E-002
+ time   2.005000000000006E-002
+ L1 error =   5.747830872199099E-002
+ time   2.010000000000006E-002
+ L1 error =   5.724615155671133E-002
+ updated the linear operator in mode=1
+ time   2.015000000000006E-002
+ L1 error =   5.701495943555218E-002
+ time   2.020000000000007E-002
+ L1 error =   5.678472822653780E-002
+ time   2.025000000000007E-002
+ L1 error =   5.655545379200454E-002
+ time   2.030000000000007E-002
+ L1 error =   5.632713204302343E-002
+ time   2.035000000000007E-002
+ L1 error =   5.609975888521634E-002
+ time   2.040000000000007E-002
+ L1 error =   5.587333024854960E-002
+ time   2.045000000000007E-002
+ L1 error =   5.564784209646892E-002
+ time   2.050000000000007E-002
+ L1 error =   5.542329037906746E-002
+ time   2.055000000000008E-002
+ L1 error =   5.519967109983149E-002
+ time   2.060000000000008E-002
+ L1 error =   5.497698025495130E-002
+ time   2.065000000000008E-002
+ L1 error =   5.475566558614853E-002
+ time   2.070000000000008E-002
+ L1 error =   5.453535891908492E-002
+ time   2.075000000000008E-002
+ L1 error =   5.431596453673915E-002
+ time   2.080000000000008E-002
+ L1 error =   5.409747855517811E-002
+ updated the linear operator in mode=1
+ time   2.085000000000008E-002
+ L1 error =   5.387989709058480E-002
+ time   2.090000000000009E-002
+ L1 error =   5.366321626705613E-002
+ time   2.095000000000009E-002
+ L1 error =   5.344743224880109E-002
+ time   2.100000000000009E-002
+ L1 error =   5.323254118827334E-002
+ time   2.105000000000009E-002
+ L1 error =   5.301853929147792E-002
+ time   2.110000000000009E-002
+ L1 error =   5.280544438615945E-002
+ time   2.115000000000009E-002
+ L1 error =   5.259323149477082E-002
+ time   2.120000000000009E-002
+ L1 error =   5.238189620503182E-002
+ time   2.125000000000010E-002
+ L1 error =   5.217143479867451E-002
+ time   2.130000000000010E-002
+ L1 error =   5.196184351568957E-002
+ time   2.135000000000010E-002
+ L1 error =   5.175311867156197E-002
+ time   2.140000000000010E-002
+ L1 error =   5.154525654663297E-002
+ time   2.145000000000010E-002
+ L1 error =   5.133825347787743E-002
+ time   2.150000000000010E-002
+ L1 error =   5.113210578759531E-002
+ time   2.155000000000010E-002
+ L1 error =   5.092680983503210E-002
+ updated the linear operator in mode=1
+ time   2.160000000000011E-002
+ L1 error =   5.072247637579260E-002
+ time   2.165000000000011E-002
+ L1 error =   5.051915279916624E-002
+ time   2.170000000000011E-002
+ L1 error =   5.031666719135933E-002
+ time   2.175000000000011E-002
+ L1 error =   5.011501597986294E-002
+ time   2.180000000000011E-002
+ L1 error =   4.991419563383703E-002
+ time   2.185000000000011E-002
+ L1 error =   4.971420260957882E-002
+ time   2.190000000000011E-002
+ L1 error =   4.951503340900597E-002
+ time   2.195000000000012E-002
+ L1 error =   4.931668452706424E-002
+ time   2.200000000000012E-002
+ L1 error =   4.911915247649864E-002
+ time   2.205000000000012E-002
+ L1 error =   4.892243380254994E-002
+ time   2.210000000000012E-002
+ L1 error =   4.872652504334597E-002
+ time   2.215000000000012E-002
+ L1 error =   4.853142276797943E-002
+ time   2.220000000000012E-002
+ L1 error =   4.833712354801656E-002
+ time   2.225000000000012E-002
+ L1 error =   4.814362398846578E-002
+ time   2.230000000000013E-002
+ L1 error =   4.795092068559795E-002
+ time   2.235000000000013E-002
+ L1 error =   4.775901026841221E-002
+ updated the linear operator in mode=1
+ time   2.240000000000013E-002
+ L1 error =   4.756788937851274E-002
+ time   2.245000000000013E-002
+ L1 error =   4.737755465905849E-002
+ time   2.250000000000013E-002
+ L1 error =   4.718800279004919E-002
+ time   2.255000000000013E-002
+ L1 error =   4.699923044170355E-002
+ time   2.260000000000013E-002
+ L1 error =   4.681123431724103E-002
+ time   2.265000000000014E-002
+ L1 error =   4.662401113248415E-002
+ time   2.270000000000014E-002
+ L1 error =   4.643755759932047E-002
+ time   2.275000000000014E-002
+ L1 error =   4.625187046740634E-002
+ time   2.280000000000014E-002
+ L1 error =   4.606694649445620E-002
+ time   2.285000000000014E-002
+ L1 error =   4.588278243510549E-002
+ time   2.290000000000014E-002
+ L1 error =   4.569937512640976E-002
+ time   2.295000000000014E-002
+ L1 error =   4.551672131878132E-002
+ time   2.300000000000015E-002
+ L1 error =   4.533481781963984E-002
+ time   2.305000000000015E-002
+ L1 error =   4.515411333334600E-002
+ time   2.310000000000015E-002
+ L1 error =   4.497445658336656E-002
+ time   2.315000000000015E-002
+ L1 error =   4.479553461744325E-002
+ time   2.320000000000015E-002
+ L1 error =   4.461760690037906E-002
+ time   2.325000000000015E-002
+ L1 error =   4.444102795520107E-002
+ updated the linear operator in mode=1
+ time   2.330000000000015E-002
+ L1 error =   4.426518513656638E-002
+ time   2.335000000000016E-002
+ L1 error =   4.409005793341044E-002
+ time   2.340000000000016E-002
+ L1 error =   4.391564227579836E-002
+ time   2.345000000000016E-002
+ L1 error =   4.374193518928527E-002
+ time   2.350000000000016E-002
+ L1 error =   4.356893370793342E-002
+ time   2.355000000000016E-002
+ L1 error =   4.339663487305484E-002
+ time   2.360000000000016E-002
+ L1 error =   4.322503575266210E-002
+ time   2.365000000000016E-002
+ L1 error =   4.305413340930211E-002
+ time   2.370000000000017E-002
+ L1 error =   4.288392493647599E-002
+ time   2.375000000000017E-002
+ L1 error =   4.271440744721548E-002
+ time   2.380000000000017E-002
+ L1 error =   4.254557804813251E-002
+ time   2.385000000000017E-002
+ L1 error =   4.237743384777695E-002
+ time   2.390000000000017E-002
+ L1 error =   4.220997198181207E-002
+ time   2.395000000000017E-002
+ L1 error =   4.204318959152666E-002
+ time   2.400000000000017E-002
+ L1 error =   4.187708384628963E-002
+ time   2.405000000000018E-002
+ L1 error =   4.171165190803106E-002
+ time   2.410000000000018E-002
+ L1 error =   4.154689096813841E-002
+ time   2.415000000000018E-002
+ L1 error =   4.138279822054142E-002
+ time   2.420000000000018E-002
+ L1 error =   4.121937087482861E-002
+ time   2.425000000000018E-002
+ L1 error =   4.105660615075118E-002
+ updated the linear operator in mode=1
+ time   2.430000000000018E-002
+ L1 error =   4.089450128192388E-002
+ time   2.435000000000018E-002
+ L1 error =   4.073305351285073E-002
+ time   2.440000000000019E-002
+ L1 error =   4.057226009800897E-002
+ time   2.445000000000019E-002
+ L1 error =   4.041211831095565E-002
+ time   2.450000000000019E-002
+ L1 error =   4.025262542397148E-002
+ time   2.455000000000019E-002
+ L1 error =   4.009377873668177E-002
+ time   2.460000000000019E-002
+ L1 error =   3.993557554981310E-002
+ time   2.465000000000019E-002
+ L1 error =   3.977801895346030E-002
+ time   2.470000000000019E-002
+ L1 error =   3.962112355885928E-002
+ time   2.475000000000020E-002
+ L1 error =   3.946486342204782E-002
+ time   2.480000000000020E-002
+ L1 error =   3.930923589779278E-002
+ time   2.485000000000020E-002
+ L1 error =   3.915423834535739E-002
+ time   2.490000000000020E-002
+ L1 error =   3.899986814009925E-002
+ time   2.495000000000020E-002
+ L1 error =   3.884612266768893E-002
+ time   2.500000000000020E-002
+ L1 error =   3.869299932596309E-002
+ time   2.505000000000020E-002
+ L1 error =   3.854049551675276E-002
+ time   2.510000000000021E-002
+ L1 error =   3.838860866556044E-002
+ time   2.515000000000021E-002
+ L1 error =   3.823733620029948E-002
+ time   2.520000000000021E-002
+ L1 error =   3.808667555877086E-002
+ time   2.525000000000021E-002
+ L1 error =   3.793662419730024E-002
+ time   2.530000000000021E-002
+ L1 error =   3.778717957677473E-002
+ time   2.535000000000021E-002
+ L1 error =   3.763833917197404E-002
+ updated the linear operator in mode=1
+ time   2.540000000000021E-002
+ L1 error =   3.749010046732907E-002
+ time   2.545000000000022E-002
+ L1 error =   3.734246095976358E-002
+ time   2.550000000000022E-002
+ L1 error =   3.719541815223947E-002
+ time   2.555000000000022E-002
+ L1 error =   3.704896956614550E-002
+ time   2.560000000000022E-002
+ L1 error =   3.690311272757583E-002
+ time   2.565000000000022E-002
+ L1 error =   3.675784517334427E-002
+ time   2.570000000000022E-002
+ L1 error =   3.661316445351576E-002
+ time   2.575000000000022E-002
+ L1 error =   3.646906813197132E-002
+ time   2.580000000000023E-002
+ L1 error =   3.632555376823405E-002
+ time   2.585000000000023E-002
+ L1 error =   3.618261895555278E-002
+ time   2.590000000000023E-002
+ L1 error =   3.604026127461586E-002
+ time   2.595000000000023E-002
+ L1 error =   3.589847833207004E-002
+ time   2.600000000000023E-002
+ L1 error =   3.575726773867130E-002
+ time   2.605000000000023E-002
+ L1 error =   3.561662711568540E-002
+ time   2.610000000000023E-002
+ L1 error =   3.547655409530246E-002
+ time   2.615000000000024E-002
+ L1 error =   3.533704631848227E-002
+ time   2.620000000000024E-002
+ L1 error =   3.519810144114387E-002
+ time   2.625000000000024E-002
+ L1 error =   3.505971711804714E-002
+ time   2.630000000000024E-002
+ L1 error =   3.492189103302132E-002
+ time   2.635000000000024E-002
+ L1 error =   3.478462085504343E-002
+ time   2.640000000000024E-002
+ L1 error =   3.464790428868148E-002
+ time   2.645000000000024E-002
+ L1 error =   3.451173902792228E-002
+ time   2.650000000000025E-002
+ L1 error =   3.437612278790018E-002
+ time   2.655000000000025E-002
+ L1 error =   3.424105329035453E-002
+ time   2.660000000000025E-002
+ L1 error =   3.410652826863310E-002
+ updated the linear operator in mode=1
+ time   2.665000000000025E-002
+ L1 error =   3.397254545948419E-002
+ time   2.670000000000025E-002
+ L1 error =   3.383910261891156E-002
+ time   2.675000000000025E-002
+ L1 error =   3.370619750512924E-002
+ time   2.680000000000025E-002
+ L1 error =   3.357395322751556E-002
+ time   2.685000000000026E-002
+ L1 error =   3.344282498462488E-002
+ time   2.690000000000026E-002
+ L1 error =   3.331222216107971E-002
+ time   2.695000000000026E-002
+ L1 error =   3.318214256717282E-002
+ time   2.700000000000026E-002
+ L1 error =   3.305258406913705E-002
+ time   2.705000000000026E-002
+ L1 error =   3.292354449716228E-002
+ time   2.710000000000026E-002
+ L1 error =   3.279502172077565E-002
+ time   2.715000000000026E-002
+ L1 error =   3.266701360712819E-002
+ time   2.720000000000027E-002
+ L1 error =   3.253951803383962E-002
+ time   2.725000000000027E-002
+ L1 error =   3.241305881389586E-002
+ time   2.730000000000027E-002
+ L1 error =   3.228768427782053E-002
+ time   2.735000000000027E-002
+ L1 error =   3.216280615356669E-002
+ time   2.740000000000027E-002
+ L1 error =   3.203842243149430E-002
+ time   2.745000000000027E-002
+ L1 error =   3.191453109205504E-002
+ time   2.750000000000027E-002
+ L1 error =   3.179113013685351E-002
+ time   2.755000000000028E-002
+ L1 error =   3.166821756698177E-002
+ time   2.760000000000028E-002
+ L1 error =   3.154579489698843E-002
+ time   2.765000000000028E-002
+ L1 error =   3.142386067918539E-002
+ time   2.770000000000028E-002
+ L1 error =   3.130266376376974E-002
+ time   2.775000000000028E-002
+ L1 error =   3.118220637646913E-002
+ time   2.780000000000028E-002
+ L1 error =   3.106222250932819E-002
+ time   2.785000000000028E-002
+ L1 error =   3.094271025498046E-002
+ time   2.790000000000029E-002
+ L1 error =   3.082366771135120E-002
+ time   2.795000000000029E-002
+ L1 error =   3.070509298913257E-002
+ time   2.800000000000029E-002
+ L1 error =   3.058698419797214E-002
+ updated the linear operator in mode=1
+ time   2.805000000000029E-002
+ L1 error =   3.046933946808714E-002
+ time   2.810000000000029E-002
+ L1 error =   3.035215692392383E-002
+ time   2.815000000000029E-002
+ L1 error =   3.023543470867539E-002
+ time   2.820000000000029E-002
+ L1 error =   3.011917096733756E-002
+ time   2.825000000000030E-002
+ L1 error =   3.000336385244317E-002
+ time   2.830000000000030E-002
+ L1 error =   2.988801152831000E-002
+ time   2.835000000000030E-002
+ L1 error =   2.977311216242282E-002
+ time   2.840000000000030E-002
+ L1 error =   2.965866393514913E-002
+ time   2.845000000000030E-002
+ L1 error =   2.954466502328795E-002
+ time   2.850000000000030E-002
+ L1 error =   2.943111363020179E-002
+ time   2.855000000000030E-002
+ L1 error =   2.931800794371946E-002
+ time   2.860000000000031E-002
+ L1 error =   2.920534618033641E-002
+ time   2.865000000000031E-002
+ L1 error =   2.909312654820627E-002
+ time   2.870000000000031E-002
+ L1 error =   2.898134727402262E-002
+ time   2.875000000000031E-002
+ L1 error =   2.887000659117030E-002
+ time   2.880000000000031E-002
+ L1 error =   2.875910272831852E-002
+ time   2.885000000000031E-002
+ L1 error =   2.864863393260576E-002
+ time   2.890000000000031E-002
+ L1 error =   2.853859845089896E-002
+ time   2.895000000000032E-002
+ L1 error =   2.842899454520990E-002
+ time   2.900000000000032E-002
+ L1 error =   2.831982047867848E-002
+ time   2.905000000000032E-002
+ L1 error =   2.821107452615447E-002
+ time   2.910000000000032E-002
+ L1 error =   2.810275496544848E-002
+ time   2.915000000000032E-002
+ L1 error =   2.799486008496051E-002
+ time   2.920000000000032E-002
+ L1 error =   2.788738817620139E-002
+ time   2.925000000000032E-002
+ L1 error =   2.778033754708789E-002
+ time   2.930000000000033E-002
+ L1 error =   2.767379115049149E-002
+ time   2.935000000000033E-002
+ L1 error =   2.756772025109319E-002
+ time   2.940000000000033E-002
+ L1 error =   2.746206411436378E-002
+ time   2.945000000000033E-002
+ L1 error =   2.735682714537993E-002
+ time   2.950000000000033E-002
+ L1 error =   2.725200241038384E-002
+ time   2.955000000000033E-002
+ L1 error =   2.714758743823076E-002
+ time   2.960000000000033E-002
+ L1 error =   2.704358058219685E-002
+ updated the linear operator in mode=1
+ time   2.965000000000034E-002
+ L1 error =   2.693998020997598E-002
+ time   2.970000000000034E-002
+ L1 error =   2.683678470414807E-002
+ time   2.975000000000034E-002
+ L1 error =   2.673399243550236E-002
+ time   2.980000000000034E-002
+ L1 error =   2.663160179218226E-002
+ time   2.985000000000034E-002
+ L1 error =   2.652961117193226E-002
+ time   2.990000000000034E-002
+ L1 error =   2.642801897132751E-002
+ time   2.995000000000034E-002
+ L1 error =   2.632682360520478E-002
+ time   3.000000000000035E-002
+ L1 error =   2.622602348087481E-002
+ time   3.005000000000035E-002
+ L1 error =   2.612561702449826E-002
+ time   3.010000000000035E-002
+ L1 error =   2.602560266167430E-002
+ time   3.015000000000035E-002
+ L1 error =   2.592597882676280E-002
+ time   3.020000000000035E-002
+ L1 error =   2.582674395943326E-002
+ time   3.025000000000035E-002
+ L1 error =   2.572789650719139E-002
+ time   3.030000000000035E-002
+ L1 error =   2.562943492323333E-002
+ time   3.035000000000036E-002
+ L1 error =   2.553135766699876E-002
+ time   3.040000000000036E-002
+ L1 error =   2.543366320811896E-002
+ time   3.045000000000036E-002
+ L1 error =   2.533635002317277E-002
+ time   3.050000000000036E-002
+ L1 error =   2.523941658075040E-002
+ time   3.055000000000036E-002
+ L1 error =   2.514286136837749E-002
+ time   3.060000000000036E-002
+ L1 error =   2.504668287451798E-002
+ time   3.065000000000036E-002
+ L1 error =   2.495087959535125E-002
+ time   3.070000000000037E-002
+ L1 error =   2.485545003805086E-002
+ time   3.075000000000037E-002
+ L1 error =   2.476039270833097E-002
+ time   3.080000000000037E-002
+ L1 error =   2.466570611943089E-002
+ time   3.085000000000037E-002
+ L1 error =   2.457138880131949E-002
+ time   3.090000000000037E-002
+ L1 error =   2.447743927089719E-002
+ time   3.095000000000037E-002
+ L1 error =   2.438385606831872E-002
+ time   3.100000000000037E-002
+ L1 error =   2.429063773302259E-002
+ time   3.105000000000038E-002
+ L1 error =   2.419778280584792E-002
+ time   3.110000000000038E-002
+ L1 error =   2.410528984456504E-002
+ time   3.115000000000038E-002
+ L1 error =   2.401315739936744E-002
+ time   3.120000000000038E-002
+ L1 error =   2.392138404163703E-002
+ time   3.125000000000038E-002
+ L1 error =   2.382996833111364E-002
+ time   3.130000000000038E-002
+ L1 error =   2.373890885210208E-002
+ time   3.135000000000038E-002
+ L1 error =   2.364820417825667E-002
+ time   3.140000000000039E-002
+ L1 error =   2.355785290030683E-002
+ time   3.145000000000039E-002
+ L1 error =   2.346785360821787E-002
+ time   3.150000000000039E-002
+ L1 error =   2.337820490235282E-002
+ updated the linear operator in mode=1
+ time   3.155000000000039E-002
+ L1 error =   2.328890538358257E-002
+ time   3.160000000000039E-002
+ L1 error =   2.319995366467997E-002
+ time   3.165000000000039E-002
+ L1 error =   2.311134835859644E-002
+ time   3.170000000000039E-002
+ L1 error =   2.302308808568090E-002
+ time   3.175000000000040E-002
+ L1 error =   2.293517147840489E-002
+ time   3.180000000000040E-002
+ L1 error =   2.284759716860225E-002
+ time   3.185000000000040E-002
+ L1 error =   2.276036379010632E-002
+ time   3.190000000000040E-002
+ L1 error =   2.267346998617819E-002
+ time   3.195000000000040E-002
+ L1 error =   2.258691440261195E-002
+ time   3.200000000000040E-002
+ L1 error =   2.250069569853872E-002
+ time   3.205000000000040E-002
+ L1 error =   2.241481252878651E-002
+ time   3.210000000000041E-002
+ L1 error =   2.232926356228059E-002
+ time   3.215000000000041E-002
+ L1 error =   2.224404746612794E-002
+ time   3.220000000000041E-002
+ L1 error =   2.215916292060487E-002
+ time   3.225000000000041E-002
+ L1 error =   2.207460860388679E-002
+ time   3.230000000000041E-002
+ L1 error =   2.199038320435357E-002
+ time   3.235000000000041E-002
+ L1 error =   2.190648541277229E-002
+ time   3.240000000000041E-002
+ L1 error =   2.182291393308573E-002
+ time   3.245000000000042E-002
+ L1 error =   2.173966746411276E-002
+ time   3.250000000000042E-002
+ L1 error =   2.165674471850564E-002
+ time   3.255000000000042E-002
+ L1 error =   2.157414440023499E-002
+ time   3.260000000000042E-002
+ L1 error =   2.149186523206521E-002
+ time   3.265000000000042E-002
+ L1 error =   2.140990593805906E-002
+ time   3.270000000000042E-002
+ L1 error =   2.132826524621763E-002
+ time   3.275000000000042E-002
+ L1 error =   2.124694189111066E-002
+ time   3.280000000000043E-002
+ L1 error =   2.116593461244535E-002
+ time   3.285000000000043E-002
+ L1 error =   2.108524215424659E-002
+ time   3.290000000000043E-002
+ L1 error =   2.100486326656964E-002
+ time   3.295000000000043E-002
+ L1 error =   2.092479670425229E-002
+ time   3.300000000000043E-002
+ L1 error =   2.084504122600566E-002
+ time   3.305000000000043E-002
+ L1 error =   2.076559559838140E-002
+ time   3.310000000000043E-002
+ L1 error =   2.068645858975967E-002
+ time   3.315000000000044E-002
+ L1 error =   2.060762897461148E-002
+ time   3.320000000000044E-002
+ L1 error =   2.052910553653576E-002
+ time   3.325000000000044E-002
+ L1 error =   2.045088705323428E-002
+ time   3.330000000000044E-002
+ L1 error =   2.037297232312164E-002
+ time   3.335000000000044E-002
+ L1 error =   2.029536013287821E-002
+ time   3.340000000000044E-002
+ L1 error =   2.021804928788761E-002
+ time   3.345000000000044E-002
+ L1 error =   2.014103859004344E-002
+ time   3.350000000000045E-002
+ L1 error =   2.006432684913633E-002
+ time   3.355000000000045E-002
+ L1 error =   1.998791287927183E-002
+ time   3.360000000000045E-002
+ L1 error =   1.991180567854937E-002
+ time   3.365000000000045E-002
+ L1 error =   1.983607295098641E-002
+ time   3.370000000000045E-002
+ L1 error =   1.976063372014939E-002
+ time   3.375000000000045E-002
+ L1 error =   1.968548682818193E-002
+ time   3.380000000000045E-002
+ L1 error =   1.961063111504659E-002
+ updated the linear operator in mode=1
+ time   3.385000000000046E-002
+ L1 error =   1.953606543015648E-002
+ time   3.390000000000046E-002
+ L1 error =   1.946178862192999E-002
+ time   3.395000000000046E-002
+ L1 error =   1.938779955345684E-002
+ time   3.400000000000046E-002
+ L1 error =   1.931409707873862E-002
+ time   3.405000000000046E-002
+ L1 error =   1.924068016489752E-002
+ time   3.410000000000046E-002
+ L1 error =   1.916754764894115E-002
+ time   3.415000000000046E-002
+ L1 error =   1.909469834134394E-002
+ time   3.420000000000047E-002
+ L1 error =   1.902213112152074E-002
+ time   3.425000000000047E-002
+ L1 error =   1.894984487266566E-002
+ time   3.430000000000047E-002
+ L1 error =   1.887783848450234E-002
+ time   3.435000000000047E-002
+ L1 error =   1.880611085075243E-002
+ time   3.440000000000047E-002
+ L1 error =   1.873466086641159E-002
+ time   3.445000000000047E-002
+ L1 error =   1.866348743878737E-002
+ time   3.450000000000047E-002
+ L1 error =   1.859258946720094E-002
+ time   3.455000000000048E-002
+ L1 error =   1.852196587002742E-002
+ time   3.460000000000048E-002
+ L1 error =   1.845161555692900E-002
+ time   3.465000000000048E-002
+ L1 error =   1.838153745261360E-002
+ time   3.470000000000048E-002
+ L1 error =   1.831173047589390E-002
+ time   3.475000000000048E-002
+ L1 error =   1.824219356131892E-002
+ time   3.480000000000048E-002
+ L1 error =   1.817292563646192E-002
+ time   3.485000000000048E-002
+ L1 error =   1.810392564198111E-002
+ time   3.490000000000049E-002
+ L1 error =   1.803519251802294E-002
+ time   3.495000000000049E-002
+ L1 error =   1.796672521044369E-002
+ time   3.500000000000049E-002
+ L1 error =   1.789852266967180E-002
+ time   3.505000000000049E-002
+ L1 error =   1.783058384898286E-002
+ time   3.510000000000049E-002
+ L1 error =   1.776290770968854E-002
+ time   3.515000000000049E-002
+ L1 error =   1.769549321463712E-002
+ time   3.520000000000049E-002
+ L1 error =   1.762833933266024E-002
+ time   3.525000000000050E-002
+ L1 error =   1.756144502647129E-002
+ time   3.530000000000050E-002
+ L1 error =   1.749480927950308E-002
+ time   3.535000000000050E-002
+ L1 error =   1.742843106491911E-002
+ time   3.540000000000050E-002
+ L1 error =   1.736230936985318E-002
+ time   3.545000000000050E-002
+ L1 error =   1.729644318109765E-002
+ time   3.550000000000050E-002
+ L1 error =   1.723083148901910E-002
+ time   3.555000000000050E-002
+ L1 error =   1.716547329186156E-002
+ time   3.560000000000051E-002
+ L1 error =   1.710036758739899E-002
+ time   3.565000000000051E-002
+ L1 error =   1.703551338093682E-002
+ time   3.570000000000051E-002
+ L1 error =   1.697090967931964E-002
+ time   3.575000000000051E-002
+ L1 error =   1.690655549475965E-002
+ time   3.580000000000051E-002
+ L1 error =   1.684244984391624E-002
+ time   3.585000000000051E-002
+ L1 error =   1.677859174661273E-002
+ time   3.590000000000051E-002
+ L1 error =   1.671498022456856E-002
+ time   3.595000000000052E-002
+ L1 error =   1.665161430873983E-002
+ time   3.600000000000052E-002
+ L1 error =   1.658849302988617E-002
+ time   3.605000000000052E-002
+ L1 error =   1.652561542047764E-002
+ time   3.610000000000052E-002
+ L1 error =   1.646298052659295E-002
+ time   3.615000000000052E-002
+ L1 error =   1.640058738417156E-002
+ time   3.620000000000052E-002
+ L1 error =   1.633843504639271E-002
+ time   3.625000000000052E-002
+ L1 error =   1.627652256080996E-002
+ time   3.630000000000053E-002
+ L1 error =   1.621484898440995E-002
+ time   3.635000000000053E-002
+ L1 error =   1.615341337351955E-002
+ time   3.640000000000053E-002
+ L1 error =   1.609221479330394E-002
+ time   3.645000000000053E-002
+ L1 error =   1.603125230889748E-002
+ time   3.650000000000053E-002
+ L1 error =   1.597052498990989E-002
+ time   3.655000000000053E-002
+ L1 error =   1.591003191115092E-002
+ time   3.660000000000053E-002
+ L1 error =   1.584977214962926E-002
+ time   3.665000000000054E-002
+ L1 error =   1.578974478649984E-002
+ updated the linear operator in mode=1
+ time   3.670000000000054E-002
+ L1 error =   1.572994890812918E-002
+ time   3.675000000000054E-002
+ L1 error =   1.567038359927100E-002
+ time   3.680000000000054E-002
+ L1 error =   1.561104795856891E-002
+ time   3.685000000000054E-002
+ L1 error =   1.555194107510639E-002
+ time   3.690000000000054E-002
+ L1 error =   1.549306205381566E-002
+ time   3.695000000000054E-002
+ L1 error =   1.543440999597138E-002
+ time   3.700000000000055E-002
+ L1 error =   1.537598400721949E-002
+ time   3.705000000000055E-002
+ L1 error =   1.531778320035094E-002
+ time   3.710000000000055E-002
+ L1 error =   1.525980668847800E-002
+ time   3.715000000000055E-002
+ L1 error =   1.520205358826922E-002
+ time   3.720000000000055E-002
+ L1 error =   1.514452302245150E-002
+ time   3.725000000000055E-002
+ L1 error =   1.508721411424806E-002
+ time   3.730000000000055E-002
+ L1 error =   1.503012599371780E-002
+ time   3.735000000000056E-002
+ L1 error =   1.497325778969024E-002
+ time   3.740000000000056E-002
+ L1 error =   1.491660864091858E-002
+ time   3.745000000000056E-002
+ L1 error =   1.486017768323139E-002
+ time   3.750000000000056E-002
+ L1 error =   1.480396406165133E-002
+ time   3.755000000000056E-002
+ L1 error =   1.474796692247764E-002
+ time   3.760000000000056E-002
+ L1 error =   1.469218541190856E-002
+ time   3.765000000000056E-002
+ L1 error =   1.463661868335854E-002
+ time   3.770000000000057E-002
+ L1 error =   1.458126687805899E-002
+ time   3.775000000000057E-002
+ L1 error =   1.452614393175539E-002
+ time   3.780000000000057E-002
+ L1 error =   1.447123307981680E-002
+ time   3.785000000000057E-002
+ L1 error =   1.441653359822688E-002
+ time   3.790000000000057E-002
+ L1 error =   1.436204457143353E-002
+ time   3.795000000000057E-002
+ L1 error =   1.430776514740669E-002
+ time   3.800000000000057E-002
+ L1 error =   1.425369450566761E-002
+ time   3.805000000000058E-002
+ L1 error =   1.419983182453779E-002
+ time   3.810000000000058E-002
+ L1 error =   1.414617629094759E-002
+ time   3.815000000000058E-002
+ L1 error =   1.409272708783382E-002
+ time   3.820000000000058E-002
+ L1 error =   1.403948341020365E-002
+ time   3.825000000000058E-002
+ L1 error =   1.398644444904551E-002
+ time   3.830000000000058E-002
+ L1 error =   1.393360940144318E-002
+ time   3.835000000000059E-002
+ L1 error =   1.388097746887927E-002
+ time   3.840000000000059E-002
+ L1 error =   1.382854785384652E-002
+ time   3.845000000000059E-002
+ L1 error =   1.377631976198120E-002
+ time   3.850000000000059E-002
+ L1 error =   1.372429240551106E-002
+ time   3.855000000000059E-002
+ L1 error =   1.367246499462806E-002
+ time   3.860000000000059E-002
+ L1 error =   1.362104654299808E-002
+ time   3.865000000000059E-002
+ L1 error =   1.356987023953824E-002
+ time   3.870000000000060E-002
+ L1 error =   1.351888927100228E-002
+ time   3.875000000000060E-002
+ L1 error =   1.346810287870860E-002
+ time   3.880000000000060E-002
+ L1 error =   1.341751030550754E-002
+ time   3.885000000000060E-002
+ L1 error =   1.336711079931945E-002
+ time   3.890000000000060E-002
+ L1 error =   1.331690360928462E-002
+ time   3.895000000000060E-002
+ L1 error =   1.326688798831345E-002
+ time   3.900000000000060E-002
+ L1 error =   1.321706319288016E-002
+ time   3.905000000000061E-002
+ L1 error =   1.316742848040227E-002
+ time   3.910000000000061E-002
+ L1 error =   1.311798311399676E-002
+ time   3.915000000000061E-002
+ L1 error =   1.306872635792135E-002
+ time   3.920000000000061E-002
+ L1 error =   1.301965747864092E-002
+ time   3.925000000000061E-002
+ L1 error =   1.297079402968721E-002
+ time   3.930000000000061E-002
+ L1 error =   1.292214227599837E-002
+ time   3.935000000000061E-002
+ L1 error =   1.287367585181948E-002
+ time   3.940000000000062E-002
+ L1 error =   1.282539404214596E-002
+ time   3.945000000000062E-002
+ L1 error =   1.277729612616097E-002
+ time   3.950000000000062E-002
+ L1 error =   1.272938139531507E-002
+ time   3.955000000000062E-002
+ L1 error =   1.268164913464615E-002
+ time   3.960000000000062E-002
+ L1 error =   1.263409864080490E-002
+ time   3.965000000000062E-002
+ L1 error =   1.258672920594991E-002
+ time   3.970000000000062E-002
+ L1 error =   1.253954013217842E-002
+ time   3.975000000000063E-002
+ L1 error =   1.249253071612690E-002
+ time   3.980000000000063E-002
+ L1 error =   1.244570026524881E-002
+ time   3.985000000000063E-002
+ L1 error =   1.239904808445245E-002
+ time   3.990000000000063E-002
+ L1 error =   1.235257401876016E-002
+ time   3.995000000000063E-002
+ L1 error =   1.230628360732481E-002
+ time   4.000000000000063E-002
+ L1 error =   1.226016934046451E-002
+ time   4.005000000000063E-002
+ L1 error =   1.221423053637437E-002
+ time   4.010000000000064E-002
+ L1 error =   1.216846651507572E-002
+ time   4.015000000000064E-002
+ L1 error =   1.212287660079886E-002
+ time   4.020000000000064E-002
+ L1 error =   1.207746011785015E-002
+ time   4.025000000000064E-002
+ L1 error =   1.203221639706172E-002
+ time   4.030000000000064E-002
+ L1 error =   1.198715628334056E-002
+ time   4.035000000000064E-002
+ L1 error =   1.194227434649323E-002
+ time   4.040000000000064E-002
+ L1 error =   1.189756302672537E-002
+ time   4.045000000000065E-002
+ L1 error =   1.185302166728135E-002
+ updated the linear operator in mode=1
+ time   4.050000000000065E-002
+ L1 error =   1.180864960785732E-002
+ time   4.055000000000065E-002
+ L1 error =   1.176444619357173E-002
+ time   4.060000000000065E-002
+ L1 error =   1.172041077467213E-002
+ time   4.065000000000065E-002
+ L1 error =   1.167654269775087E-002
+ time   4.070000000000065E-002
+ L1 error =   1.163284131853956E-002
+ time   4.075000000000065E-002
+ L1 error =   1.158930599171360E-002
+ time   4.080000000000066E-002
+ L1 error =   1.154593607363381E-002
+ time   4.085000000000066E-002
+ L1 error =   1.150273092730593E-002
+ time   4.090000000000066E-002
+ L1 error =   1.145968991390789E-002
+ time   4.095000000000066E-002
+ L1 error =   1.141681239965743E-002
+ time   4.100000000000066E-002
+ L1 error =   1.137409775202060E-002
+ time   4.105000000000066E-002
+ L1 error =   1.133154534322380E-002
+ time   4.110000000000066E-002
+ L1 error =   1.128915454293928E-002
+ time   4.115000000000067E-002
+ L1 error =   1.124692473062139E-002
+ time   4.120000000000067E-002
+ L1 error =   1.120485528052265E-002
+ time   4.125000000000067E-002
+ L1 error =   1.116294557585370E-002
+ time   4.130000000000067E-002
+ L1 error =   1.112119499742802E-002
+ time   4.135000000000067E-002
+ L1 error =   1.107960293189473E-002
+ time   4.140000000000067E-002
+ L1 error =   1.103816876544464E-002
+ time   4.145000000000067E-002
+ L1 error =   1.099689188980263E-002
+ time   4.150000000000068E-002
+ L1 error =   1.095577169615692E-002
+ time   4.155000000000068E-002
+ L1 error =   1.091480758100073E-002
+ time   4.160000000000068E-002
+ L1 error =   1.087399894056953E-002
+ time   4.165000000000068E-002
+ L1 error =   1.083334517511856E-002
+ time   4.170000000000068E-002
+ L1 error =   1.079284568493382E-002
+ time   4.175000000000068E-002
+ L1 error =   1.075249987579971E-002
+ time   4.180000000000068E-002
+ L1 error =   1.071230715315597E-002
+ time   4.185000000000069E-002
+ L1 error =   1.067226692779690E-002
+ time   4.190000000000069E-002
+ L1 error =   1.063237860842757E-002
+ time   4.195000000000069E-002
+ L1 error =   1.059264161165812E-002
+ time   4.200000000000069E-002
+ L1 error =   1.055305535066360E-002
+ time   4.205000000000069E-002
+ L1 error =   1.051361924668428E-002
+ time   4.210000000000069E-002
+ L1 error =   1.047433271729056E-002
+ time   4.215000000000069E-002
+ L1 error =   1.043519518782251E-002
+ time   4.220000000000070E-002
+ L1 error =   1.039620608077904E-002
+ time   4.225000000000070E-002
+ L1 error =   1.035736482652842E-002
+ time   4.230000000000070E-002
+ L1 error =   1.031867085182567E-002
+ time   4.235000000000070E-002
+ L1 error =   1.028012359029465E-002
+ time   4.240000000000070E-002
+ L1 error =   1.024172247608944E-002
+ time   4.245000000000070E-002
+ L1 error =   1.020346694426268E-002
+ time   4.250000000000070E-002
+ L1 error =   1.016553285100447E-002
+ time   4.255000000000071E-002
+ L1 error =   1.012774299662342E-002
+ time   4.260000000000071E-002
+ L1 error =   1.009009558769715E-002
+ time   4.265000000000071E-002
+ L1 error =   1.005259007915611E-002
+ time   4.270000000000071E-002
+ L1 error =   1.001522592592919E-002
+ time   4.275000000000071E-002
+ L1 error =   9.978002588033698E-003
+ time   4.280000000000071E-002
+ L1 error =   9.940919524465198E-003
+ time   4.285000000000071E-002
+ L1 error =   9.903976199825493E-003
+ time   4.290000000000072E-002
+ L1 error =   9.867172076223662E-003
+ time   4.295000000000072E-002
+ L1 error =   9.830506623512680E-003
+ time   4.300000000000072E-002
+ L1 error =   9.793979308226321E-003
+ time   4.305000000000072E-002
+ L1 error =   9.757589602509081E-003
+ time   4.310000000000072E-002
+ L1 error =   9.721336979335967E-003
+ time   4.315000000000072E-002
+ L1 error =   9.685220913041158E-003
+ time   4.320000000000072E-002
+ L1 error =   9.649240882225451E-003
+ time   4.325000000000073E-002
+ L1 error =   9.613396364433891E-003
+ time   4.330000000000073E-002
+ L1 error =   9.577686842680193E-003
+ time   4.335000000000073E-002
+ L1 error =   9.542111798471834E-003
+ time   4.340000000000073E-002
+ L1 error =   9.506670718812915E-003
+ time   4.345000000000073E-002
+ L1 error =   9.471363089253153E-003
+ time   4.350000000000073E-002
+ L1 error =   9.436188400720349E-003
+ time   4.355000000000073E-002
+ L1 error =   9.401146142980306E-003
+ time   4.360000000000074E-002
+ L1 error =   9.366235810260385E-003
+ time   4.365000000000074E-002
+ L1 error =   9.331456897897468E-003
+ time   4.370000000000074E-002
+ L1 error =   9.296808901642738E-003
+ time   4.375000000000074E-002
+ L1 error =   9.262291323044432E-003
+ time   4.380000000000074E-002
+ L1 error =   9.227903661121712E-003
+ time   4.385000000000074E-002
+ L1 error =   9.193645419619414E-003
+ time   4.390000000000074E-002
+ L1 error =   9.159516104582918E-003
+ time   4.395000000000075E-002
+ L1 error =   9.125515220663386E-003
+ time   4.400000000000075E-002
+ L1 error =   9.091642279485310E-003
+ time   4.405000000000075E-002
+ L1 error =   9.057896788920836E-003
+ time   4.410000000000075E-002
+ L1 error =   9.024278264754271E-003
+ time   4.415000000000075E-002
+ L1 error =   8.990786219167046E-003
+ time   4.420000000000075E-002
+ L1 error =   8.957420168824013E-003
+ time   4.425000000000075E-002
+ L1 error =   8.924179633507858E-003
+ time   4.430000000000076E-002
+ L1 error =   8.891064132126130E-003
+ time   4.435000000000076E-002
+ L1 error =   8.858073187389874E-003
+ time   4.440000000000076E-002
+ L1 error =   8.825206323116130E-003
+ time   4.445000000000076E-002
+ L1 error =   8.792463065929337E-003
+ time   4.450000000000076E-002
+ L1 error =   8.759842940707752E-003
+ time   4.455000000000076E-002
+ L1 error =   8.727345480342163E-003
+ time   4.460000000000076E-002
+ L1 error =   8.694970213084123E-003
+ time   4.465000000000077E-002
+ L1 error =   8.662716674292806E-003
+ time   4.470000000000077E-002
+ L1 error =   8.630584398288487E-003
+ time   4.475000000000077E-002
+ L1 error =   8.598572922142214E-003
+ time   4.480000000000077E-002
+ L1 error =   8.566681783240861E-003
+ time   4.485000000000077E-002
+ L1 error =   8.534910524266833E-003
+ time   4.490000000000077E-002
+ L1 error =   8.503258684655060E-003
+ time   4.495000000000077E-002
+ L1 error =   8.471725809798554E-003
+ time   4.500000000000078E-002
+ L1 error =   8.440311444884016E-003
+ time   4.505000000000078E-002
+ L1 error =   8.409015137114841E-003
+ time   4.510000000000078E-002
+ L1 error =   8.377836436171182E-003
+ time   4.515000000000078E-002
+ L1 error =   8.346774893241911E-003
+ time   4.520000000000078E-002
+ L1 error =   8.315830060003882E-003
+ time   4.525000000000078E-002
+ L1 error =   8.285001492274430E-003
+ time   4.530000000000078E-002
+ L1 error =   8.254288745215532E-003
+ time   4.535000000000079E-002
+ L1 error =   8.223691376789792E-003
+ time   4.540000000000079E-002
+ L1 error =   8.193208947769141E-003
+ time   4.545000000000079E-002
+ L1 error =   8.162841017979991E-003
+ time   4.550000000000079E-002
+ L1 error =   8.132587150750367E-003
+ time   4.555000000000079E-002
+ L1 error =   8.102446912696093E-003
+ time   4.560000000000079E-002
+ L1 error =   8.072419867477173E-003
+ time   4.565000000000079E-002
+ L1 error =   8.042505585009034E-003
+ time   4.570000000000080E-002
+ L1 error =   8.012703635174843E-003
+ time   4.575000000000080E-002
+ L1 error =   7.983013587786433E-003
+ time   4.580000000000080E-002
+ L1 error =   7.953435018387429E-003
+ time   4.585000000000080E-002
+ L1 error =   7.923967499499087E-003
+ time   4.590000000000080E-002
+ L1 error =   7.894610609118849E-003
+ time   4.595000000000080E-002
+ L1 error =   7.865363924778884E-003
+ time   4.600000000000080E-002
+ L1 error =   7.836227026340303E-003
+ updated the linear operator in mode=1
+ time   4.605000000000081E-002
+ L1 error =   7.807199494345464E-003
+ time   4.610000000000081E-002
+ L1 error =   7.778280913866016E-003
+ time   4.615000000000081E-002
+ L1 error =   7.749470866823299E-003
+ time   4.620000000000081E-002
+ L1 error =   7.720768941606910E-003
+ time   4.625000000000081E-002
+ L1 error =   7.692174725032691E-003
+ time   4.630000000000081E-002
+ L1 error =   7.663687806574331E-003
+ time   4.635000000000081E-002
+ L1 error =   7.635307777717453E-003
+ time   4.640000000000082E-002
+ L1 error =   7.607034230873997E-003
+ time   4.645000000000082E-002
+ L1 error =   7.578866760377145E-003
+ time   4.650000000000082E-002
+ L1 error =   7.550804961849327E-003
+ time   4.655000000000082E-002
+ L1 error =   7.522848431975757E-003
+ time   4.660000000000082E-002
+ L1 error =   7.494996770975622E-003
+ time   4.665000000000082E-002
+ L1 error =   7.467249577598313E-003
+ time   4.670000000000082E-002
+ L1 error =   7.439606455610907E-003
+ time   4.675000000000083E-002
+ L1 error =   7.412067007126887E-003
+ time   4.680000000000083E-002
+ L1 error =   7.384630837851502E-003
+ time   4.685000000000083E-002
+ L1 error =   7.357297554869482E-003
+ time   4.690000000000083E-002
+ L1 error =   7.330066764851819E-003
+ time   4.695000000000083E-002
+ L1 error =   7.302938079346897E-003
+ time   4.700000000000083E-002
+ L1 error =   7.275911107905015E-003
+ time   4.705000000000083E-002
+ L1 error =   7.248985464485054E-003
+ time   4.710000000000084E-002
+ L1 error =   7.222160761848364E-003
+ time   4.715000000000084E-002
+ L1 error =   7.195436617471164E-003
+ time   4.720000000000084E-002
+ L1 error =   7.168835083231161E-003
+ time   4.725000000000084E-002
+ L1 error =   7.142343996895286E-003
+ time   4.730000000000084E-002
+ L1 error =   7.115952040059817E-003
+ time   4.735000000000084E-002
+ L1 error =   7.089658837509464E-003
+ time   4.740000000000084E-002
+ L1 error =   7.063464012484528E-003
+ time   4.745000000000085E-002
+ L1 error =   7.037367193276453E-003
+ time   4.750000000000085E-002
+ L1 error =   7.011368005875322E-003
+ time   4.755000000000085E-002
+ L1 error =   6.985466080450738E-003
+ time   4.760000000000085E-002
+ L1 error =   6.959661047436239E-003
+ time   4.765000000000085E-002
+ L1 error =   6.933952539200519E-003
+ time   4.770000000000085E-002
+ L1 error =   6.908544062684784E-003
+ time   4.775000000000085E-002
+ L1 error =   6.883236109930300E-003
+ time   4.780000000000086E-002
+ L1 error =   6.858021843456249E-003
+ time   4.785000000000086E-002
+ L1 error =   6.832900912747279E-003
+ time   4.790000000000086E-002
+ L1 error =   6.807872967450545E-003
+ time   4.795000000000086E-002
+ L1 error =   6.782937659157708E-003
+ time   4.800000000000086E-002
+ L1 error =   6.758094640261284E-003
+ time   4.805000000000086E-002
+ L1 error =   6.733343564592507E-003
+ time   4.810000000000086E-002
+ L1 error =   6.708684088370943E-003
+ time   4.815000000000087E-002
+ L1 error =   6.684115866568814E-003
+ time   4.820000000000087E-002
+ L1 error =   6.659638559095683E-003
+ time   4.825000000000087E-002
+ L1 error =   6.635251822993155E-003
+ time   4.830000000000087E-002
+ L1 error =   6.610955320976092E-003
+ time   4.835000000000087E-002
+ L1 error =   6.586748713152368E-003
+ time   4.840000000000087E-002
+ L1 error =   6.562631663257355E-003
+ time   4.845000000000087E-002
+ L1 error =   6.538603836161750E-003
+ time   4.850000000000088E-002
+ L1 error =   6.514664896283641E-003
+ time   4.855000000000088E-002
+ L1 error =   6.490814511826001E-003
+ time   4.860000000000088E-002
+ L1 error =   6.467052350367846E-003
+ time   4.865000000000088E-002
+ L1 error =   6.443378081152864E-003
+ time   4.870000000000088E-002
+ L1 error =   6.419805757614158E-003
+ time   4.875000000000088E-002
+ L1 error =   6.396323064043446E-003
+ time   4.880000000000088E-002
+ L1 error =   6.372927120621253E-003
+ time   4.885000000000089E-002
+ L1 error =   6.349617603289249E-003
+ time   4.890000000000089E-002
+ L1 error =   6.326394188492603E-003
+ time   4.895000000000089E-002
+ L1 error =   6.303256554954284E-003
+ time   4.900000000000089E-002
+ L1 error =   6.280204381377746E-003
+ time   4.905000000000089E-002
+ L1 error =   6.257237348868469E-003
+ time   4.910000000000089E-002
+ L1 error =   6.234355138623145E-003
+ time   4.915000000000089E-002
+ L1 error =   6.211557433209882E-003
+ time   4.920000000000090E-002
+ L1 error =   6.188843918022977E-003
+ time   4.925000000000090E-002
+ L1 error =   6.166214276529651E-003
+ time   4.930000000000090E-002
+ L1 error =   6.143668197035918E-003
+ time   4.935000000000090E-002
+ L1 error =   6.121205365988987E-003
+ time   4.940000000000090E-002
+ L1 error =   6.098825473129232E-003
+ time   4.945000000000090E-002
+ L1 error =   6.076528207852996E-003
+ time   4.950000000000090E-002
+ L1 error =   6.054313261788857E-003
+ time   4.955000000000091E-002
+ L1 error =   6.032180327303023E-003
+ time   4.960000000000091E-002
+ L1 error =   6.010129097552098E-003
+ time   4.965000000000091E-002
+ L1 error =   5.988159268236660E-003
+ time   4.970000000000091E-002
+ L1 error =   5.966270533845572E-003
+ time   4.975000000000091E-002
+ L1 error =   5.944462592669211E-003
+ time   4.980000000000091E-002
+ L1 error =   5.922735142664149E-003
+ time   4.985000000000091E-002
+ L1 error =   5.901087882313316E-003
+ time   4.990000000000092E-002
+ L1 error =   5.879520513295261E-003
+ time   4.995000000000092E-002
+ L1 error =   5.858032736835339E-003
+ time   5.000000000000092E-002
+ L1 error =   5.836624255223908E-003
+ time   5.005000000000092E-002
+ L1 error =   5.815294772959927E-003
+ time   5.010000000000092E-002
+ L1 error =   5.794043994490392E-003
+ time   5.015000000000092E-002
+ L1 error =   5.772871626276328E-003
+ time   5.020000000000092E-002
+ L1 error =   5.751777375152185E-003
+ time   5.025000000000093E-002
+ L1 error =   5.730760949987651E-003
+ time   5.030000000000093E-002
+ L1 error =   5.709822059733682E-003
+ time   5.035000000000093E-002
+ L1 error =   5.688960415029690E-003
+ time   5.040000000000093E-002
+ L1 error =   5.668175728178163E-003
+ time   5.045000000000093E-002
+ L1 error =   5.647467710829484E-003
+ time   5.050000000000093E-002
+ L1 error =   5.626836077674870E-003
+ time   5.055000000000093E-002
+ L1 error =   5.606280542911796E-003
+ time   5.060000000000094E-002
+ L1 error =   5.585800822948630E-003
+ time   5.065000000000094E-002
+ L1 error =   5.565396634892514E-003
+ time   5.070000000000094E-002
+ L1 error =   5.545067696110574E-003
+ time   5.075000000000094E-002
+ L1 error =   5.524813727007855E-003
+ time   5.080000000000094E-002
+ L1 error =   5.504634446706905E-003
+ time   5.085000000000094E-002
+ L1 error =   5.484529577239911E-003
+ time   5.090000000000094E-002
+ L1 error =   5.464498840567715E-003
+ time   5.095000000000095E-002
+ L1 error =   5.444541960429911E-003
+ time   5.100000000000095E-002
+ L1 error =   5.424658660713793E-003
+ time   5.105000000000095E-002
+ L1 error =   5.404848667958742E-003
+ time   5.110000000000095E-002
+ L1 error =   5.385114327030145E-003
+ time   5.115000000000095E-002
+ L1 error =   5.365457536716669E-003
+ time   5.120000000000095E-002
+ L1 error =   5.345873173882160E-003
+ time   5.125000000000095E-002
+ L1 error =   5.326360968817880E-003
+ time   5.130000000000096E-002
+ L1 error =   5.306920652259010E-003
+ time   5.135000000000096E-002
+ L1 error =   5.287554264640285E-003
+ time   5.140000000000096E-002
+ L1 error =   5.268260542007216E-003
+ time   5.145000000000096E-002
+ L1 error =   5.249037876173666E-003
+ time   5.150000000000096E-002
+ L1 error =   5.229886003902497E-003
+ time   5.155000000000096E-002
+ L1 error =   5.210804660037897E-003
+ time   5.160000000000096E-002
+ L1 error =   5.191793582770122E-003
+ time   5.165000000000097E-002
+ L1 error =   5.172852509826408E-003
+ time   5.170000000000097E-002
+ L1 error =   5.153981180941684E-003
+ time   5.175000000000097E-002
+ L1 error =   5.135179335883602E-003
+ time   5.180000000000097E-002
+ L1 error =   5.116446716021705E-003
+ time   5.185000000000097E-002
+ L1 error =   5.097798559802242E-003
+ time   5.190000000000097E-002
+ L1 error =   5.079226568245988E-003
+ time   5.195000000000097E-002
+ L1 error =   5.060722827038774E-003
+ time   5.200000000000098E-002
+ L1 error =   5.042287082993121E-003
+ time   5.205000000000098E-002
+ L1 error =   5.023919083883519E-003
+ time   5.210000000000098E-002
+ L1 error =   5.005618576959351E-003
+ time   5.215000000000098E-002
+ L1 error =   4.987385312767020E-003
+ time   5.220000000000098E-002
+ L1 error =   4.969219040806501E-003
+ time   5.225000000000098E-002
+ L1 error =   4.951119512802202E-003
+ time   5.230000000000098E-002
+ L1 error =   4.933086480442771E-003
+ time   5.235000000000099E-002
+ L1 error =   4.915119697203678E-003
+ time   5.240000000000099E-002
+ L1 error =   4.897218917107189E-003
+ time   5.245000000000099E-002
+ L1 error =   4.879383894792342E-003
+ time   5.250000000000099E-002
+ L1 error =   4.861614386407957E-003
+ time   5.255000000000099E-002
+ L1 error =   4.843910148564425E-003
+ time   5.260000000000099E-002
+ L1 error =   4.826270938866752E-003
+ time   5.265000000000099E-002
+ L1 error =   4.808696516094551E-003
+ time   5.270000000000100E-002
+ L1 error =   4.791186639724269E-003
+ time   5.275000000000100E-002
+ L1 error =   4.773741069926739E-003
+ time   5.280000000000100E-002
+ L1 error =   4.756359568318389E-003
+ time   5.285000000000100E-002
+ L1 error =   4.739041897146111E-003
+ time   5.290000000000100E-002
+ L1 error =   4.721787818935315E-003
+ time   5.295000000000100E-002
+ L1 error =   4.704597098641551E-003
+ time   5.300000000000100E-002
+ L1 error =   4.687469500051412E-003
+ time   5.305000000000101E-002
+ L1 error =   4.670404790028795E-003
+ time   5.310000000000101E-002
+ L1 error =   4.653402734288830E-003
+ time   5.315000000000101E-002
+ L1 error =   4.636463101039601E-003
+ time   5.320000000000101E-002
+ L1 error =   4.619585658263120E-003
+ time   5.325000000000101E-002
+ L1 error =   4.602770175314786E-003
+ time   5.330000000000101E-002
+ L1 error =   4.586016422547457E-003
+ time   5.335000000000101E-002
+ L1 error =   4.569324170576890E-003
+ time   5.340000000000102E-002
+ L1 error =   4.552693191739021E-003
+ time   5.345000000000102E-002
+ L1 error =   4.536123258235815E-003
+ time   5.350000000000102E-002
+ L1 error =   4.519614144054248E-003
+ time   5.355000000000102E-002
+ L1 error =   4.503165623450507E-003
+ time   5.360000000000102E-002
+ L1 error =   4.486777471576752E-003
+ time   5.365000000000102E-002
+ L1 error =   4.470449464904849E-003
+ time   5.370000000000102E-002
+ L1 error =   4.454181381121156E-003
+ time   5.375000000000103E-002
+ L1 error =   4.437973031064769E-003
+ time   5.380000000000103E-002
+ L1 error =   4.421824158630326E-003
+ time   5.385000000000103E-002
+ L1 error =   4.405734544261322E-003
+ time   5.390000000000103E-002
+ L1 error =   4.389703967087141E-003
+ time   5.395000000000103E-002
+ L1 error =   4.373732209309035E-003
+ time   5.400000000000103E-002
+ L1 error =   4.357819052197245E-003
+ time   5.405000000000103E-002
+ L1 error =   4.341964278434727E-003
+ time   5.410000000000104E-002
+ L1 error =   4.326167672316272E-003
+ time   5.415000000000104E-002
+ L1 error =   4.310429017379677E-003
+ time   5.420000000000104E-002
+ L1 error =   4.294748099151758E-003
+ time   5.425000000000104E-002
+ L1 error =   4.279124704010532E-003
+ time   5.430000000000104E-002
+ L1 error =   4.263561375723723E-003
+ time   5.435000000000104E-002
+ L1 error =   4.248055393679629E-003
+ time   5.440000000000104E-002
+ L1 error =   4.232606271328454E-003
+ time   5.445000000000105E-002
+ L1 error =   4.217213798892008E-003
+ time   5.450000000000105E-002
+ L1 error =   4.201877766084502E-003
+ time   5.455000000000105E-002
+ L1 error =   4.186597963775733E-003
+ time   5.460000000000105E-002
+ L1 error =   4.171374184113195E-003
+ time   5.465000000000105E-002
+ L1 error =   4.156206219009416E-003
+ time   5.470000000000105E-002
+ L1 error =   4.141093862106371E-003
+ time   5.475000000000105E-002
+ L1 error =   4.126036907321912E-003
+ time   5.480000000000106E-002
+ L1 error =   4.111035149633320E-003
+ time   5.485000000000106E-002
+ L1 error =   4.096088384104001E-003
+ time   5.490000000000106E-002
+ L1 error =   4.081196408108660E-003
+ time   5.495000000000106E-002
+ L1 error =   4.066359017390994E-003
+ time   5.500000000000106E-002
+ L1 error =   4.051576011251935E-003
+ time   5.505000000000106E-002
+ L1 error =   4.036847187174176E-003
+ time   5.510000000000106E-002
+ L1 error =   4.022172345326637E-003
+ time   5.515000000000107E-002
+ L1 error =   4.007551285255506E-003
+ time   5.520000000000107E-002
+ L1 error =   3.992983808399680E-003
+ time   5.525000000000107E-002
+ L1 error =   3.978469715946249E-003
+ time   5.530000000000107E-002
+ L1 error =   3.964008810502289E-003
+ time   5.535000000000107E-002
+ L1 error =   3.949600895194308E-003
+ time   5.540000000000107E-002
+ L1 error =   3.935245780575449E-003
+ time   5.545000000000107E-002
+ L1 error =   3.920943272282648E-003
+ time   5.550000000000108E-002
+ L1 error =   3.906693167573664E-003
+ time   5.555000000000108E-002
+ L1 error =   3.892495272763502E-003
+ time   5.560000000000108E-002
+ L1 error =   3.878349394303235E-003
+ time   5.565000000000108E-002
+ L1 error =   3.864255340475895E-003
+ time   5.570000000000108E-002
+ L1 error =   3.850212918308170E-003
+ time   5.575000000000108E-002
+ L1 error =   3.836221937733045E-003
+ time   5.580000000000108E-002
+ L1 error =   3.822282208112854E-003
+ time   5.585000000000109E-002
+ L1 error =   3.808393539497083E-003
+ time   5.590000000000109E-002
+ L1 error =   3.794555743566042E-003
+ time   5.595000000000109E-002
+ L1 error =   3.780768631430106E-003
+ time   5.600000000000109E-002
+ L1 error =   3.767032016254737E-003
+ time   5.605000000000109E-002
+ L1 error =   3.753345710632799E-003
+ time   5.610000000000109E-002
+ L1 error =   3.739709529030864E-003
+ time   5.615000000000109E-002
+ L1 error =   3.726123285523138E-003
+ updated the linear operator in mode=1
+ time   5.620000000000110E-002
+ L1 error =   3.712586795794043E-003
+ time   5.625000000000110E-002
+ L1 error =   3.699099875607747E-003
+ time   5.630000000000110E-002
+ L1 error =   3.685662341833011E-003
+ time   5.635000000000110E-002
+ L1 error =   3.672274011499963E-003
+ time   5.640000000000110E-002
+ L1 error =   3.658934702849901E-003
+ time   5.645000000000110E-002
+ L1 error =   3.645644234713147E-003
+ time   5.650000000000110E-002
+ L1 error =   3.632402426158647E-003
+ time   5.655000000000111E-002
+ L1 error =   3.619209097456208E-003
+ time   5.660000000000111E-002
+ L1 error =   3.606064069423147E-003
+ time   5.665000000000111E-002
+ L1 error =   3.592967163468041E-003
+ time   5.670000000000111E-002
+ L1 error =   3.579918201319835E-003
+ time   5.675000000000111E-002
+ L1 error =   3.566917006318861E-003
+ time   5.680000000000111E-002
+ L1 error =   3.553963401348183E-003
+ time   5.685000000000111E-002
+ L1 error =   3.541057211015234E-003
+ time   5.690000000000112E-002
+ L1 error =   3.528198259364039E-003
+ time   5.695000000000112E-002
+ L1 error =   3.515386372493537E-003
+ time   5.700000000000112E-002
+ L1 error =   3.502621375808570E-003
+ time   5.705000000000112E-002
+ L1 error =   3.489903096602187E-003
+ time   5.710000000000112E-002
+ L1 error =   3.477231361658441E-003
+ time   5.715000000000112E-002
+ L1 error =   3.464605999430118E-003
+ time   5.720000000000112E-002
+ L1 error =   3.452026838198524E-003
+ time   5.725000000000113E-002
+ L1 error =   3.439493707367311E-003
+ time   5.730000000000113E-002
+ L1 error =   3.427006437018952E-003
+ time   5.735000000000113E-002
+ L1 error =   3.414564857285328E-003
+ time   5.740000000000113E-002
+ L1 error =   3.402168799724264E-003
+ time   5.745000000000113E-002
+ L1 error =   3.389839010035635E-003
+ time   5.750000000000113E-002
+ L1 error =   3.377556365919798E-003
+ time   5.755000000000113E-002
+ L1 error =   3.365318538330306E-003
+ time   5.760000000000114E-002
+ L1 error =   3.353125362323095E-003
+ time   5.765000000000114E-002
+ L1 error =   3.340976673704213E-003
+ time   5.770000000000114E-002
+ L1 error =   3.328872308362154E-003
+ time   5.775000000000114E-002
+ L1 error =   3.316812103631269E-003
+ time   5.780000000000114E-002
+ L1 error =   3.304795896868627E-003
+ time   5.785000000000114E-002
+ L1 error =   3.292823525962030E-003
+ time   5.790000000000114E-002
+ L1 error =   3.280894829868388E-003
+ time   5.795000000000115E-002
+ L1 error =   3.269009647794726E-003
+ time   5.800000000000115E-002
+ L1 error =   3.257167819773147E-003
+ time   5.805000000000115E-002
+ L1 error =   3.245369185983561E-003
+ time   5.810000000000115E-002
+ L1 error =   3.233613587922224E-003
+ time   5.815000000000115E-002
+ L1 error =   3.221900866948427E-003
+ time   5.820000000000115E-002
+ L1 error =   3.210230865388986E-003
+ time   5.825000000000116E-002
+ L1 error =   3.198603426151704E-003
+ time   5.830000000000116E-002
+ L1 error =   3.187028945197001E-003
+ time   5.835000000000116E-002
+ L1 error =   3.175498830433872E-003
+ time   5.840000000000116E-002
+ L1 error =   3.164010703945260E-003
+ time   5.845000000000116E-002
+ L1 error =   3.152564411699355E-003
+ time   5.850000000000116E-002
+ L1 error =   3.141159799865988E-003
+ time   5.855000000000116E-002
+ L1 error =   3.129796715524370E-003
+ time   5.860000000000117E-002
+ L1 error =   3.118475006225270E-003
+ time   5.865000000000117E-002
+ L1 error =   3.107194523885370E-003
+ time   5.870000000000117E-002
+ L1 error =   3.095955127130568E-003
+ time   5.875000000000117E-002
+ L1 error =   3.084756663845002E-003
+ time   5.880000000000117E-002
+ L1 error =   3.073598971650291E-003
+ time   5.885000000000117E-002
+ L1 error =   3.062481900024439E-003
+ time   5.890000000000117E-002
+ L1 error =   3.051405300590086E-003
+ time   5.895000000000118E-002
+ L1 error =   3.040369024409779E-003
+ time   5.900000000000118E-002
+ L1 error =   3.029372923662336E-003
+ time   5.905000000000118E-002
+ L1 error =   3.018416850842161E-003
+ time   5.910000000000118E-002
+ L1 error =   3.007500658962534E-003
+ time   5.915000000000118E-002
+ L1 error =   2.996624202099111E-003
+ time   5.920000000000118E-002
+ L1 error =   2.985787333783069E-003
+ time   5.925000000000118E-002
+ L1 error =   2.974989909384749E-003
+ time   5.930000000000119E-002
+ L1 error =   2.964231783847809E-003
+ time   5.935000000000119E-002
+ L1 error =   2.953512812959856E-003
+ time   5.940000000000119E-002
+ L1 error =   2.942832853245848E-003
+ time   5.945000000000119E-002
+ L1 error =   2.932191761512493E-003
+ time   5.950000000000119E-002
+ L1 error =   2.921615772930725E-003
+ time   5.955000000000119E-002
+ L1 error =   2.911079148432708E-003
+ time   5.960000000000119E-002
+ L1 error =   2.900580735267196E-003
+ time   5.965000000000120E-002
+ L1 error =   2.890120394038108E-003
+ time   5.970000000000120E-002
+ L1 error =   2.879697985506485E-003
+ time   5.975000000000120E-002
+ L1 error =   2.869313371658602E-003
+ time   5.980000000000120E-002
+ L1 error =   2.858966413607202E-003
+ time   5.985000000000120E-002
+ L1 error =   2.848656974837225E-003
+ time   5.990000000000120E-002
+ L1 error =   2.838384917678311E-003
+ time   5.995000000000120E-002
+ L1 error =   2.828150105809962E-003
+ time   6.000000000000121E-002
+ L1 error =   2.817952403452648E-003
+ time   6.005000000000121E-002
+ L1 error =   2.807791674889536E-003
+ time   6.010000000000121E-002
+ L1 error =   2.797667785206522E-003
+ time   6.015000000000121E-002
+ L1 error =   2.787580599937975E-003
+ time   6.020000000000121E-002
+ L1 error =   2.777529985166699E-003
+ time   6.025000000000121E-002
+ L1 error =   2.767515807101377E-003
+ time   6.030000000000121E-002
+ L1 error =   2.757537946282232E-003
+ time   6.035000000000122E-002
+ L1 error =   2.747596260171665E-003
+ time   6.040000000000122E-002
+ L1 error =   2.737690613709381E-003
+ time   6.045000000000122E-002
+ L1 error =   2.727820874652378E-003
+ time   6.050000000000122E-002
+ L1 error =   2.717986912258711E-003
+ time   6.055000000000122E-002
+ L1 error =   2.708188596103696E-003
+ time   6.060000000000122E-002
+ L1 error =   2.698425795658551E-003
+ time   6.065000000000122E-002
+ L1 error =   2.688698381694451E-003
+ time   6.070000000000123E-002
+ L1 error =   2.679006224881478E-003
+ time   6.075000000000123E-002
+ L1 error =   2.669349196616180E-003
+ time   6.080000000000123E-002
+ L1 error =   2.659727168693579E-003
+ time   6.085000000000123E-002
+ L1 error =   2.650140013292601E-003
+ time   6.090000000000123E-002
+ L1 error =   2.640587603420105E-003
+ time   6.095000000000123E-002
+ L1 error =   2.631069811927045E-003
+ time   6.100000000000123E-002
+ L1 error =   2.621586512811220E-003
+ time   6.105000000000124E-002
+ L1 error =   2.612137580052164E-003
+ time   6.110000000000124E-002
+ L1 error =   2.602722888388187E-003
+ time   6.115000000000124E-002
+ L1 error =   2.593342312760889E-003
+ time   6.120000000000124E-002
+ L1 error =   2.583995728848531E-003
+ time   6.125000000000124E-002
+ L1 error =   2.574683012476732E-003
+ time   6.130000000000124E-002
+ L1 error =   2.565404040276308E-003
+ time   6.135000000000124E-002
+ L1 error =   2.556158688892270E-003
+ time   6.140000000000125E-002
+ L1 error =   2.546946835938837E-003
+ time   6.145000000000125E-002
+ L1 error =   2.537768359189414E-003
+ time   6.150000000000125E-002
+ L1 error =   2.528623136608942E-003
+ time   6.155000000000125E-002
+ L1 error =   2.519513418487073E-003
+ time   6.160000000000125E-002
+ L1 error =   2.510441420456318E-003
+ time   6.165000000000125E-002
+ L1 error =   2.501402248910942E-003
+ time   6.170000000000125E-002
+ L1 error =   2.492395784567755E-003
+ time   6.175000000000126E-002
+ L1 error =   2.483422309911905E-003
+ time   6.180000000000126E-002
+ L1 error =   2.474482056596017E-003
+ time   6.185000000000126E-002
+ L1 error =   2.465574140515307E-003
+ time   6.190000000000126E-002
+ L1 error =   2.456698444171904E-003
+ time   6.195000000000126E-002
+ L1 error =   2.447854850327798E-003
+ time   6.200000000000126E-002
+ L1 error =   2.439043242339106E-003
+ time   6.205000000000126E-002
+ L1 error =   2.430263503498690E-003
+ time   6.210000000000127E-002
+ L1 error =   2.421515518356115E-003
+ time   6.215000000000127E-002
+ L1 error =   2.412799171146884E-003
+ time   6.220000000000127E-002
+ L1 error =   2.404114346748321E-003
+ time   6.225000000000127E-002
+ L1 error =   2.395460930737062E-003
+ time   6.230000000000127E-002
+ L1 error =   2.386838808621905E-003
+ time   6.235000000000127E-002
+ L1 error =   2.378247866783483E-003
+ time   6.240000000000127E-002
+ L1 error =   2.369687991830649E-003
+ time   6.245000000000128E-002
+ L1 error =   2.361159070502436E-003
+ time   6.250000000000128E-002
+ L1 error =   2.352660990628405E-003
+ time   6.255000000000127E-002
+ L1 error =   2.344193639755144E-003
+ time   6.260000000000127E-002
+ L1 error =   2.335756906261993E-003
+ time   6.265000000000126E-002
+ L1 error =   2.327350678804635E-003
+ time   6.270000000000125E-002
+ L1 error =   2.318974846300302E-003
+ time   6.275000000000125E-002
+ L1 error =   2.310629298617142E-003
+ time   6.280000000000124E-002
+ L1 error =   2.302313925101261E-003
+ time   6.285000000000124E-002
+ L1 error =   2.294028616534776E-003
+ time   6.290000000000123E-002
+ L1 error =   2.285773263262190E-003
+ time   6.295000000000123E-002
+ L1 error =   2.277561523165769E-003
+ time   6.300000000000122E-002
+ L1 error =   2.269383489899025E-003
+ time   6.305000000000122E-002
+ L1 error =   2.261234935840794E-003
+ time   6.310000000000121E-002
+ L1 error =   2.253115753856936E-003
+ time   6.315000000000121E-002
+ L1 error =   2.245025837817322E-003
+ time   6.320000000000120E-002
+ L1 error =   2.236965081633102E-003
+ time   6.325000000000119E-002
+ L1 error =   2.228933379839169E-003
+ time   6.330000000000119E-002
+ L1 error =   2.220930626906470E-003
+ time   6.335000000000118E-002
+ L1 error =   2.212956718615219E-003
+ time   6.340000000000118E-002
+ L1 error =   2.205011549712217E-003
+ time   6.345000000000117E-002
+ L1 error =   2.197095016851612E-003
+ time   6.350000000000117E-002
+ L1 error =   2.189207015970872E-003
+ time   6.355000000000116E-002
+ L1 error =   2.181347443792160E-003
+ time   6.360000000000116E-002
+ L1 error =   2.173516197459935E-003
+ time   6.365000000000115E-002
+ L1 error =   2.165713174442782E-003
+ time   6.370000000000114E-002
+ L1 error =   2.157938272520454E-003
+ time   6.375000000000114E-002
+ L1 error =   2.150191389781063E-003
+ time   6.380000000000113E-002
+ L1 error =   2.142472424889782E-003
+ time   6.385000000000113E-002
+ L1 error =   2.134781276881555E-003
+ time   6.390000000000112E-002
+ L1 error =   2.127117844769362E-003
+ time   6.395000000000112E-002
+ L1 error =   2.119482028374178E-003
+ time   6.400000000000111E-002
+ L1 error =   2.111873727902440E-003
+ time   6.405000000000111E-002
+ L1 error =   2.104292843290073E-003
+ time   6.410000000000110E-002
+ L1 error =   2.096741687764438E-003
+ time   6.415000000000110E-002
+ L1 error =   2.089220475298428E-003
+ time   6.420000000000109E-002
+ L1 error =   2.081726337149193E-003
+ time   6.425000000000108E-002
+ L1 error =   2.074259175164806E-003
+ time   6.430000000000108E-002
+ L1 error =   2.066820293777423E-003
+ time   6.435000000000107E-002
+ L1 error =   2.059408341767507E-003
+ time   6.440000000000107E-002
+ L1 error =   2.052023061567161E-003
+ time   6.445000000000106E-002
+ L1 error =   2.044664356742267E-003
+ time   6.450000000000106E-002
+ L1 error =   2.037332131353931E-003
+ time   6.455000000000105E-002
+ L1 error =   2.030026289640498E-003
+ time   6.460000000000105E-002
+ L1 error =   2.022746736400677E-003
+ time   6.465000000000104E-002
+ L1 error =   2.015493376579717E-003
+ time   6.470000000000103E-002
+ L1 error =   2.008266115442778E-003
+ time   6.475000000000103E-002
+ L1 error =   2.001064858988783E-003
+ time   6.480000000000102E-002
+ L1 error =   1.993889517452408E-003
+ time   6.485000000000102E-002
+ L1 error =   1.986739998224157E-003
+ time   6.490000000000101E-002
+ L1 error =   1.979616202614773E-003
+ time   6.495000000000101E-002
+ L1 error =   1.972518037623796E-003
+ time   6.500000000000100E-002
+ L1 error =   1.965445410865867E-003
+ time   6.505000000000100E-002
+ L1 error =   1.958398229814104E-003
+ time   6.510000000000099E-002
+ L1 error =   1.951376402809281E-003
+ time   6.515000000000098E-002
+ L1 error =   1.944379838116170E-003
+ time   6.520000000000098E-002
+ L1 error =   1.937408444519325E-003
+ time   6.525000000000097E-002
+ L1 error =   1.930462131125231E-003
+ time   6.530000000000097E-002
+ L1 error =   1.923540807258506E-003
+ time   6.535000000000096E-002
+ L1 error =   1.916644382762960E-003
+ time   6.540000000000096E-002
+ L1 error =   1.909772767644126E-003
+ time   6.545000000000095E-002
+ L1 error =   1.902925872251299E-003
+ time   6.550000000000095E-002
+ L1 error =   1.896103607431617E-003
+ time   6.555000000000094E-002
+ L1 error =   1.889305884084623E-003
+ time   6.560000000000094E-002
+ L1 error =   1.882532613667864E-003
+ time   6.565000000000093E-002
+ L1 error =   1.875783707823393E-003
+ time   6.570000000000092E-002
+ L1 error =   1.869059078582379E-003
+ time   6.575000000000092E-002
+ L1 error =   1.862360326103832E-003
+ time   6.580000000000091E-002
+ L1 error =   1.855686236188763E-003
+ time   6.585000000000091E-002
+ L1 error =   1.849036142058198E-003
+ time   6.590000000000090E-002
+ L1 error =   1.842409957514927E-003
+ time   6.595000000000090E-002
+ L1 error =   1.835807596055491E-003
+ time   6.600000000000089E-002
+ L1 error =   1.829228971632624E-003
+ time   6.605000000000089E-002
+ L1 error =   1.822673998878039E-003
+ time   6.610000000000088E-002
+ L1 error =   1.816142591981645E-003
+ time   6.615000000000087E-002
+ L1 error =   1.809634666298349E-003
+ time   6.620000000000087E-002
+ L1 error =   1.803150136906126E-003
+ time   6.625000000000086E-002
+ L1 error =   1.796688919238819E-003
+ time   6.630000000000086E-002
+ L1 error =   1.790271044308888E-003
+ time   6.635000000000085E-002
+ L1 error =   1.783879375597122E-003
+ time   6.640000000000085E-002
+ L1 error =   1.777510569311096E-003
+ time   6.645000000000084E-002
+ L1 error =   1.771164543922751E-003
+ time   6.650000000000084E-002
+ L1 error =   1.764841217529932E-003
+ time   6.655000000000083E-002
+ L1 error =   1.758540508746643E-003
+ time   6.660000000000083E-002
+ L1 error =   1.752262336653777E-003
+ time   6.665000000000082E-002
+ L1 error =   1.746006620371120E-003
+ time   6.670000000000081E-002
+ L1 error =   1.739773279446521E-003
+ time   6.675000000000081E-002
+ L1 error =   1.733562233649489E-003
+ time   6.680000000000080E-002
+ L1 error =   1.727373403135375E-003
+ time   6.685000000000080E-002
+ L1 error =   1.721206708176181E-003
+ time   6.690000000000079E-002
+ L1 error =   1.715062069573783E-003
+ time   6.695000000000079E-002
+ L1 error =   1.708939408163593E-003
+ time   6.700000000000078E-002
+ L1 error =   1.702838645223502E-003
+ time   6.705000000000078E-002
+ L1 error =   1.696759702282322E-003
+ time   6.710000000000077E-002
+ L1 error =   1.690702501078876E-003
+ time   6.715000000000076E-002
+ L1 error =   1.684666963798141E-003
+ time   6.720000000000076E-002
+ L1 error =   1.678653012660435E-003
+ time   6.725000000000075E-002
+ L1 error =   1.672660570455862E-003
+ time   6.730000000000075E-002
+ L1 error =   1.666689559871993E-003
+ time   6.735000000000074E-002
+ L1 error =   1.660739904452672E-003
+ time   6.740000000000074E-002
+ L1 error =   1.654811527244039E-003
+ time   6.745000000000073E-002
+ L1 error =   1.648904352337058E-003
+ time   6.750000000000073E-002
+ L1 error =   1.643018309750798E-003
+ time   6.755000000000072E-002
+ L1 error =   1.637153318375017E-003
+ time   6.760000000000072E-002
+ L1 error =   1.631309301913342E-003
+ time   6.765000000000071E-002
+ L1 error =   1.625486185319481E-003
+ time   6.770000000000070E-002
+ L1 error =   1.619683893606455E-003
+ time   6.775000000000070E-002
+ L1 error =   1.613902352215184E-003
+ time   6.780000000000069E-002
+ L1 error =   1.608141486592718E-003
+ time   6.785000000000069E-002
+ L1 error =   1.602401222982540E-003
+ time   6.790000000000068E-002
+ L1 error =   1.596681487243316E-003
+ time   6.795000000000068E-002
+ L1 error =   1.590982234446223E-003
+ time   6.800000000000067E-002
+ L1 error =   1.585303937130976E-003
+ time   6.805000000000067E-002
+ L1 error =   1.579645942791342E-003
+ time   6.810000000000066E-002
+ L1 error =   1.574008178733485E-003
+ time   6.815000000000065E-002
+ L1 error =   1.568390572458579E-003
+ time   6.820000000000065E-002
+ L1 error =   1.562793051823612E-003
+ time   6.825000000000064E-002
+ L1 error =   1.557215544713872E-003
+ time   6.830000000000064E-002
+ L1 error =   1.551657979590951E-003
+ time   6.835000000000063E-002
+ L1 error =   1.546120284873771E-003
+ time   6.840000000000063E-002
+ L1 error =   1.540602389519948E-003
+ time   6.845000000000062E-002
+ L1 error =   1.535104222434265E-003
+ time   6.850000000000062E-002
+ L1 error =   1.529629117126019E-003
+ time   6.855000000000061E-002
+ L1 error =   1.524174175003791E-003
+ time   6.860000000000060E-002
+ L1 error =   1.518738716270535E-003
+ time   6.865000000000060E-002
+ L1 error =   1.513322671178270E-003
+ time   6.870000000000059E-002
+ L1 error =   1.507925970528431E-003
+ time   6.875000000000059E-002
+ L1 error =   1.502548544775956E-003
+ time   6.880000000000058E-002
+ L1 error =   1.497190325235276E-003
+ time   6.885000000000058E-002
+ L1 error =   1.491851242954511E-003
+ time   6.890000000000057E-002
+ L1 error =   1.486531229734208E-003
+ time   6.895000000000057E-002
+ L1 error =   1.481230217059634E-003
+ time   6.900000000000056E-002
+ L1 error =   1.475948137238400E-003
+ time   6.905000000000056E-002
+ L1 error =   1.470684922299025E-003
+ time   6.910000000000055E-002
+ L1 error =   1.465440504924741E-003
+ time   6.915000000000054E-002
+ L1 error =   1.460214817822145E-003
+ time   6.920000000000054E-002
+ L1 error =   1.455007793879328E-003
+ time   6.925000000000053E-002
+ L1 error =   1.449819366451353E-003
+ time   6.930000000000053E-002
+ L1 error =   1.444649469028445E-003
+ time   6.935000000000052E-002
+ L1 error =   1.439498035120707E-003
+ time   6.940000000000052E-002
+ L1 error =   1.434364998963323E-003
+ time   6.945000000000051E-002
+ L1 error =   1.429250294557031E-003
+ time   6.950000000000051E-002
+ L1 error =   1.424153856293931E-003
+ time   6.955000000000050E-002
+ L1 error =   1.419075619005641E-003
+ time   6.960000000000049E-002
+ L1 error =   1.414015517412582E-003
+ time   6.965000000000049E-002
+ L1 error =   1.408973486711088E-003
+ time   6.970000000000048E-002
+ L1 error =   1.403949462228408E-003
+ time   6.975000000000048E-002
+ L1 error =   1.398943379602647E-003
+ time   6.980000000000047E-002
+ L1 error =   1.393955174582326E-003
+ time   6.985000000000047E-002
+ L1 error =   1.388984783295368E-003
+ time   6.990000000000046E-002
+ L1 error =   1.384032141911753E-003
+ time   6.995000000000046E-002
+ L1 error =   1.379097187061938E-003
+ time   7.000000000000045E-002
+ L1 error =   1.374179855383068E-003
+ time   7.005000000000045E-002
+ L1 error =   1.369280083857883E-003
+ time   7.010000000000044E-002
+ L1 error =   1.364397809734410E-003
+ time   7.015000000000043E-002
+ L1 error =   1.359532970311699E-003
+ time   7.020000000000043E-002
+ L1 error =   1.354685503347752E-003
+ time   7.025000000000042E-002
+ L1 error =   1.349855346579429E-003
+ time   7.030000000000042E-002
+ L1 error =   1.345042438194850E-003
+ time   7.035000000000041E-002
+ L1 error =   1.340246716371519E-003
+ time   7.040000000000041E-002
+ L1 error =   1.335468119823565E-003
+ time   7.045000000000040E-002
+ L1 error =   1.330706587018503E-003
+ time   7.050000000000040E-002
+ L1 error =   1.325962057226665E-003
+ time   7.055000000000039E-002
+ L1 error =   1.321234469430389E-003
+ time   7.060000000000038E-002
+ L1 error =   1.316523763058525E-003
+ time   7.065000000000038E-002
+ L1 error =   1.311829877798654E-003
+ time   7.070000000000037E-002
+ L1 error =   1.307152753427130E-003
+ time   7.075000000000037E-002
+ L1 error =   1.302492329973821E-003
+ time   7.080000000000036E-002
+ L1 error =   1.297848547783365E-003
+ time   7.085000000000036E-002
+ L1 error =   1.293221347227243E-003
+ time   7.090000000000035E-002
+ L1 error =   1.288610669098072E-003
+ time   7.095000000000035E-002
+ L1 error =   1.284016454222669E-003
+ time   7.100000000000034E-002
+ L1 error =   1.279438643813312E-003
+ time   7.105000000000034E-002
+ L1 error =   1.274877179064223E-003
+ time   7.110000000000033E-002
+ L1 error =   1.270332001579923E-003
+ time   7.115000000000032E-002
+ L1 error =   1.265803053173792E-003
+ time   7.120000000000032E-002
+ L1 error =   1.261290275633626E-003
+ time   7.125000000000031E-002
+ L1 error =   1.256793611270392E-003
+ time   7.130000000000031E-002
+ L1 error =   1.252313002429086E-003
+ time   7.135000000000030E-002
+ L1 error =   1.247848391611614E-003
+ time   7.140000000000030E-002
+ L1 error =   1.243399721659946E-003
+ time   7.145000000000029E-002
+ L1 error =   1.238966935581230E-003
+ time   7.150000000000029E-002
+ L1 error =   1.234549977690094E-003
+ time   7.155000000000028E-002
+ L1 error =   1.230148793205778E-003
+ time   7.160000000000027E-002
+ L1 error =   1.225763322631328E-003
+ time   7.165000000000027E-002
+ L1 error =   1.221393509945377E-003
+ time   7.170000000000026E-002
+ L1 error =   1.217039298964417E-003
+ time   7.175000000000026E-002
+ L1 error =   1.212700634055990E-003
+ time   7.180000000000025E-002
+ L1 error =   1.208377459465408E-003
+ time   7.185000000000025E-002
+ L1 error =   1.204069719942343E-003
+ time   7.190000000000024E-002
+ L1 error =   1.199777360183535E-003
+ time   7.195000000000024E-002
+ L1 error =   1.195500325235655E-003
+ time   7.200000000000023E-002
+ L1 error =   1.191238560238455E-003
+ time   7.205000000000022E-002
+ L1 error =   1.186992010675397E-003
+ time   7.210000000000022E-002
+ L1 error =   1.182760622007293E-003
+ time   7.215000000000021E-002
+ L1 error =   1.178544340164841E-003
+ time   7.220000000000021E-002
+ L1 error =   1.174343110963940E-003
+ time   7.225000000000020E-002
+ L1 error =   1.170156880694663E-003
+ time   7.230000000000020E-002
+ L1 error =   1.165985595675136E-003
+ time   7.235000000000019E-002
+ L1 error =   1.161829202431583E-003
+ time   7.240000000000019E-002
+ L1 error =   1.157687647760157E-003
+ time   7.245000000000018E-002
+ L1 error =   1.153560878595868E-003
+ time   7.250000000000018E-002
+ L1 error =   1.149448842025223E-003
+ time   7.255000000000017E-002
+ L1 error =   1.145351485355122E-003
+ time   7.260000000000016E-002
+ L1 error =   1.141268756168174E-003
+ time   7.265000000000016E-002
+ L1 error =   1.137200602049616E-003
+ time   7.270000000000015E-002
+ L1 error =   1.133146970963027E-003
+ time   7.275000000000015E-002
+ L1 error =   1.129107810947615E-003
+ time   7.280000000000014E-002
+ L1 error =   1.125083070212221E-003
+ time   7.285000000000014E-002
+ L1 error =   1.121072697286511E-003
+ time   7.290000000000013E-002
+ L1 error =   1.117076640736125E-003
+ time   7.295000000000013E-002
+ L1 error =   1.113094849361476E-003
+ time   7.300000000000012E-002
+ L1 error =   1.109127272149275E-003
+ time   7.305000000000011E-002
+ L1 error =   1.105173858339865E-003
+ time   7.310000000000011E-002
+ L1 error =   1.101234557167500E-003
+ time   7.315000000000010E-002
+ L1 error =   1.097309318271753E-003
+ time   7.320000000000010E-002
+ L1 error =   1.093398091317813E-003
+ time   7.325000000000009E-002
+ L1 error =   1.089500826231959E-003
+ time   7.330000000000009E-002
+ L1 error =   1.085617473047342E-003
+ time   7.335000000000008E-002
+ L1 error =   1.081747982071342E-003
+ time   7.340000000000008E-002
+ L1 error =   1.077892303759758E-003
+ time   7.345000000000007E-002
+ L1 error =   1.074050388585306E-003
+ time   7.350000000000007E-002
+ L1 error =   1.070222187507271E-003
+ time   7.355000000000006E-002
+ L1 error =   1.066407651370552E-003
+ time   7.360000000000005E-002
+ L1 error =   1.062606731375150E-003
+ time   7.365000000000005E-002
+ L1 error =   1.058819378769777E-003
+ time   7.370000000000004E-002
+ L1 error =   1.055045545171547E-003
+ time   7.375000000000004E-002
+ L1 error =   1.051285182073123E-003
+ time   7.380000000000003E-002
+ L1 error =   1.047538241419849E-003
+ time   7.385000000000003E-002
+ L1 error =   1.043804675269409E-003
+ time   7.390000000000002E-002
+ L1 error =   1.040084435604106E-003
+ time   7.395000000000002E-002
+ L1 error =   1.036377475050288E-003
+ time   7.400000000000001E-002
+ L1 error =   1.032683745821913E-003
+ time   7.405000000000000E-002
+ L1 error =   1.029003200938945E-003
+ time   7.410000000000000E-002
+ L1 error =   1.025335792957192E-003
+ time   7.414999999999999E-002
+ L1 error =   1.021681475138502E-003
+ time   7.419999999999999E-002
+ L1 error =   1.018040200549803E-003
+ time   7.424999999999998E-002
+ L1 error =   1.014411922577959E-003
+ time   7.429999999999998E-002
+ L1 error =   1.010796594804829E-003
+ time   7.434999999999997E-002
+ L1 error =   1.007194170894152E-003
+ time   7.439999999999997E-002
+ L1 error =   1.003604604702086E-003
+ time   7.444999999999996E-002
+ L1 error =   1.000027850306466E-003
+ time   7.449999999999996E-002
+ L1 error =   9.964638618337345E-004
+ time   7.454999999999995E-002
+ L1 error =   9.929125937250124E-004
+ time   7.459999999999994E-002
+ L1 error =   9.893740003848019E-004
+ time   7.464999999999994E-002
+ L1 error =   9.858480366791581E-004
+ time   7.469999999999993E-002
+ L1 error =   9.823346572691895E-004
+ time   7.474999999999993E-002
+ L1 error =   9.788338172777432E-004
+ time   7.479999999999992E-002
+ L1 error =   9.753454718250882E-004
+ time   7.484999999999992E-002
+ L1 error =   9.718695763060865E-004
+ time   7.489999999999991E-002
+ L1 error =   9.684060861215699E-004
+ time   7.494999999999991E-002
+ L1 error =   9.649549569831766E-004
+ time   7.499999999999990E-002
+ L1 error =   9.615161447199819E-004
+ time   7.504999999999989E-002
+ L1 error =   9.580896052227715E-004
+ time   7.509999999999989E-002
+ L1 error =   9.546752946651890E-004
+ time   7.514999999999988E-002
+ L1 error =   9.512731693597826E-004
+ time   7.519999999999988E-002
+ L1 error =   9.478831856875249E-004
+ time   7.524999999999987E-002
+ L1 error =   9.445053002552142E-004
+ time   7.529999999999987E-002
+ L1 error =   9.411394698533967E-004
+ time   7.534999999999986E-002
+ L1 error =   9.377856513586547E-004
+ time   7.539999999999986E-002
+ L1 error =   9.344438018460463E-004
+ time   7.544999999999985E-002
+ L1 error =   9.311138784690755E-004
+ time   7.549999999999985E-002
+ L1 error =   9.277958387216750E-004
+ time   7.554999999999984E-002
+ L1 error =   9.244896399993448E-004
+ time   7.559999999999983E-002
+ L1 error =   9.211952400028052E-004
+ time   7.564999999999983E-002
+ L1 error =   9.179125966310379E-004
+ time   7.569999999999982E-002
+ L1 error =   9.146416677376617E-004
+ time   7.574999999999982E-002
+ L1 error =   9.113824115466305E-004
+ time   7.579999999999981E-002
+ L1 error =   9.081347862723474E-004
+ time   7.584999999999981E-002
+ L1 error =   9.048987504024711E-004
+ time   7.589999999999980E-002
+ L1 error =   9.016742624245953E-004
+ time   7.594999999999980E-002
+ L1 error =   8.984612811317493E-004
+ time   7.599999999999979E-002
+ L1 error =   8.952597653779906E-004
+ time   7.604999999999978E-002
+ L1 error =   8.920696741396777E-004
+ time   7.609999999999978E-002
+ L1 error =   8.888909666306120E-004
+ time   7.614999999999977E-002
+ L1 error =   8.857236021107057E-004
+ time   7.619999999999977E-002
+ L1 error =   8.825675401485150E-004
+ time   7.624999999999976E-002
+ L1 error =   8.794227401072490E-004
+ time   7.629999999999976E-002
+ L1 error =   8.762891631849323E-004
+ time   7.634999999999975E-002
+ L1 error =   8.731667688754843E-004
+ time   7.639999999999975E-002
+ L1 error =   8.700555163061828E-004
+ time   7.644999999999974E-002
+ L1 error =   8.669553656717166E-004
+ time   7.649999999999973E-002
+ L1 error =   8.638662771915072E-004
+ time   7.654999999999973E-002
+ L1 error =   8.607882114661798E-004
+ time   7.659999999999972E-002
+ L1 error =   8.577211289586449E-004
+ time   7.664999999999972E-002
+ L1 error =   8.546649905034797E-004
+ time   7.669999999999971E-002
+ L1 error =   8.516197569582618E-004
+ time   7.674999999999971E-002
+ L1 error =   8.485853893470032E-004
+ time   7.679999999999970E-002
+ L1 error =   8.455618488239058E-004
+ time   7.684999999999970E-002
+ L1 error =   8.425490967183310E-004
+ time   7.689999999999969E-002
+ L1 error =   8.395500781481720E-004
+ time   7.694999999999969E-002
+ L1 error =   8.365647640600335E-004
+ time   7.699999999999968E-002
+ L1 error =   8.335900717710918E-004
+ time   7.704999999999967E-002
+ L1 error =   8.306259636996656E-004
+ time   7.709999999999967E-002
+ L1 error =   8.276724020075357E-004
+ time   7.714999999999966E-002
+ L1 error =   8.247293492042570E-004
+ time   7.719999999999966E-002
+ L1 error =   8.217970087735850E-004
+ time   7.724999999999965E-002
+ L1 error =   8.188754624509843E-004
+ time   7.729999999999965E-002
+ L1 error =   8.159643080900758E-004
+ time   7.734999999999964E-002
+ L1 error =   8.130635086957541E-004
+ time   7.739999999999964E-002
+ L1 error =   8.101730274559737E-004
+ time   7.744999999999963E-002
+ L1 error =   8.072928276453184E-004
+ time   7.749999999999962E-002
+ L1 error =   8.044228726307283E-004
+ time   7.754999999999962E-002
+ L1 error =   8.015631260334052E-004
+ time   7.759999999999961E-002
+ L1 error =   7.987135514576725E-004
+ time   7.764999999999961E-002
+ L1 error =   7.958741127133910E-004
+ time   7.769999999999960E-002
+ L1 error =   7.930447737964265E-004
+ time   7.774999999999960E-002
+ L1 error =   7.902254986709838E-004
+ time   7.779999999999959E-002
+ L1 error =   7.874162516067668E-004
+ time   7.784999999999959E-002
+ L1 error =   7.846169968586161E-004
+ time   7.789999999999958E-002
+ L1 error =   7.818276988909330E-004
+ time   7.794999999999958E-002
+ L1 error =   7.790483223119440E-004
+ time   7.799999999999957E-002
+ L1 error =   7.762788317191013E-004
+ time   7.804999999999956E-002
+ L1 error =   7.735191920177416E-004
+ time   7.809999999999956E-002
+ L1 error =   7.707693681147388E-004
+ time   7.814999999999955E-002
+ L1 error =   7.680293250912504E-004
+ time   7.819999999999955E-002
+ L1 error =   7.652990281185343E-004
+ time   7.824999999999954E-002
+ L1 error =   7.625784425676067E-004
+ time   7.829999999999954E-002
+ L1 error =   7.598675337958893E-004
+ time   7.834999999999953E-002
+ L1 error =   7.571662674673674E-004
+ time   7.839999999999953E-002
+ L1 error =   7.544746091820054E-004
+ time   7.844999999999952E-002
+ L1 error =   7.517925247880974E-004
+ time   7.849999999999951E-002
+ L1 error =   7.491199802291028E-004
+ time   7.854999999999951E-002
+ L1 error =   7.464569415340467E-004
+ time   7.859999999999950E-002
+ L1 error =   7.438033748872656E-004
+ time   7.864999999999950E-002
+ L1 error =   7.411592465633481E-004
+ time   7.869999999999949E-002
+ L1 error =   7.385245230056017E-004
+ time   7.874999999999949E-002
+ L1 error =   7.358991707289647E-004
+ time   7.879999999999948E-002
+ L1 error =   7.332831563731515E-004
+ time   7.884999999999948E-002
+ L1 error =   7.306764467221930E-004
+ time   7.889999999999947E-002
+ L1 error =   7.280790086850346E-004
+ time   7.894999999999947E-002
+ L1 error =   7.254908092223631E-004
+ time   7.899999999999946E-002
+ L1 error =   7.229118154872408E-004
+ time   7.904999999999945E-002
+ L1 error =   7.203419947239216E-004
+ time   7.909999999999945E-002
+ L1 error =   7.177813142774636E-004
+ time   7.914999999999944E-002
+ L1 error =   7.152297416269652E-004
+ time   7.919999999999944E-002
+ L1 error =   7.126872443538695E-004
+ time   7.924999999999943E-002
+ L1 error =   7.101537901849799E-004
+ time   7.929999999999943E-002
+ L1 error =   7.076293469202032E-004
+ time   7.934999999999942E-002
+ L1 error =   7.051138825090086E-004
+ time   7.939999999999942E-002
+ L1 error =   7.026073649572750E-004
+ time   7.944999999999941E-002
+ L1 error =   7.001097625128738E-004
+ time   7.949999999999940E-002
+ L1 error =   6.976210433606678E-004
+ time   7.954999999999940E-002
+ L1 error =   6.951411759310434E-004
+ time   7.959999999999939E-002
+ L1 error =   6.926701287445727E-004
+ time   7.964999999999939E-002
+ L1 error =   6.902078703670736E-004
+ time   7.969999999999938E-002
+ L1 error =   6.877543695562271E-004
+ time   7.974999999999938E-002
+ L1 error =   6.853095951388338E-004
+ time   7.979999999999937E-002
+ L1 error =   6.828735160726967E-004
+ time   7.984999999999937E-002
+ L1 error =   6.804461013709270E-004
+ time   7.989999999999936E-002
+ L1 error =   6.780273203849672E-004
+ time   7.994999999999935E-002
+ L1 error =   6.756172243319439E-004
+ time   7.999999999999935E-002
+ L1 error =   6.732159358005682E-004
+ time   8.004999999999934E-002
+ L1 error =   6.708231863675337E-004
+ time   8.009999999999934E-002
+ L1 error =   6.684389455821507E-004
+ time   8.014999999999933E-002
+ L1 error =   6.660631833043328E-004
+ time   8.019999999999933E-002
+ L1 error =   6.636958692528170E-004
+ time   8.024999999999932E-002
+ L1 error =   6.613369734289440E-004
+ time   8.029999999999932E-002
+ L1 error =   6.589864658663396E-004
+ time   8.034999999999931E-002
+ L1 error =   6.566443167504871E-004
+ time   8.039999999999931E-002
+ L1 error =   6.543104962956229E-004
+ time   8.044999999999930E-002
+ L1 error =   6.519849749322324E-004
+ time   8.049999999999929E-002
+ L1 error =   6.496677230660820E-004
+ time   8.054999999999929E-002
+ L1 error =   6.473587113338506E-004
+ time   8.059999999999928E-002
+ L1 error =   6.450579103715299E-004
+ time   8.064999999999928E-002
+ L1 error =   6.427652910410002E-004
+ time   8.069999999999927E-002
+ L1 error =   6.404813018857056E-004
+ time   8.074999999999927E-002
+ L1 error =   6.382055443614624E-004
+ time   8.079999999999926E-002
+ L1 error =   6.359378765063320E-004
+ time   8.084999999999926E-002
+ L1 error =   6.336782695679029E-004
+ time   8.089999999999925E-002
+ L1 error =   6.314266949277406E-004
+ time   8.094999999999924E-002
+ L1 error =   6.291831239294949E-004
+ time   8.099999999999924E-002
+ L1 error =   6.269475293219029E-004
+ time   8.104999999999923E-002
+ L1 error =   6.247198815812291E-004
+ time   8.109999999999923E-002
+ L1 error =   6.225001523986958E-004
+ time   8.114999999999922E-002
+ L1 error =   6.202883137346682E-004
+ time   8.119999999999922E-002
+ L1 error =   6.180843374298267E-004
+ time   8.124999999999921E-002
+ L1 error =   6.158881955301863E-004
+ time   8.129999999999921E-002
+ L1 error =   6.136998602934672E-004
+ time   8.134999999999920E-002
+ L1 error =   6.115193037626002E-004
+ time   8.139999999999920E-002
+ L1 error =   6.093464984809753E-004
+ time   8.144999999999919E-002
+ L1 error =   6.071814167248159E-004
+ time   8.149999999999918E-002
+ L1 error =   6.050240311324210E-004
+ time   8.154999999999918E-002
+ L1 error =   6.028743142842015E-004
+ time   8.159999999999917E-002
+ L1 error =   6.007322389305148E-004
+ time   8.164999999999917E-002
+ L1 error =   5.985977778869401E-004
+ time   8.169999999999916E-002
+ L1 error =   5.964709040948912E-004
+ time   8.174999999999916E-002
+ L1 error =   5.943515905529146E-004
+ time   8.179999999999915E-002
+ L1 error =   5.922398104051688E-004
+ time   8.184999999999915E-002
+ L1 error =   5.901355368247592E-004
+ time   8.189999999999914E-002
+ L1 error =   5.880387431684119E-004
+ time   8.194999999999913E-002
+ L1 error =   5.859494027648741E-004
+ time   8.199999999999913E-002
+ L1 error =   5.838674892069795E-004
+ time   8.204999999999912E-002
+ L1 error =   5.817929759965388E-004
+ time   8.209999999999912E-002
+ L1 error =   5.797258368731023E-004
+ time   8.214999999999911E-002
+ L1 error =   5.776660455840311E-004
+ time   8.219999999999911E-002
+ L1 error =   5.756135760176537E-004
+ time   8.224999999999910E-002
+ L1 error =   5.735684021524556E-004
+ time   8.229999999999910E-002
+ L1 error =   5.715304979985496E-004
+ time   8.234999999999909E-002
+ L1 error =   5.694998377653390E-004
+ time   8.239999999999909E-002
+ L1 error =   5.674763956418510E-004
+ time   8.244999999999908E-002
+ L1 error =   5.654601459906997E-004
+ time   8.249999999999907E-002
+ L1 error =   5.634510632347980E-004
+ time   8.254999999999907E-002
+ L1 error =   5.614491218448779E-004
+ time   8.259999999999906E-002
+ L1 error =   5.594542965204429E-004
+ time   8.264999999999906E-002
+ L1 error =   5.574665618566713E-004
+ time   8.269999999999905E-002
+ L1 error =   5.554858926822227E-004
+ time   8.274999999999905E-002
+ L1 error =   5.535122639298544E-004
+ time   8.279999999999904E-002
+ L1 error =   5.515456504277210E-004
+ time   8.284999999999904E-002
+ L1 error =   5.495860273858653E-004
+ time   8.289999999999903E-002
+ L1 error =   5.476333698157757E-004
+ time   8.294999999999902E-002
+ L1 error =   5.456876530341569E-004
+ time   8.299999999999902E-002
+ L1 error =   5.437488523131386E-004
+ time   8.304999999999901E-002
+ L1 error =   5.418169431030907E-004
+ time   8.309999999999901E-002
+ L1 error =   5.398919008532119E-004
+ time   8.314999999999900E-002
+ L1 error =   5.379737011765285E-004
+ time   8.319999999999900E-002
+ L1 error =   5.360623197110995E-004
+ time   8.324999999999899E-002
+ L1 error =   5.341577322615374E-004
+ time   8.329999999999899E-002
+ L1 error =   5.322599146198047E-004
+ time   8.334999999999898E-002
+ L1 error =   5.303688427282909E-004
+ time   8.339999999999897E-002
+ L1 error =   5.284844926186636E-004
+ time   8.344999999999897E-002
+ L1 error =   5.266068403831873E-004
+ time   8.349999999999896E-002
+ L1 error =   5.247358621451333E-004
+ time   8.354999999999896E-002
+ L1 error =   5.228715342926935E-004
+ time   8.359999999999895E-002
+ L1 error =   5.210138330555644E-004
+ time   8.364999999999895E-002
+ L1 error =   5.191627349470209E-004
+ time   8.369999999999894E-002
+ L1 error =   5.173182164570734E-004
+ time   8.374999999999894E-002
+ L1 error =   5.154802542068156E-004
+ time   8.379999999999893E-002
+ L1 error =   5.136488248619604E-004
+ time   8.384999999999893E-002
+ L1 error =   5.118239052015872E-004
+ time   8.389999999999892E-002
+ L1 error =   5.100054720916984E-004
+ time   8.394999999999891E-002
+ L1 error =   5.081935024254784E-004
+ time   8.399999999999891E-002
+ L1 error =   5.063879732972779E-004
+ time   8.404999999999890E-002
+ L1 error =   5.045888617045066E-004
+ time   8.409999999999890E-002
+ L1 error =   5.027961449111126E-004
+ time   8.414999999999889E-002
+ L1 error =   5.010107218459124E-004
+ time   8.419999999999889E-002
+ L1 error =   4.992317657233581E-004
+ time   8.424999999999888E-002
+ L1 error =   4.974591273620923E-004
+ time   8.429999999999888E-002
+ L1 error =   4.956927842577158E-004
+ time   8.434999999999887E-002
+ L1 error =   4.939327141003344E-004
+ time   8.439999999999886E-002
+ L1 error =   4.921788945897917E-004
+ time   8.444999999999886E-002
+ L1 error =   4.904313035208737E-004
+ time   8.449999999999885E-002
+ L1 error =   4.886899188271133E-004
+ time   8.454999999999885E-002
+ L1 error =   4.869547183712965E-004
+ time   8.459999999999884E-002
+ L1 error =   4.852256802923637E-004
+ time   8.464999999999884E-002
+ L1 error =   4.835027826396523E-004
+ time   8.469999999999883E-002
+ L1 error =   4.817860035995934E-004
+ time   8.474999999999883E-002
+ L1 error =   4.800753215109195E-004
+ time   8.479999999999882E-002
+ L1 error =   4.783707146234054E-004
+ time   8.484999999999882E-002
+ L1 error =   4.766721614662051E-004
+ time   8.489999999999881E-002
+ L1 error =   4.749796404216267E-004
+ time   8.494999999999880E-002
+ L1 error =   4.732931302149697E-004
+ time   8.499999999999880E-002
+ L1 error =   4.716126093435419E-004
+ time   8.504999999999879E-002
+ L1 error =   4.699380566351893E-004
+ time   8.509999999999879E-002
+ L1 error =   4.682694508883664E-004
+ time   8.514999999999878E-002
+ L1 error =   4.666067709180886E-004
+ time   8.519999999999878E-002
+ L1 error =   4.649499957529584E-004
+ time   8.524999999999877E-002
+ L1 error =   4.632991043761939E-004
+ time   8.529999999999877E-002
+ L1 error =   4.616540761802884E-004
+ time   8.534999999999876E-002
+ L1 error =   4.600148900876957E-004
+ time   8.539999999999875E-002
+ L1 error =   4.583815253426651E-004
+ time   8.544999999999875E-002
+ L1 error =   4.567539612240986E-004
+ time   8.549999999999874E-002
+ L1 error =   4.551321771956085E-004
+ time   8.554999999999874E-002
+ L1 error =   4.535161526844374E-004
+ time   8.559999999999873E-002
+ L1 error =   4.519058672452508E-004
+ time   8.564999999999873E-002
+ L1 error =   4.503013005127946E-004
+ time   8.569999999999872E-002
+ L1 error =   4.487024321369106E-004
+ time   8.574999999999872E-002
+ L1 error =   4.471092419284965E-004
+ time   8.579999999999871E-002
+ L1 error =   4.455217096942846E-004
+ time   8.584999999999871E-002
+ L1 error =   4.439398153262143E-004
+ time   8.589999999999870E-002
+ L1 error =   4.423635388360562E-004
+ time   8.594999999999869E-002
+ L1 error =   4.407928602599042E-004
+ time   8.599999999999869E-002
+ L1 error =   4.392277596887152E-004
+ time   8.604999999999868E-002
+ L1 error =   4.376682173421014E-004
+ time   8.609999999999868E-002
+ L1 error =   4.361142134844937E-004
+ time   8.614999999999867E-002
+ L1 error =   4.345657284041979E-004
+ time   8.619999999999867E-002
+ L1 error =   4.330227425722602E-004
+ time   8.624999999999866E-002
+ L1 error =   4.314852363695108E-004
+ time   8.629999999999866E-002
+ L1 error =   4.299531903966697E-004
+ time   8.634999999999865E-002
+ L1 error =   4.284265852580545E-004
+ time   8.639999999999864E-002
+ L1 error =   4.269054015742056E-004
+ time   8.644999999999864E-002
+ L1 error =   4.253896204536591E-004
+ time   8.649999999999863E-002
+ L1 error =   4.238792225739361E-004
+ time   8.654999999999863E-002
+ L1 error =   4.223741886365118E-004
+ time   8.659999999999862E-002
+ L1 error =   4.208744995630567E-004
+ time   8.664999999999862E-002
+ L1 error =   4.193801364247939E-004
+ time   8.669999999999861E-002
+ L1 error =   4.178910802278720E-004
+ time   8.674999999999861E-002
+ L1 error =   4.164073121879836E-004
+ time   8.679999999999860E-002
+ L1 error =   4.149288135085639E-004
+ time   8.684999999999859E-002
+ L1 error =   4.134555654551198E-004
+ time   8.689999999999859E-002
+ L1 error =   4.119876173831445E-004
+ time   8.694999999999858E-002
+ L1 error =   4.105250172034600E-004
+ time   8.699999999999858E-002
+ L1 error =   4.090676101139521E-004
+ time   8.704999999999857E-002
+ L1 error =   4.076153776814473E-004
+ time   8.709999999999857E-002
+ L1 error =   4.061683015219118E-004
+ time   8.714999999999856E-002
+ L1 error =   4.047263633180230E-004
+ time   8.719999999999856E-002
+ L1 error =   4.032895448519582E-004
+ time   8.724999999999855E-002
+ L1 error =   4.018578279451816E-004
+ time   8.729999999999855E-002
+ L1 error =   4.004311944436236E-004
+ time   8.734999999999854E-002
+ L1 error =   3.990096263650972E-004
+ time   8.739999999999853E-002
+ L1 error =   3.975931056641622E-004
+ time   8.744999999999853E-002
+ L1 error =   3.961816144432186E-004
+ time   8.749999999999852E-002
+ L1 error =   3.947751348779699E-004
+ time   8.754999999999852E-002
+ L1 error =   3.933736490954456E-004
+ time   8.759999999999851E-002
+ L1 error =   3.919771394442556E-004
+ time   8.764999999999851E-002
+ L1 error =   3.905855882260316E-004
+ time   8.769999999999850E-002
+ L1 error =   3.891989778064498E-004
+ time   8.774999999999850E-002
+ L1 error =   3.878172907094109E-004
+ time   8.779999999999849E-002
+ L1 error =   3.864405093755328E-004
+ time   8.784999999999848E-002
+ L1 error =   3.850686164629841E-004
+ time   8.789999999999848E-002
+ L1 error =   3.837016836271308E-004
+ time   8.794999999999847E-002
+ L1 error =   3.823396436129125E-004
+ time   8.799999999999847E-002
+ L1 error =   3.809824390245050E-004
+ time   8.804999999999846E-002
+ L1 error =   3.796300526599655E-004
+ time   8.809999999999846E-002
+ L1 error =   3.782824674761587E-004
+ time   8.814999999999845E-002
+ L1 error =   3.769396663498976E-004
+ time   8.819999999999845E-002
+ L1 error =   3.756016323696910E-004
+ time   8.824999999999844E-002
+ L1 error =   3.742683485751222E-004
+ time   8.829999999999844E-002
+ L1 error =   3.729397981027438E-004
+ time   8.834999999999843E-002
+ L1 error =   3.716159641674932E-004
+ time   8.839999999999842E-002
+ L1 error =   3.702968299978315E-004
+ time   8.844999999999842E-002
+ L1 error =   3.689823789526418E-004
+ time   8.849999999999841E-002
+ L1 error =   3.676725943515309E-004
+ time   8.854999999999841E-002
+ L1 error =   3.663674596953975E-004
+ time   8.859999999999840E-002
+ L1 error =   3.650669584024768E-004
+ time   8.864999999999840E-002
+ L1 error =   3.637710740932939E-004
+ time   8.869999999999839E-002
+ L1 error =   3.624797903174909E-004
+ time   8.874999999999839E-002
+ L1 error =   3.611930908033447E-004
+ time   8.879999999999838E-002
+ L1 error =   3.599109592175363E-004
+ time   8.884999999999837E-002
+ L1 error =   3.586333793837687E-004
+ time   8.889999999999837E-002
+ L1 error =   3.573603351308301E-004
+ time   8.894999999999836E-002
+ L1 error =   3.560918103679505E-004
+ time   8.899999999999836E-002
+ L1 error =   3.548277890120692E-004
+ time   8.904999999999835E-002
+ L1 error =   3.535682551313176E-004
+ time   8.909999999999835E-002
+ L1 error =   3.523131927569782E-004
+ time   8.914999999999834E-002
+ L1 error =   3.510625860290166E-004
+ time   8.919999999999834E-002
+ L1 error =   3.498164191141788E-004
+ time   8.924999999999833E-002
+ L1 error =   3.485746762849686E-004
+ time   8.929999999999833E-002
+ L1 error =   3.473373417988281E-004
+ time   8.934999999999832E-002
+ L1 error =   3.461044000228459E-004
+ time   8.939999999999831E-002
+ L1 error =   3.448758353607241E-004
+ time   8.944999999999831E-002
+ L1 error =   3.436516322694162E-004
+ time   8.949999999999830E-002
+ L1 error =   3.424317752797021E-004
+ time   8.954999999999830E-002
+ L1 error =   3.412162489347313E-004
+ time   8.959999999999829E-002
+ L1 error =   3.400050379061274E-004
+ time   8.964999999999829E-002
+ L1 error =   3.387981268030575E-004
+ time   8.969999999999828E-002
+ L1 error =   3.375955004393894E-004
+ time   8.974999999999828E-002
+ L1 error =   3.363971435494890E-004
+ time   8.979999999999827E-002
+ L1 error =   3.352030409980537E-004
+ time   8.984999999999826E-002
+ L1 error =   3.340131780944938E-004
+ time   8.989999999999826E-002
+ L1 error =   3.328275395312998E-004
+ time   8.994999999999825E-002
+ L1 error =   3.316461101653583E-004
+ time   8.999999999999825E-002
+ L1 error =   3.304688750338134E-004
+ time   9.004999999999824E-002
+ L1 error =   3.292958192459890E-004
+ time   9.009999999999824E-002
+ L1 error =   3.281269279649363E-004
+ time   9.014999999999823E-002
+ L1 error =   3.269624921009749E-004
+ time   9.019999999999823E-002
+ L1 error =   3.258024634331127E-004
+ time   9.024999999999822E-002
+ L1 error =   3.246465500782529E-004
+ time   9.029999999999822E-002
+ L1 error =   3.234947375142107E-004
+ time   9.034999999999821E-002
+ L1 error =   3.223470111532626E-004
+ time   9.039999999999820E-002
+ L1 error =   3.212033564966859E-004
+ time   9.044999999999820E-002
+ L1 error =   3.200637591244144E-004
+ time   9.049999999999819E-002
+ L1 error =   3.189282046498253E-004
+ time   9.054999999999819E-002
+ L1 error =   3.177966787103580E-004
+ time   9.059999999999818E-002
+ L1 error =   3.166691670382355E-004
+ time   9.064999999999818E-002
+ L1 error =   3.155456553968345E-004
+ time   9.069999999999817E-002
+ L1 error =   3.144261295776670E-004
+ time   9.074999999999817E-002
+ L1 error =   3.133105754784439E-004
+ time   9.079999999999816E-002
+ L1 error =   3.121989789808144E-004
+ time   9.084999999999815E-002
+ L1 error =   3.110913260603130E-004
+ time   9.089999999999815E-002
+ L1 error =   3.099876027494544E-004
+ time   9.094999999999814E-002
+ L1 error =   3.088877950667163E-004
+ time   9.099999999999814E-002
+ L1 error =   3.077918891680539E-004
+ time   9.104999999999813E-002
+ L1 error =   3.066998711935003E-004
+ time   9.109999999999813E-002
+ L1 error =   3.056117273600840E-004
+ time   9.114999999999812E-002
+ L1 error =   3.045274439286465E-004
+ time   9.119999999999812E-002
+ L1 error =   3.034470071892647E-004
+ time   9.124999999999811E-002
+ L1 error =   3.023704035328590E-004
+ time   9.129999999999810E-002
+ L1 error =   3.012976193294937E-004
+ time   9.134999999999810E-002
+ L1 error =   3.002286410668295E-004
+ time   9.139999999999809E-002
+ L1 error =   2.991634551932990E-004
+ time   9.144999999999809E-002
+ L1 error =   2.981020483317757E-004
+ time   9.149999999999808E-002
+ L1 error =   2.970444070089981E-004
+ time   9.154999999999808E-002
+ L1 error =   2.959905179245107E-004
+ time   9.159999999999807E-002
+ L1 error =   2.949403677329681E-004
+ time   9.164999999999807E-002
+ L1 error =   2.938939431734346E-004
+ time   9.169999999999806E-002
+ L1 error =   2.928512310601951E-004
+ time   9.174999999999806E-002
+ L1 error =   2.918122181991990E-004
+ time   9.179999999999805E-002
+ L1 error =   2.907768914839765E-004
+ time   9.184999999999804E-002
+ L1 error =   2.897452378298577E-004
+ time   9.189999999999804E-002
+ L1 error =   2.887172442360148E-004
+ time   9.194999999999803E-002
+ L1 error =   2.876928976637015E-004
+ time   9.199999999999803E-002
+ L1 error =   2.866721852473044E-004
+ time   9.204999999999802E-002
+ L1 error =   2.856550940424307E-004
+ time   9.209999999999802E-002
+ L1 error =   2.846416112394155E-004
+ time   9.214999999999801E-002
+ L1 error =   2.836317240076852E-004
+ time   9.219999999999801E-002
+ L1 error =   2.826254196286825E-004
+ time   9.224999999999800E-002
+ L1 error =   2.816226853706211E-004
+ time   9.229999999999799E-002
+ L1 error =   2.806235085857018E-004
+ time   9.234999999999799E-002
+ L1 error =   2.796278766391902E-004
+ time   9.239999999999798E-002
+ L1 error =   2.786357769697272E-004
+ time   9.244999999999798E-002
+ L1 error =   2.776471970508017E-004
+ time   9.249999999999797E-002
+ L1 error =   2.766621243722663E-004
+ time   9.254999999999797E-002
+ L1 error =   2.756805465401320E-004
+ time   9.259999999999796E-002
+ L1 error =   2.747024511178348E-004
+ time   9.264999999999796E-002
+ L1 error =   2.737278257721916E-004
+ time   9.269999999999795E-002
+ L1 error =   2.727566581921862E-004
+ time   9.274999999999795E-002
+ L1 error =   2.717889361108545E-004
+ time   9.279999999999794E-002
+ L1 error =   2.708246473010351E-004
+ time   9.284999999999793E-002
+ L1 error =   2.698637796079523E-004
+ time   9.289999999999793E-002
+ L1 error =   2.689063208616183E-004
+ time   9.294999999999792E-002
+ L1 error =   2.679522590038846E-004
+ time   9.299999999999792E-002
+ L1 error =   2.670015820342704E-004
+ time   9.304999999999791E-002
+ L1 error =   2.660542779101728E-004
+ time   9.309999999999791E-002
+ L1 error =   2.651103346353113E-004
+ time   9.314999999999790E-002
+ L1 error =   2.641697403037934E-004
+ time   9.319999999999790E-002
+ L1 error =   2.632324830148832E-004
+ time   9.324999999999789E-002
+ L1 error =   2.622985509419684E-004
+ time   9.329999999999788E-002
+ L1 error =   2.613679323137360E-004
+ time   9.334999999999788E-002
+ L1 error =   2.604406153330656E-004
+ time   9.339999999999787E-002
+ L1 error =   2.595165883216073E-004
+ time   9.344999999999787E-002
+ L1 error =   2.585958396041838E-004
+ time   9.349999999999786E-002
+ L1 error =   2.576783575364910E-004
+ time   9.354999999999786E-002
+ L1 error =   2.567641305505029E-004
+ time   9.359999999999785E-002
+ L1 error =   2.558531470863263E-004
+ time   9.364999999999785E-002
+ L1 error =   2.549453956473981E-004
+ time   9.369999999999784E-002
+ L1 error =   2.540408647697179E-004
+ time   9.374999999999784E-002
+ L1 error =   2.531395430174846E-004
+ time   9.379999999999783E-002
+ L1 error =   2.522414190310465E-004
+ time   9.384999999999782E-002
+ L1 error =   2.513464814378598E-004
+ time   9.389999999999782E-002
+ L1 error =   2.504547189675181E-004
+ time   9.394999999999781E-002
+ L1 error =   2.495661203242407E-004
+ time   9.399999999999781E-002
+ L1 error =   2.486806743151581E-004
+ time   9.404999999999780E-002
+ L1 error =   2.477983697365291E-004
+ time   9.409999999999780E-002
+ L1 error =   2.469191954503247E-004
+ time   9.414999999999779E-002
+ L1 error =   2.460431403546736E-004
+ time   9.419999999999779E-002
+ L1 error =   2.451701933836216E-004
+ time   9.424999999999778E-002
+ L1 error =   2.443003435212883E-004
+ time   9.429999999999777E-002
+ L1 error =   2.434335797655606E-004
+ time   9.434999999999777E-002
+ L1 error =   2.425698911809999E-004
+ time   9.439999999999776E-002
+ L1 error =   2.417092668573645E-004
+ time   9.444999999999776E-002
+ L1 error =   2.408516959146013E-004
+ time   9.449999999999775E-002
+ L1 error =   2.399971675495832E-004
+ time   9.454999999999775E-002
+ L1 error =   2.391456709264685E-004
+ time   9.459999999999774E-002
+ L1 error =   2.382971953351729E-004
+ time   9.464999999999774E-002
+ L1 error =   2.374517300281468E-004
+ time   9.469999999999773E-002
+ L1 error =   2.366092643377703E-004
+ time   9.474999999999772E-002
+ L1 error =   2.357697876429769E-004
+ time   9.479999999999772E-002
+ L1 error =   2.349332892840181E-004
+ time   9.484999999999771E-002
+ L1 error =   2.340997587707719E-004
+ time   9.489999999999771E-002
+ L1 error =   2.332691855130681E-004
+ time   9.494999999999770E-002
+ L1 error =   2.324415590599752E-004
+ time   9.499999999999770E-002
+ L1 error =   2.316168689384155E-004
+ time   9.504999999999769E-002
+ L1 error =   2.307951047507270E-004
+ time   9.509999999999769E-002
+ L1 error =   2.299762561392971E-004
+ time   9.514999999999768E-002
+ L1 error =   2.291603128126783E-004
+ time   9.519999999999768E-002
+ L1 error =   2.283472643865301E-004
+ time   9.524999999999767E-002
+ L1 error =   2.275371006498692E-004
+ time   9.529999999999766E-002
+ L1 error =   2.267298113516608E-004
+ time   9.534999999999766E-002
+ L1 error =   2.259253862769615E-004
+ time   9.539999999999765E-002
+ L1 error =   2.251238152125803E-004
+ time   9.544999999999765E-002
+ L1 error =   2.243250880636299E-004
+ time   9.549999999999764E-002
+ L1 error =   2.235291947460389E-004
+ time   9.554999999999764E-002
+ L1 error =   2.227361251835997E-004
+ time   9.559999999999763E-002
+ L1 error =   2.219458748723155E-004
+ time   9.564999999999763E-002
+ L1 error =   2.211590261237939E-004
+ time   9.569999999999762E-002
+ L1 error =   2.203749660331312E-004
+ time   9.574999999999761E-002
+ L1 error =   2.195936846982165E-004
+ time   9.579999999999761E-002
+ L1 error =   2.188151723012874E-004
+ time   9.584999999999760E-002
+ L1 error =   2.180394190219748E-004
+ time   9.589999999999760E-002
+ L1 error =   2.172664150806728E-004
+ time   9.594999999999759E-002
+ L1 error =   2.164961507674229E-004
+ time   9.599999999999759E-002
+ L1 error =   2.157286163424469E-004
+ time   9.604999999999758E-002
+ L1 error =   2.149638021601177E-004
+ time   9.609999999999758E-002
+ L1 error =   2.142016985847004E-004
+ time   9.614999999999757E-002
+ L1 error =   2.134422959940826E-004
+ time   9.619999999999757E-002
+ L1 error =   2.126855848540247E-004
+ time   9.624999999999756E-002
+ L1 error =   2.119315555970137E-004
+ time   9.629999999999755E-002
+ L1 error =   2.111801987605563E-004
+ time   9.634999999999755E-002
+ L1 error =   2.104315048426832E-004
+ time   9.639999999999754E-002
+ L1 error =   2.096854644302015E-004
+ time   9.644999999999754E-002
+ L1 error =   2.089420681328265E-004
+ time   9.649999999999753E-002
+ L1 error =   2.082013065538225E-004
+ time   9.654999999999753E-002
+ L1 error =   2.074631703944893E-004
+ time   9.659999999999752E-002
+ L1 error =   2.067276503387685E-004
+ time   9.664999999999752E-002
+ L1 error =   2.059947371117877E-004
+ time   9.669999999999751E-002
+ L1 error =   2.052644215047849E-004
+ time   9.674999999999750E-002
+ L1 error =   2.045366942969562E-004
+ time   9.679999999999750E-002
+ L1 error =   2.038115463189204E-004
+ time   9.684999999999749E-002
+ L1 error =   2.030889684490876E-004
+ time   9.689999999999749E-002
+ L1 error =   2.023689515629567E-004
+ time   9.694999999999748E-002
+ L1 error =   2.016514866083369E-004
+ time   9.699999999999748E-002
+ L1 error =   2.009365645368749E-004
+ time   9.704999999999747E-002
+ L1 error =   2.002241763398954E-004
+ time   9.709999999999747E-002
+ L1 error =   1.995143130418295E-004
+ Switching to linearized regime from decomposition regime
+ time   9.714999999999746E-002
+ L1 error =   1.988069657138032E-004
+ time   9.719999999999746E-002
+ L1 error =   1.981021254121384E-004
+ time   9.724999999999745E-002
+ L1 error =   1.973997832943202E-004
+ time   9.729999999999744E-002
+ L1 error =   1.966999304777184E-004
+ time   9.734999999999744E-002
+ L1 error =   1.960025581585051E-004
+ time   9.739999999999743E-002
+ L1 error =   1.953076575534106E-004
+ time   9.744999999999743E-002
+ L1 error =   1.946152199031022E-004
+ time   9.749999999999742E-002
+ L1 error =   1.939252364740172E-004
+ time   9.754999999999742E-002
+ L1 error =   1.932376985956702E-004
+ time   9.759999999999741E-002
+ L1 error =   1.925525975700186E-004
+ time   9.764999999999741E-002
+ L1 error =   1.918699248031683E-004
+ time   9.769999999999740E-002
+ L1 error =   1.911896716654604E-004
+ time   9.774999999999739E-002
+ L1 error =   1.905118295952291E-004
+ time   9.779999999999739E-002
+ L1 error =   1.898363900538558E-004
+ time   9.784999999999738E-002
+ L1 error =   1.891633445337531E-004
+ time   9.789999999999738E-002
+ L1 error =   1.884926845402722E-004
+ time   9.794999999999737E-002
+ L1 error =   1.878244016341426E-004
+ time   9.799999999999737E-002
+ L1 error =   1.871584873934786E-004
+ time   9.804999999999736E-002
+ L1 error =   1.864949334124431E-004
+ time   9.809999999999736E-002
+ L1 error =   1.858337313608614E-004
+ time   9.814999999999735E-002
+ L1 error =   1.851748728689535E-004
+ time   9.819999999999734E-002
+ L1 error =   1.845183496619229E-004
+ time   9.824999999999734E-002
+ L1 error =   1.838641534681643E-004
+ time   9.829999999999733E-002
+ L1 error =   1.832122760217567E-004
+ time   9.834999999999733E-002
+ L1 error =   1.825627091236839E-004
+ time   9.839999999999732E-002
+ L1 error =   1.819154445938195E-004
+ time   9.844999999999732E-002
+ L1 error =   1.812704742581688E-004
+ time   9.849999999999731E-002
+ L1 error =   1.806277900059912E-004
+ time   9.854999999999731E-002
+ L1 error =   1.799873837260914E-004
+ time   9.859999999999730E-002
+ L1 error =   1.793492473624159E-004
+ time   9.864999999999730E-002
+ L1 error =   1.787133728661568E-004
+ time   9.869999999999729E-002
+ L1 error =   1.780797522071253E-004
+ time   9.874999999999728E-002
+ L1 error =   1.774483774420230E-004
+ time   9.879999999999728E-002
+ L1 error =   1.768192405626112E-004
+ time   9.884999999999727E-002
+ L1 error =   1.761923336852504E-004
+ time   9.889999999999727E-002
+ L1 error =   1.755676488862757E-004
+ time   9.894999999999726E-002
+ L1 error =   1.749451783044658E-004
+ time   9.899999999999726E-002
+ L1 error =   1.743249140792632E-004
+ time   9.904999999999725E-002
+ L1 error =   1.737068484161543E-004
+ time   9.909999999999725E-002
+ L1 error =   1.730909735122947E-004
+ time   9.914999999999724E-002
+ L1 error =   1.724772816011712E-004
+ time   9.919999999999723E-002
+ L1 error =   1.718657649633880E-004
+ time   9.924999999999723E-002
+ L1 error =   1.712564158858801E-004
+ time   9.929999999999722E-002
+ L1 error =   1.706492266843458E-004
+ time   9.934999999999722E-002
+ L1 error =   1.700441897166916E-004
+ time   9.939999999999721E-002
+ L1 error =   1.694412973467649E-004
+ time   9.944999999999721E-002
+ L1 error =   1.688405419915793E-004
+ time   9.949999999999720E-002
+ L1 error =   1.682419160655344E-004
+ time   9.954999999999720E-002
+ L1 error =   1.676454120333384E-004
+ time   9.959999999999719E-002
+ L1 error =   1.670510223702091E-004
+ time   9.964999999999719E-002
+ L1 error =   1.664587395905619E-004
+ time   9.969999999999718E-002
+ L1 error =   1.658685562288837E-004
+ time   9.974999999999717E-002
+ L1 error =   1.652804648460306E-004
+ time   9.979999999999717E-002
+ L1 error =   1.646944580335413E-004
+ time   9.984999999999716E-002
+ L1 error =   1.641105284010472E-004
+ time   9.989999999999716E-002
+ L1 error =   1.635286685903726E-004
+ time   9.994999999999715E-002
+ L1 error =   1.629488712695485E-004
+ time   9.999999999999715E-002
+ L1 error =   1.623711291289063E-004
+ time   0.100049999999997     
+ L1 error =   1.617954348957285E-004
+ time   0.100099999999997     
+ L1 error =   1.612217813013765E-004
+ time   0.100149999999997     
+ L1 error =   1.606501611332348E-004
+ time   0.100199999999997     
+ L1 error =   1.600805671615645E-004
+ time   0.100249999999997     
+ L1 error =   1.595129922307518E-004
+ time   0.100299999999997     
+ L1 error =   1.589474291701310E-004
+ time   0.100349999999997     
+ L1 error =   1.583838708696280E-004
+ time   0.100399999999997     
+ L1 error =   1.578223102101738E-004
+ time   0.100449999999997     
+ L1 error =   1.572627401234779E-004
+ time   0.100499999999997     
+ L1 error =   1.567051535523026E-004
+ time   0.100549999999997     
+ L1 error =   1.561495434730759E-004
+ time   0.100599999999997     
+ L1 error =   1.555959028726591E-004
+ time   0.100649999999997     
+ L1 error =   1.550442247905791E-004
+ time   0.100699999999997     
+ L1 error =   1.544945022490493E-004
+ time   0.100749999999997     
+ L1 error =   1.539467283526173E-004
+ time   0.100799999999997     
+ L1 error =   1.534008961537198E-004
+ time   0.100849999999997     
+ L1 error =   1.528569988175012E-004
+ time   0.100899999999997     
+ L1 error =   1.523150294547962E-004
+ time   0.100949999999997     
+ L1 error =   1.517749812491984E-004
+ time   0.100999999999997     
+ L1 error =   1.512368473969234E-004
+ time   0.101049999999997     
+ L1 error =   1.507006211013073E-004
+ time   0.101099999999997     
+ L1 error =   1.501662956284299E-004
+ time   0.101149999999997     
+ L1 error =   1.496338642103955E-004
+ time   0.101199999999997     
+ L1 error =   1.491033201581345E-004
+ time   0.101249999999997     
+ L1 error =   1.485746567879945E-004
+ time   0.101299999999997     
+ L1 error =   1.480478674157091E-004
+ time   0.101349999999997     
+ L1 error =   1.475229454265861E-004
+ time   0.101399999999997     
+ L1 error =   1.469998841711174E-004
+ time   0.101449999999997     
+ L1 error =   1.464786770927132E-004
+ time   0.101499999999997     
+ L1 error =   1.459593176366647E-004
+ time   0.101549999999997     
+ L1 error =   1.454417992286030E-004
+ time   0.101599999999997     
+ L1 error =   1.449261153479192E-004
+ time   0.101649999999997     
+ L1 error =   1.444122594775304E-004
+ time   0.101699999999997     
+ L1 error =   1.439002251567335E-004
+ time   0.101749999999997     
+ L1 error =   1.433900059203098E-004
+ time   0.101799999999997     
+ L1 error =   1.428815953414350E-004
+ time   0.101849999999997     
+ L1 error =   1.423749870084354E-004
+ time   0.101899999999997     
+ L1 error =   1.418701778836322E-004
+ time   0.101949999999997     
+ L1 error =   1.413672992901021E-004
+ time   0.101999999999997     
+ L1 error =   1.408662026180016E-004
+ time   0.102049999999997     
+ L1 error =   1.403668815542480E-004
+ time   0.102099999999997     
+ L1 error =   1.398693298104459E-004
+ time   0.102149999999997     
+ L1 error =   1.393735411222727E-004
+ time   0.102199999999997     
+ L1 error =   1.388795092375772E-004
+ time   0.102249999999997     
+ L1 error =   1.383872279508592E-004
+ time   0.102299999999997     
+ L1 error =   1.378966910414013E-004
+ time   0.102349999999997     
+ L1 error =   1.374078923520971E-004
+ time   0.102399999999997     
+ L1 error =   1.369208257131131E-004
+ time   0.102449999999997     
+ L1 error =   1.364354850007189E-004
+ time   0.102499999999997     
+ L1 error =   1.359518640950917E-004
+ time   0.102549999999997     
+ L1 error =   1.354699569131762E-004
+ time   0.102599999999997     
+ L1 error =   1.349897573706268E-004
+ time   0.102649999999997     
+ L1 error =   1.345112594453263E-004
+ time   0.102699999999997     
+ L1 error =   1.340344571240814E-004
+ time   0.102749999999997     
+ L1 error =   1.335593443824943E-004
+ time   0.102799999999997     
+ L1 error =   1.330859152194306E-004
+ time   0.102849999999997     
+ L1 error =   1.326141636825808E-004
+ time   0.102899999999997     
+ L1 error =   1.321440838307359E-004
+ time   0.102949999999997     
+ L1 error =   1.316756697414772E-004
+ time   0.102999999999997     
+ L1 error =   1.312089155145989E-004
+ time   0.103049999999997     
+ L1 error =   1.307438152721306E-004
+ time   0.103099999999997     
+ L1 error =   1.302803631619364E-004
+ time   0.103149999999997     
+ L1 error =   1.298185533330757E-004
+ time   0.103199999999997     
+ L1 error =   1.293583799890375E-004
+ time   0.103249999999997     
+ L1 error =   1.288998373142562E-004
+ time   0.103299999999997     
+ L1 error =   1.284429195412552E-004
+ time   0.103349999999997     
+ L1 error =   1.279876209200727E-004
+ time   0.103399999999997     
+ L1 error =   1.275339357099427E-004
+ time   0.103449999999997     
+ L1 error =   1.270818582039065E-004
+ time   0.103499999999997     
+ L1 error =   1.266313826900281E-004
+ time   0.103549999999997     
+ L1 error =   1.261825035267039E-004
+ time   0.103599999999997     
+ L1 error =   1.257352150277493E-004
+ time   0.103649999999997     
+ L1 error =   1.252895115749470E-004
+ time   0.103699999999997     
+ L1 error =   1.248453875539081E-004
+ time   0.103749999999997     
+ L1 error =   1.244028373639308E-004
+ time   0.103799999999997     
+ L1 error =   1.239618554448962E-004
+ time   0.103849999999997     
+ L1 error =   1.235224362222242E-004
+ time   0.103899999999997     
+ L1 error =   1.230845741819843E-004
+ time   0.103949999999997     
+ L1 error =   1.226482637942591E-004
+ time   0.103999999999997     
+ L1 error =   1.222134995711209E-004
+ time   0.104049999999997     
+ L1 error =   1.217802760289661E-004
+ time   0.104099999999997     
+ L1 error =   1.213485877173980E-004
+ time   0.104149999999997     
+ L1 error =   1.209184292027652E-004
+ time   0.104199999999997     
+ L1 error =   1.204897950564610E-004
+ time   0.104249999999997     
+ L1 error =   1.200626798813952E-004
+ time   0.104299999999997     
+ L1 error =   1.196370783038421E-004
+ time   0.104349999999997     
+ L1 error =   1.192129849495890E-004
+ time   0.104399999999997     
+ L1 error =   1.187903945040032E-004
+ time   0.104449999999997     
+ L1 error =   1.183693016149390E-004
+ time   0.104499999999997     
+ L1 error =   1.179497009940046E-004
+ time   0.104549999999997     
+ Processor time lapsed in seconds for main run:   529549.6    

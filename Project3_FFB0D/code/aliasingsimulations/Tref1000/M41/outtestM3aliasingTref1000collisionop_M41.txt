@@ -1,0 +1,395 @@
+ i! This file contains parameter setting for 1D UWVFbgk code                    
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!"                        
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ k_c_list=           4           5
+ k_b_list=           5           6
+ x_L=  0.000000000000000E+000
+ x_R=  0.100000000000000     
+ mesh_x_uniform= T
+ N_list=           4           6           8          11          16
+                                                                                
+                                                      
+ d_c_list=           4           5
+ d_b_list=           5           6
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! choose from different kinds of boundary conditions:                          
+                                                      
+ ! 1 - periodic BCs                                                             
+                                                      
+ ! 2 - exact BCs (will need to know the selected exact solution                 
+                                                      
+ ! 3 - diffusive reflection BCs.                                                
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ ! select the type of boundary conditions                                       
+                                                      
+ selected_leftbcond=           3
+ selected_rightbcond=           3
+                                                                                
+                                                      
+ ! choose from different kinds of exact solutions:                              
+                                                      
+ ! 1 - sin(x+u) -- type of source                                               
+                                                      
+ ! 2 - ext(-1/x^2) -- type of source                                            
+                                                      
+ ! 3 - diffusion BCs                                                            
+                                                      
+                                                                                
+                                                      
+ ! Select the exact solution                                                    
+                                                      
+ ! 1 = "f(ut-nx+cu)", f(x)=a*\exp(-b/((x-r_1)(x-r_2))) zero right side exact sol
+ ution (or 1a = 1- cos(x) periodic wave)              
+ ! 1(a) = "f(ut-nx+cu)", f(x)=1-cos(2\alpha\pi x) zero right side exact solution
+                                                      
+ ! 2 =  maxwelveldist (T1,u1,u)*N1 + maxwelveldist (T2,u2,u)*(1-N1) --- mimic sh
+ ock wave bimodal distribution (time independent)     
+ !      function sf_02 only makes sense for initial data. Error is replaced by L
+ _2 norm                                              
+                                                                                
+                                                      
+ selected_exact_sol=           2
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=MalsngTref1000_     
+                                                                                
+                                                      
+ !                                                                              
+                                                      
+ ! Parameters of time evolution                                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ t_L=  0.000000000000000E+000
+ t_R=  0.104500000000000     
+ dt=  5.000000000000000E-005
+                                                                                
+                                                      
+ num_eval_error=         800
+ num_save_solution=          60
+                                                                                
+                                                      
+ ! Parameters related to non-unifom mesh generation                             
+                                                      
+ x_nonuniform_mesh_type=           2
+                                                                                
+                                                      
+ ! supported types of nonuminform mesh:                                         
+                                                      
+ ! For variable u:                                                              
+                                                      
+ ! 1 --- the mesh is build based on the gauss nodes used for the integration of 
+ moments, moments_x_gauss_nodes and                   
+ !       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is 
+ divided in subintervals                              
+ !       as to have gauss nodes at centerpoints. Some extra points need to be in
+ troduced to make this possible.                      
+ ! 2 --- this mesh is to be used with the diffusive boundary conditions. The vel
+ ocity of the wall (currently only u_{w}=0)           
+ !       will be included in the mesh. Also, the cell near the walls will be 1/8
+  - 1/4 - 1/2                                         
+ ! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as pr
+ escribed by parameters                               
+ !       sml -- small cell levels amd smr -- small cell refinement factor       
+                                                      
+ ! 3 --- This is a non-uniform mesh in "x" with cells near wall be 1/4-1/2. Curr
+ enlty is not supported for meshes in "u"             
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_x_gauss_order=           5
+ moments_refine_x=           1
+                                                                                
+                                                      
+ ! Parameters of diffusive BCs -- only used with diffusive BCs                  
+                                                      
+                                                                                
+                                                      
+ T_w_left=   1.00000000000000     
+ T_w_right=   3.00000000000000     
+                                                                                
+                                                      
+ ! Restart of the solution                                                      
+                                                      
+                                                                                
+                                                      
+ need_to_restart= F
+ restart_time_txt=0.0120000000        
+                                                                                
+                                                      
+ ! OpenMP parameters:                                                           
+                                                      
+ Num_OMP_threads(Driver)=     28
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! This file contains parameter setting for DGV library                         
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!" in the first column    
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ u_L=  -3.00000000000000     
+ u_R=   3.00000000000000     
+ v_L=  -3.00000000000000     
+ v_R=   3.00000000000000     
+ w_L=  -3.00000000000000     
+ w_R=   3.00000000000000     
+ mesh_u_uniform= T
+ mesh_v_uniform= T
+ mesh_w_uniform= T
+                                                                                
+                                                      
+ SecondaryVelGridInUse= F
+                                    !! determines the secondary grid. The third 
+ (also fourth and fifth) numbers are optional         
+                                    !! and is not used at the moment            
+                                                      
+ !set the parameters of the primary and secondary grid                          
+                                                      
+ Mu_list=          41          21           4
+ su_list=           1           1           1
+ Mv_list=          41          21           4
+ sv_list=           1           1           1
+ Mw_list=          41          21           4
+ sw_list=           1           1           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=MalsnTref1000_      
+ current_Aoperator_base_name=OpA/1xN/exp0912_    
+ current_Aoperator_base_nameII=OpA/1xN/exp0912_    
+ !current A operator base name = Posops/PosOp_    !!                            
+                                                      
+ !secondary operator A base name = PosOps/PosOp_   !!                           
+                                                      
+ numchnks=           1
+ numchnksII=           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_u_gauss_order=           9
+ moments_refine_u=           1
+                                                                                
+                                                      
+ ! Parameters of Calculating the A-array:                                       
+                                                      
+                                                                                
+                                                      
+ Trad=   3.00000000000000     
+ ErrChi=  1.000000000000000E-004
+ ErrEps=  1.000000000000000E-005
+ min_sens=  9.999999999999999E-012
+ I1_list=         365       14896
+ I2_from=           1 I2_to=         729
+                                                                                
+                                                      
+ ! OpenMP parameters: (can ignore if not using OpenMP)                          
+                                                      
+                                                                                
+                                                      
+ Num_OMP_threads=     28
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+ ! Model threshholds: The order in which the models are envoked are             
+                                                      
+ ! 1) the Boltzmann equation, non-split formulation                             
+                                                      
+ ! 2) the Boltzmann equation, split f=f_M + df, formulation                     
+                                                      
+ ! 3) the linearized Boltzmann equation (unless solving spatially homogeneous pr
+ oblem, does not give an advantage)                   
+ ! 4) the BGK-type Model with velocity dependent collision frequency            
+                                                      
+ ! 5) the ES-BGK/BGK or Shakhov model                                           
+                                                      
+ !                                                                              
+                                                      
+ ! the parameters below define the thresholds for switching between models. They
+  represent the maximum allowed values of the L1-norm 
+ ! deviation of the solution from the local maxwellian. When the L1-norm of the 
+ deviation drops below the treshhold, the appropriate 
+ ! NOTICE: keep linear_lev at least an order of magnitude less than decomp_lev  
+                                                      
+ !                                                                              
+                                                      
+ ! VERY IMPORTANT: the tresholds for the models above should be given in decreas
+ ing order.                                           
+ ! Otherwise the algorithms will make a mistake.                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+                                                                                
+                                                      
+ ES_lev=  1.000000000000000E-009
+ vel_lev=  1.000000000000000E-005
+ linear_lev=  2.000000000000000E-004
+ decomp_lev=   1.70000000000000     
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                         
+                                                      
+ ! Parameters for dimensionless reduction                                       
+                                                      
+ !                                                                              
+                                                      
+ ! C_inf = thermal velocity in m/s                                              
+                                                      
+ ! L_inf = characteristic length in m                                           
+                                                      
+ ! N_inf = the total number of molecules in the volume                          
+                                                      
+ ! T_inf =  the normalization for time is selected from the condition T_inf*C_in
+ f = L_inf calculated automatically                   
+ ! Temp_inf = the characteristic temperature                                    
+                                                      
+ ! mol_diam = molecular diameter in hard shperes model                          
+                                                      
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+ C_inf=   645.185399700000     
+ L_inf=   1.00000000000000     
+ T_inf=  1.549942079385217E-003
+ N_inf=  1.000000000000000E+020
+ mol_diam=  3.760000000000000E-010
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+ ! Parameters of the gas and ES-BGK                                             
+                                                      
+ gasR=   208.132200000000     
+ gas_alpha=  0.500000000000000     
+ gas_viscosity=  5.337379160633744E-005
+ gas_T_reference=   2000.00000000000     
+ alpha= -0.500000000000000     
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+ !! Parameters VD-BGK (BGK model with velocity dependent collision frequency    
+                                                      
+ Higherst Moment Order Conserved=           6
+ !	                	        !! order=1 invokes the first enforced moment. Curren
+ t allowed Maximum is 15 moments total                
+ Higherst Moment Order Conserved=           6
+ !						        !! frequency ATTENTION: Currently only the same number if allowe
+ d for both Order and Order_nu                        
+ mft_coeff=  0.500000000000000     
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ L1 error =   0.317891314289566     
+ Switching to decomposition regime from strongly non-linear
+ Combined CPU time to evaluate collision operator directly:
+   8198.02484800000     
+ Combined CPU time to evaluate collision operator using FFT:
+   350.758975000001     
+ Error in zeroth moment, collision operator directly:  1.605372538780055E-002
+ Error in zeroth moment, collision operator using FFT:  2.301612392261962E-002
+ Error in first moment, collision operator directly:   1.30467009414254     
+ Error in first moment, collision operator using FFT:   1.30238014575381     
+ Error in energy, collision operator directly:   1.88286978656622     
+ Error in energy, collision operator using FFT:   1.83543172257165     
+ Difference in evaluating collision directly and by FFT. Max Norm:
+  1.405774659861750E-002 1-norm:   3.157236483128936E-002 2-norm
+  5.284288684426155E-005

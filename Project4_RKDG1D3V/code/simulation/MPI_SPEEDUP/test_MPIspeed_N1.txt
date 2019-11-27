@@ -1,0 +1,2276 @@
+ ! This file contains parameter setting for 1D HOV model                        
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!"                        
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ k_list=           4
+ x_left=  0.000000000000000E+000
+ x_right=   2.00000000000000     
+ mesh_x_uniform= T
+ N_list=          16          11          16
+                                                                                
+                                                      
+ !! IGNORE THE VELOCITY PARAMETERS !!!!!                                        
+                                                      
+ ! These values are absolete and their analogs are provided  by the DGVlib      
+                                                      
+ s_list=           8
+ u_left=  -4000.00000000000     
+ u_right=   4000.00000000000     
+ mesh_u_uniform= T
+ M_list=          32
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                        
+                                                      
+                                                                                
+                                                      
+ rk=           5
+                                                                                
+                                                      
+ ! choose from different kinds of boundary conditions:                          
+                                                      
+ ! 1 - periodic BCs                                                             
+                                                      
+ ! 2 - exact BCs (will need to know the selected exact soluiton                 
+                                                      
+ ! 3 - diffusive reflection BCs.                                                
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ ! select the type of boundary conditions                                       
+                                                      
+ selected_leftbcond=           2
+ selected_rightbcond=           2
+                                                                                
+                                                      
+ ! choose from different kinds of exact solutions:                              
+                                                      
+ ! 1 - sin(x+u) -- type of source                                               
+                                                      
+ ! 2 - ext(-1/x^2) -- type of source                                            
+                                                      
+ ! 3 - diffusion BCs                                                            
+                                                      
+                                                                                
+                                                      
+ ! Select the exact solution                                                    
+                                                      
+ ! 1 = "f(ut-nx+cu)", f(x)=a*\exp(-b/((x-r_1)(x-r_2))) zero right side exact sol
+ ution (or 1a = 1- cos(x) periodic wave)              
+ ! 1(a) = "f(ut-nx+cu)", f(x)=1-cos(2\alpha\pi x) zero right side exact solution
+                                                      
+ ! 2 =  maxwelveldist (T1,u1,u)*N1 + maxwelveldist (T2,u2,u)*(1-N1) --- mimic sh
+ ock wave bimodal distribution (time independent)     
+ !      function sf_02 only makes sense for initial data. Error is replaced by L
+ _2 norm                                              
+                                                                                
+                                                      
+ selected_exact_sol=           2
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=test_MPI__          
+                                                                                
+                                                      
+ ! Parameters of time evolution                                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ initial_time=  0.000000000000000E+000
+ final_time=  1.000000000000000E-002
+ dt=  1.000000000000000E-004
+ num_eval_error=         600
+ num_save_solution=           1
+                                                                                
+                                                      
+ ! Parameters related to Non-unifom mesh generation                             
+                                                      
+ x_nonuniform_mesh_type=           2
+ u_nonuniform_mesh_type=           3
+                                                                                
+                                                      
+ ! supported types of nonuminform mesh:                                         
+                                                      
+ ! For variable u:                                                              
+                                                      
+ ! 1 --- the mesh is build based on the gauss nodes used for the integration of 
+ moments, moments_x_gauss_nodes and                   
+ !       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is 
+ divided in subintervals                              
+ !       as to have gauss nodes at centerpoints. Some extra points need to be in
+ troduced to make this possible.                      
+ ! 2 --- this mesh is to be used with the diffusive boundary conditions. The vel
+ ocity of the wall (currently only u_{w}=0)           
+ !       will be included in the mesh. Also, the cell near the walls will be 1/8
+  - 1/4 - 1/2                                         
+ ! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as pr
+ escribed by parameters                               
+ !       sml -- small cell levels amd smr -- small cell refinement factor       
+                                                      
+ ! 3 --- This is a non-niform mesh in "x" with cells near wall be 1/4-1/2. Curre
+ nlty is not supported for meshes in "u"              
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_x_gauss_order=           5
+ moments_refine_x=           1
+ moments_u_gauss_order=           9
+ moments_refine_u=           1
+                                                                                
+                                                      
+ ! !!! Ignore these parameters: Gas parameters are described in the DGVparameter
+ s.dat                                                
+                                                                                
+                                                      
+ ! Parameters of the gas                                                        
+                                                      
+ gasR=   208.132127272023     
+ gasTref=   1020.00000000000     
+ gasalpha=  0.500000000000000     
+ gasmuref=  3.811651127166199E-005
+                                                                                
+                                                      
+ ! Parameters of diffusive BCs -- only used with diffusive BCs                  
+                                                      
+                                                                                
+                                                      
+ T_w_left=   300.000000000000     
+ T_w_right=   1000.00000000000     
+                                                                                
+                                                      
+ ! Restart of the solution                                                      
+                                                      
+                                                                                
+                                                      
+ need_to_restart= F
+ restart_time_txt=0.90030000          
+                                                                                
+                                                      
+ ! OpenMP parameters:                                                           
+                                                      
+ Num_OMP_threads=      1
+                                                                                
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ ! This file contains parameter setting for DGV library                         
+                                                      
+ !                                                                              
+                                                      
+ ! DO NOT CHANGE THE PARAMETER NAMES! INTEGERS are limited to 6 digits!         
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ ! "," is a separator, IMPORTANT: ",4" will be read as two numbers, "0" and "4" 
+                                                      
+ ! "." is the decimal point                                                     
+                                                      
+ !                                                                              
+                                                      
+ ! parameter description (name) must not change including no adding extra spaces
+  between words!                                      
+ !                                                                              
+                                                      
+ ! the parameter description ends with  "=" whish is followed by the parameter v
+ alue                                                 
+ !                                                                              
+                                                      
+ ! the program will ignore all lines that start with "!" in the first column    
+                                                      
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!                                                       
+                                                      
+ u_L=  -3.00000000000000     
+ u_R=   3.00000000000000     
+ v_L=  -3.00000000000000     
+ v_R=   3.00000000000000     
+ w_L=  -3.00000000000000     
+ w_R=   3.00000000000000     
+ mesh_u_uniform= T
+ mesh_v_uniform= T
+ mesh_w_uniform= T
+                                                                                
+                                                      
+ SecondaryVelGridInUse= F
+                                    !! the first number will determine the prima
+ ry grid and the second number.                       
+                                    !! determines the secondary grid. The third 
+ (also fourth and fifth) numbers are optional         
+                                    !! and is not used at the moment            
+                                                      
+ !set the parameters of the primary and secondary grid                          
+                                                      
+ Mu_list=          10          21           4
+ su_list=           5           1           1
+ Mv_list=          10          21           4
+ sv_list=           5           1           1
+ Mw_list=          10          21           4
+ sw_list=           5           1           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! directory and the base name for the solution                                 
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ current_solution_dir=sol080909/                                        
+ current_solution_base_name=test_MPI__          
+ current_Aoperator_base_name=OpA/1xN/exp0912_    
+ current_Aoperator_base_nameII=OpA/1xN/exp0912_    
+ numchnks=           1
+ numchnksII=           1
+                                                                                
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to non-unifom mesh generation                             
+                                                      
+ u_nonuniform_mesh_type=           3
+ v_nonuniform_mesh_type=           3
+ w_nonuniform_mesh_type=           3
+                                                                                
+                                                      
+ ! supported types of nonuminform mesh:                                         
+                                                      
+ ! For variable u:                                                              
+                                                      
+ ! 1 --- the mesh is build based on the gauss nodes used for the integration of 
+ moments, moments_x_gauss_nodes and                   
+ !       moments_u_gauss_nodes. intervals [x_left,x_right], [u_left,u_right] is 
+ divided in subintervals                              
+ !       as to have gauss nodes at centerpoints. Some extra points need to be in
+ troduced to make this possible.                      
+ ! 2 --- this mesh is to be used with the diffusive boundary conditions. The vel
+ ocity of the wall (currently only u_{w}=0)           
+ !       will be included in the mesh. Also, the cell near the walls will be 1/8
+  - 1/4 - 1/2                                         
+ ! 3 --  for variable u -- this mesh will have small cells surrounding u=0 as pr
+ escribed by parameters                               
+ !       sml -- small cell levels amd smr -- small cell refinement factor       
+                                                      
+ ! 3 --- This is a non-niform mesh in "x" with cells near wall be 1/4-1/2. Curre
+ nlty is not supported for meshes in "u"              
+ !                                                                              
+                                                      
+ !                                                                              
+                                                      
+                                                                                
+                                                      
+ ! Parameters related to the integration of moments                             
+                                                      
+                                                                                
+                                                      
+ moments_u_gauss_order=           9
+ moments_refine_u=           1
+                                                                                
+                                                      
+ ! Parameters of Calculating the A-array:                                       
+                                                      
+ Trad=   3.00000000000000     
+ ErrChi=  1.000000000000000E-004
+ ErrEps=  1.000000000000000E-005
+ min_sens=  9.999999999999999E-012
+ I1_list=         365       14896
+                                                                                
+                                                      
+ ! OpenMP parameters:                                                           
+                                                      
+ Num_OMP_threads=      1
+ !MPI parameters                                                                
+                                                      
+ num_lin_proc=          28
+ num_linstep_wait=           3
+                                     ! by default, the linearized solution is co
+ mputed on slave processors. however                  
+                                     ! if the linearized operator has not been u
+ ptaded #num_linstep_wait# times, then                
+                                     ! we will send chunks of the linearized ope
+ rator to a selected group of processors and will try 
+                                     ! presumably, we can save on communication 
+ by doing that.                                       
+ num_Acopies=           1
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+ ! Linearization and Decomposition parameters:                                  
+                                                      
+ ! these are parameters that tell when the decomposition or linearization       
+                                                      
+ ! around a local maxwellian needs to be applied. They represent treshholds     
+                                                      
+ ! for deviations from a maxwellian in L_1 or other norm.                       
+                                                      
+ ! NOTICE: keep linear_lev at least an order of magnitude less than decomp_lev  
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                              
+                                                      
+ ES_lev=   10.0000000000000     
+ vel_lev=   200.900000000000     
+ linear_lev=   300.000000000000     
+ decomp_lev=   400.000000000000     
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                                         
+                                                      
+ ! Parameters for dimensionless reduction                                       
+                                                      
+ !                                                                              
+                                                      
+ ! C_inf = thermal velocity in m/s                                              
+                                                      
+ ! L_inf = characteristic length in m                                           
+                                                      
+ ! N_inf = the total number of molecules in the volume                          
+                                                      
+ ! T_inf =  the normalization for time is selected from the condition T_inf*C_in
+ f = L_inf calculated automatically                   
+ ! Temp_inf = the characteristic temperature                                    
+                                                      
+ ! mol_diam = molecular diameter in hard shperes model                          
+                                                      
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+ C_inf=   1290.37079942000     
+ L_inf=   1.00000000000000     
+ T_inf=  7.749710396805966E-004
+ N_inf=  1.000000000000000E+020
+ mol_diam=  3.760000000000000E-010
+ mol_mass=  6.633520884527004E-026
+ !!!!!!!!!!!!!!!                                                                
+                                                      
+                                                                                
+                                                      
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+ ! Parameters of the gas and ES-BGK                                             
+                                                      
+ gasR=   208.132200000000     
+ gas_alpha=  0.500000000000000     
+ gas_viscosity=  3.811651127166199E-005
+ gas_T_reference=   1020.00000000000     
+ alpha= -0.500000000000000     
+ flag_use_VSS_diam= F
+ !!!!!!!!!!!!!!!!!!!!!!!                                                        
+                                                      
+                                                                                
+                                                      
+ Higherst Moment Order Conserved=          10
+ !	                	        !! order=1 invokes the first enforced moment. Curren
+ t allowed Maximum is 15 moments total                
+ Higherst Moment Order Conserved=           6
+ !						        !! frequency ATTENTION: Currently only the same number if allowe
+ d for both Order and Order_nu                        
+ mft_coeff=   20.0000000000000     
+ ! end of file                                                                  
+                                                      
+ ! end of file                                                                  
+                                                      
+ CSMSimple1Donecell_DGV_MPI: cell=           1 
+ Switching to ES-BGK mode from strongly non-linear
+ time=  0.000000000000000E+000 run_mode_1D=           4           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0           0
+           0           0           0           0           0
+ CSMSimple1Donecell_DGV_MPI: cell=           2 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           3 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           4 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           5 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           6 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           7 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           8 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=           9 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          10 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          11 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          12 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          13 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          14 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          15 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          16 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          17 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          18 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          19 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          20 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          21 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          22 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          23 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          24 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          25 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          26 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          27 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          28 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          29 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          30 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          31 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          32 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          33 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          34 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          35 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          36 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          37 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          38 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          39 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          40 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          41 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          42 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          43 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          44 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          45 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          46 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          47 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          48 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          49 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          50 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          51 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          52 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          53 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          54 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          55 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          56 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          57 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          58 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          59 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          60 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          61 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          62 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          63 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          64 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          65 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          66 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          67 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          68 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          69 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          70 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          71 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          72 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          73 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          74 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          75 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          76 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          77 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          78 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          79 
+ Switching to ES-BGK mode from strongly non-linear
+ CSMSimple1Donecell_DGV_MPI: cell=          80 
+ Switching to ES-BGK mode from strongly non-linear
+ time=  5.000000000000000E-005 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.000000000000000E-005 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.666666666666667E-005 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.000000000000000E-005 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.500000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.500000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.666666666666667E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.200000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.500000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.500000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.666666666666667E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.200000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.500000000000001E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.500000000000001E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.666666666666667E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.200000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ Processor time lapsed in seconds to run PrepareMTS1D3D_MPI   3.128690    
+ time=  4.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.000000000000000E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.000000000000001E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.000000000000001E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.000000000000001E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.000000000000002E-004 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.000000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.100000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.200000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.300000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.400000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.500000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.600000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.700000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.800000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  1.900000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.000000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.100000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.200000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.300000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.400000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.500000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.599999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.699999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.799999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.899999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  2.999999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.099999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.199999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.299999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.399999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.499999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.599999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.699999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.799999999999997E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.899999999999997E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  3.999999999999997E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.099999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.199999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.299999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.399999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.499999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.599999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.699999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.800000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  4.900000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.000000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.100000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.200000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.300000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.400000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.500000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.600000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.700000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.800000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  5.900000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.000000000000003E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.100000000000003E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.200000000000003E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.300000000000004E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.400000000000004E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.500000000000004E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.600000000000004E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.700000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.800000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  6.900000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.000000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.100000000000006E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.200000000000006E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.300000000000006E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.400000000000006E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.500000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.600000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.700000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.800000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  7.900000000000008E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.000000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.100000000000007E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.200000000000006E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.300000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.400000000000005E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.500000000000004E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.600000000000003E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.700000000000003E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.800000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  8.900000000000002E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.000000000000001E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.100000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.200000000000000E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.299999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.399999999999999E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.499999999999998E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.599999999999997E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.699999999999997E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.799999999999996E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.899999999999996E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ time=  9.999999999999995E-003 run_mode_1D=           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4           4
+           4           4           4           4           4
+ experiment: k=           4  max_deg=           4  rk=           5  N=
+          16
+ Processor time lapsed in seconds   11.25700    
+  |----------------------------------------------------------------| 
